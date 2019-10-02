@@ -54,6 +54,22 @@ function gravity() {
         }
     }
 }
+function check() {
+
+}
+function backGrav() {
+    for(var i = (1000 / DOT_SIZE) - 1; i >= 0; i--) {
+        for(var j = (1000 / DOT_SIZE) - 1; j >= 1; j--) {
+            if(back[j][i] != 0) break;
+            else if(j == 0) {
+                for(var k = 0; k < (1000 / DOT_SIZE) - 1; k++) {
+                    for(var l = i; l >= 0; l--) back[l][k] = back[l][k - 1];
+                }
+            }
+        }
+    }
+}
+
 window.onkeydown = function() {
 
 }
@@ -67,4 +83,5 @@ ctx.fillStyle = "black";
 setInterval(function() {
     gravity();
     display();
+    backGrav();
 }, 500);
