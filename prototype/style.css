@@ -1,0 +1,44 @@
+@font-face {
+    font-family: dung; 
+    src: url(font/DungGeunMo.woff) format('woff')
+}
+body {
+    text-align: center;
+    background-color: #4a8dff;
+    position: relative;
+}
+h1 {
+    font-family: dung;
+    font-size: 80px;
+    color: #ffddcc;
+    margin: 20%;
+    margin-bottom: 5%;
+    margin-top: 50px;
+    background-color:#9c3e00;
+} @media only screen and (min-width : 321px) and (max-width : 767px) {
+    h1 {
+        margin: 0px;
+    }
+}
+.game {
+    position: relative;
+    bottom: 0;
+    text-align: left;
+}
+.floor {
+    background-image: url(images/tile.jpg);
+    background-size: 50px;
+    margin: -10px;
+    margin-top: -5px;
+}
+.mario {
+    margin-top: 10%;
+} @media only screen and (min-width : 321px) and (max-width : 767px) {
+    .mario {
+        margin-top: 50%;
+        margin-left: 6%
+    }
+}
+.sel {
+    position: relative;
+}
