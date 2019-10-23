@@ -75,14 +75,32 @@ body {
 }
 .title {
     margin: 50px;
+    margin-left: -500px;
     margin-bottom: 0px;
     font-size: 100px;
+    line-height: 100px;
     font-weight: 800;
+    animation: inTitle 1s;
+    animation-timing-function: ease;
+    animation-fill-mode: forwards;
 }
 .text {
     margin: 50px;
+    margin-left: -500px;
     margin-top: 10px;
     font-size: 50px;
     font-weight: 900;
     line-height: 50px;
+    animation: inTitle 1s 0.5s;
+    animation-timing-function: ease;
+    animation-fill-mode: forwards;
+}
+
+@keyframes inTitle {
+    0% {
+        margin-left: -500px;
+    }
+    100% {
+        margin-left: 50px;
+    }
 }
