@@ -1,3 +1,15 @@
+swal({
+    icon: "warning",
+    title: "WAIT!",
+    text: "THIS PAGE IS MADE FOR FULL-SCREEN MODE!\nIF YOU CLICK THE OK BUTTON,\nTHIS PAGE WILL WORK ON FULL-SCREEN."
+})
+.then(() => {
+    toggleFullScreen();
+    $(".title").css("animation-play-state", "running");
+    $(".circle").css("animation-play-state", "running");
+    $(".text").css("animation-play-state", "running");
+    $(".works").css("animation-play-state", "running");
+});
 function toggleFullScreen() {
     var doc = window.document;
     var docEl = doc.documentElement;
