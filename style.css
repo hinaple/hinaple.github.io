@@ -119,19 +119,36 @@ body {
     animation-fill-mode: forwards;
     animation-play-state: paused;
 }
-.meal {
-    width: 700px;
-    height: 700px;
-    z-index: 0;
+.meal, .chat {
     object-fit: cover;
     border-radius: 50%;
     position: absolute;
     right: 100px;
+    width: 700px;
+    height: 700px;
+    z-index: 0;
     top: 150px;
     -webkit-mask-image:-webkit-gradient(linear, left top, right bottom, from(rgba(0,0,0,1)), to(rgba(0,0,0,0)));
     mask-image: linear-gradient(45dec, black, #000000);
 }
+.meal {
+    opacity: 1;
+    animation: fadeinout 10s 0s infinite paused;
+    transition: border-radius 1s;
+}
+.chat {
+    opacity: 0;
+    animation: fadeinout 10s 5s infinite paused;
+    transition: all 1s;
+}
+.meal:hover {
+    border-radius: 0%;
+}
+.chat:hover {
+    border-radius: 0%;
+}
 .works {
+    z-index: 2;
     height: 100px;
     width: 0px;
     border-radius: 50px;
@@ -143,25 +160,63 @@ body {
     animation-timing-function: ease;
     animation-fill-mode: forwards;
     animation-play-state: paused;
+    box-shadow: 0 0 20px 10px #0000002c;
 }
 .work {
-    top: 8px;
     opacity: 1;
-    position: absolute;
     height: 80px;
-    cursor: pointer;
     transition: all 200ms;
     transition-timing-function: ease;
 }
 .work.github {
-    left: 40px;
+    position: absolute;
+    left: 80px;
+    top: 10px;
     animation: workUp 1s 0s;
     animation-fill-mode: none; 
     animation-play-state: paused;
+    border-radius: 50%;
+    cursor: pointer;
 }
-.work:hover {
+.work.github:hover {
     top: -13px;
+    height: 90px;
+    left: 75px;
+    box-shadow: 0px 0px 30px 10px #ffffff5d;
 }
+.work-bar {
+    z-index: 3;
+    top: 10px;
+    left: 205px;
+    border-radius: 50px;
+    position: absolute;
+    background-color: rgb(255, 255, 255);
+    opacity: 0;
+    height: 80px;
+    width: 100px;
+    transition: all 500ms;
+}
+.work-bar:hover {
+    background: rgba(255, 255, 255);
+    opacity: 1;
+    box-shadow: 0 0 20px 10px #0000002c;
+    width: 600px;
+}
+.work.w {
+    left: 230px;
+    top: 10px;
+    position: absolute;
+    animation: workUp 2s 0s;
+    animation-fill-mode: none; 
+    animation-play-state: paused;
+}
+.w-black {
+    height: 80px;
+    left: 25px;
+    top: 0px;
+    position: absolute;
+}
+
 
 @keyframes inTitle {
     0% {
@@ -187,12 +242,31 @@ body {
     }
 }
 
+@keyframes fadeinout {
+    0% {
+        opacity: 0;
+    }
+    10% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 1;
+    }
+    60% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
 @keyframes worksSpread {
     0% {
         width: 0px;
+        box-shadow: none;
     }
     100% {
-        width: 700px;
+        width: 400px;
     }
 }
 
@@ -202,7 +276,7 @@ body {
         opacity: 0;
     }
     100% {
-        top: 8px;
+        top: 10px;
         opacity: 1;
     }
 }

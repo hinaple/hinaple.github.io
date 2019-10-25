@@ -9,7 +9,10 @@ swal({
     $(".circle").css("animation-play-state", "running");
     $(".text").css("animation-play-state", "running");
     $(".works").css("animation-play-state", "running");
-    $(".work.github").css("animation-play-state", "running");
+    $(".github").css("animation-play-state", "running");
+    $(".work.w").css("animation-play-state", "running");
+    $(".meal").css("animation-play-state", "running");
+    $(".chat").css("animation-play-state", "running");
 });
 function toggleFullScreen() {
     var doc = window.document;
