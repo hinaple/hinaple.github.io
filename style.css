@@ -144,11 +144,23 @@ body {
     animation-fill-mode: forwards;
     animation-play-state: paused;
 }
-.github {
+.work {
+    top: 8px;
+    opacity: 1;
     position: absolute;
     height: 80px;
+    cursor: pointer;
+    transition: all 200ms;
+    transition-timing-function: ease;
+}
+.work.github {
     left: 40px;
-    top: 8px;
+    animation: workUp 1s 0s;
+    animation-fill-mode: none; 
+    animation-play-state: paused;
+}
+.work:hover {
+    top: -13px;
 }
 
 @keyframes inTitle {
@@ -181,5 +193,16 @@ body {
     }
     100% {
         width: 700px;
+    }
+}
+
+@keyframes workUp {
+    0% {
+        top: 50px;
+        opacity: 0;
+    }
+    100% {
+        top: 8px;
+        opacity: 1;
     }
 }
