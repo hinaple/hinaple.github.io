@@ -13,7 +13,31 @@ swal({
     $(".work.w").css("animation-play-state", "running");
     $(".meal").css("animation-play-state", "running");
     $(".chat").css("animation-play-state", "running");
+    $(".under-bar").css("animation-play-state", "running");
+    blink = setInterval(() => { bCnt++; }, 1000);
 });
+
+$(window).scroll(() => {
+    var scroll = $(this).scrollTop();
+    console.log(scroll);
+    if(scroll > 1100) {
+        $(".tab").text("Bongdam ms meal");
+        $(".url").val("http://meal.odcb.kr/");
+    }
+    else $(".tab").text("portfolio");
+    if(scroll > 2330) $(".tab").text("Bongdam ms calendar");
+    if(scroll > 3440) $(".tab").text("online chatting");
+});
+
+var bCnt = 0;
+var blink;
+$(".works").mouseover(() => {
+    if(bCnt % 2 == 1) $(".works").css("animation", "blink 1s " + (bCnt + 2) + " alternate-reverse ease-in-out");
+    else $(".works").css("animation", "blink 1s " + (bCnt + 1) + " alternate-reverse ease-in-out");
+    console.log(bCnt);
+    clearInterval(blink);
+});
+
 function toggleFullScreen() {
     var doc = window.document;
     var docEl = doc.documentElement;
