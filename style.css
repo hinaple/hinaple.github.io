@@ -1,6 +1,7 @@
 @import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
 
 html {
+    overflow-x: hidden;
     height: 100%;
     width: 100%;
     scroll-behavior: smooth;
@@ -16,6 +17,8 @@ body {
 hr {
     border: #000000 10px solid;
     width: 40%;
+    margin-top: -20px;
+    margin-bottom: 0px;
 }
 .browser {
     width: 100%;
@@ -75,7 +78,7 @@ hr {
 }
 #main {
     width: 100%;
-    height: 1080px;
+    height: 100%;
 }
 #front {
     pointer-events: none;
@@ -91,7 +94,7 @@ hr {
     width: 120px;
     border-color: #ffffff;
     left: 50px;
-    top: 360px;
+    top: 98%;
     animation: underbar 1s;
     animation-timing-function: ease;
     animation-fill-mode: forwards;
@@ -287,7 +290,141 @@ hr {
 }
 #meal, #haksa, #chat {
     width: 100%;
-    height: 1080px;
+    height: 100%;
+    margin: 0px;
+}
+#meal {
+    background: #f32e4f;
+}
+#haksa {
+    background: #008091;
+}
+.img {
+    width: 600px;
+    object-fit: cover;
+    position: absolute;
+    right: 0px;
+    border-radius: 100px 0 0 100px;
+    /*-webkit-mask-image: linear-gradient(to right, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 100%);
+    mask-image: linear-gradient(to right, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 100%);*/
+    transition: all 500ms;
+    z-index: 2;
+    box-shadow: 0px 0px 10px 10px #0000003d;
+}
+.img:hover {
+    margin-top: -20px;
+}
+.img.mealimg {
+    top: 123%;
+    height: 800px;
+    animation: comeRight 1s ease;
+    animation-play-state: paused;
+}
+.img.haksaimg {
+    top: 223%;
+    height: 800px;
+    animation: comeRight 1s ease;
+    animation-play-state: paused;
+}
+.bibe {
+    height: 600px;
+    width: 160px;
+    position: absolute;
+    right: 600px;
+    animation: comeRight 1s 0s ease;
+    animation-play-state: paused;
+}
+.bibe.haksa {
+    top: 234%;
+}
+.bibe div {
+    background-color: #ffffff;
+    width: 160px;
+    height: 160px;
+    margin-bottom: 40px;
+    border-radius: 50px 0 0 50px;
+    box-shadow: 0px 0px 10px 10px #0000002c;
+}
+@media screen and (max-height: 900px) {
+    .img.mealimg, .img.haksaimg {
+        height: 500px;
+    }
+    .img.mealimg {
+        top: 127%;
+    }
+    .img.haksaimg {
+        top: 227%;
+    }
+}
+.intro {
+    text-shadow: 0px 0px 10px #00000075;
+    position: absolute;
+    left: 40px;
+    font-size: 67px;
+    font-weight: 400;
+    text-align: left;
+    color: #ffffff;
+    z-index: 5;
+    pointer-events: none;
+}
+.intro.mealt {
+    top: 118%;
+}
+.intro.haksat {
+    top: 217%;
+}
+.content {
+    text-shadow: 0px 0px 5px #00000075;
+    pointer-events: none;
+    position: absolute;
+    left: 40px;
+    font-size: 40px;
+    text-align: left;
+    color: #ffffff;
+    font-weight: 200;
+    z-index: 5;
+}
+@media screen and (max-width: 1400px) {
+    .content {
+        font-size: 30px;
+    }
+}
+.content strong {
+    color: #ffffff;
+}
+.content a {
+    text-decoration: none;
+    transition: all 500ms ease;
+}
+.content a strong {
+    pointer-events: auto;
+    color: #fffb00;
+}
+.content a:visited strong {
+    color: #fbff00;
+}
+.content a:hover strong {
+    animation: rainbow 3s infinite;
+}
+.content.mealc {
+    top: 147%;
+    animation: comeLeft 1s;
+    animation-play-state: paused;
+    color: #ffd9ca;
+}
+.content.haksac {
+    top: 242%;
+    animation: comeLeft 1s;
+    animation-play-state: paused;
+    color: #89e7ff;
+}
+.icon {
+    position: absolute;
+    height: 500px;
+    left: 300px;
+    margin-top: 300px;
+    opacity: 0.3;
+    z-index: 1;
 }
 
 @keyframes inTitle {
@@ -390,5 +527,44 @@ hr {
     100% {
         background-color: #00ff00;
         box-shadow: 0 0 40px 20px #00ff0065;
+    }
+}
+
+@keyframes comeRight {
+    0% {
+        right: -900px;
+    }
+}
+
+@keyframes comeLeft {
+    0% {
+        left: -900px;
+    }
+}
+
+@keyframes rainbow {
+    0% {
+        color: #ff2a2a;
+    }
+    15% {
+        color: #ff7a2a;
+    }
+    30% {
+        color: #ffc52a;
+    }
+    45% {
+        color: #43ff2a;
+    }
+    60% {
+        color: #2a89ff;
+    }
+    75% {
+        color: #202082;
+    }
+    90% {
+        color: #6b2aff;
+    } 
+    100% {
+        color: #e82aff;
     }
 }
