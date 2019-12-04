@@ -83,7 +83,7 @@ hr {
 #front {
     pointer-events: none;
     position: absolute;
-    z-index: 4;
+    z-index: 6;
     margin-left: 50px;
     padding-bottom: 1px;
     top: 160px;
@@ -308,7 +308,7 @@ hr {
     /*-webkit-mask-image: linear-gradient(to right, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 100%);
     mask-image: linear-gradient(to right, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 100%);*/
     transition: all 500ms;
-    z-index: 2;
+    z-index: 4;
     box-shadow: 0px 0px 10px 10px #0000003d;
 }
 .img:hover {
@@ -327,33 +327,47 @@ hr {
     animation-play-state: paused;
 }
 .bibe {
-    height: 600px;
-    width: 160px;
+    z-index: 3;
+    right: 350px;
+    height: 300px;
+    width: 360px;
     position: absolute;
-    right: 600px;
     animation: comeRight 1s 0s ease;
     animation-play-state: paused;
 }
 .bibe.haksa {
-    top: 234%;
+    top: 232%;
 }
 .bibe div {
+    pointer-events: initial;
     background-color: #ffffff;
-    width: 160px;
-    height: 160px;
-    margin-bottom: 40px;
-    border-radius: 50px 0 0 50px;
+    width: 380px;
+    height: 80px;
+    margin-bottom: 20px;
+    border-radius: 45px 0 0 45px;
     box-shadow: 0px 0px 10px 10px #0000002c;
+    text-align: left;
+    padding-left: 26px;
+    padding-top: 13px;
+    transition: all 500ms ease;
+}
+.bibe div:hover {
+    margin-left: -100px;
+}
+.bibeimg {  
+    width: 70px;
+    pointer-events: none;
 }
 @media screen and (max-height: 900px) {
     .img.mealimg, .img.haksaimg {
-        height: 500px;
+        height: 600px;
+        width: 500px;
     }
     .img.mealimg {
-        top: 127%;
+        top: 140%;
     }
     .img.haksaimg {
-        top: 227%;
+        top: 240%;
     }
 }
 .intro {
@@ -404,7 +418,7 @@ hr {
     color: #fbff00;
 }
 .content a:hover strong {
-    animation: rainbow 3s infinite;
+    animation: rainbow 3s infinite linear;
 }
 .content.mealc {
     top: 147%;
@@ -419,6 +433,7 @@ hr {
     color: #89e7ff;
 }
 .icon {
+    pointer-events: none;
     position: absolute;
     height: 500px;
     left: 300px;
