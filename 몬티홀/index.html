@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>왁티홀의 역설 실험실</title>
+        <link rel="stylesheet" type="text/css" href="style.css">
+        <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
+    </head>
+    <body>
+        <h1>왁티홀의 역설 실험실<span class="by"> By 이공계팬치</span></h1><br>
+        실험 횟수: <input type="number" min="1" id="time" value="100"><br>
+        각 실험 사이의 딜레이(ms): <input type="number" min="0" id="delay" value="0"><br>
+        <button id="startbtn">실험 시작</button>
+        <div class="box1">
+            <div class="door 1" id="d0">?</div>
+            <div class="door 2" id="d1">?</div>
+            <div class="door 3" id="d2">?</div><br>
+            역설이 맞았네: <span id="succ">0</span><br>
+            역설이 틀렸네: <span id="fail"">0</span>
+        </div>
+    </body>
+    <script src="app.js"></script>
+</html>
