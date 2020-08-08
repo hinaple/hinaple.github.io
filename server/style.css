@@ -1,0 +1,83 @@
+html, body {
+    height: 100%;
+    width: 100%;
+    background-color: #f3f3f3;
+    margin: 0;
+}
+img {
+    image-rendering: pixelated;
+    position: absolute;
+    z-index: 2;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 1440px;
+    height: 810px;
+    border-radius: 5px;
+}
+canvas {
+    margin: 0px;
+    position: absolute;
+    z-index: 1;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 1440px;
+    height: 810px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+    border-radius: 5px;
+}
+#inv {
+    width: 200px;
+    height: 200px;
+    background-color: #000;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.5);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 100ms linear;
+    user-select: none;
+}
+.item {
+    cursor: grab;
+    width: 20px;
+    height: 20px;
+    top: 100px;
+    left: 100px;
+    position: absolute;
+    user-select: none;
+}
+.item.img {
+    top: 0px;
+    left: 0px;
+    width: 20px;
+    height: 20px;
+    user-select: none;
+}
+.itm-count {
+    font-size: 10px;
+	text-shadow: 0px 0px 3px #000, 0px 0px 3px #000, 0px 0px 3px #000;
+    font-weight: 900;
+    user-select: none;
+    position: absolute;
+    top: -70%;
+    left: 50%;
+    transform: translate(-50%, 50%);
+    color: #fff;
+}
+.start {
+    position: absolute;
+    z-index: 3;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 680px;
+    width: 500px;
+    height: 120px;
+    border-radius: 40px;
+    border: none;
+    background: none;
+}
