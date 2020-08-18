@@ -21,19 +21,75 @@ screenCtx.fillRect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
 miniCtx.fillStyle = "#fff";
 miniCtx.fillRect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
 
+const maps = [
+    {
+        spawn: [ 4, 4 ],
+        map: [
+            [ 1, 1, 1, 1, 1, 1, 1, 1 ],
+            [ 1, 0, 0, 0, 0, 0, 0, 1 ],
+            [ 1, 0, 0, 0, 0, 0, 0, 1 ],
+            [ 1, 0, 0, 0, 0, 0, 0, 1 ],
+            [ 1, 0, 0, 0, 0, 0, 0, 1 ],
+            [ 1, 0, 0, 0, 0, 0, 0, 1 ],
+            [ 1, 0, 0, 0, 0, 0, 0, 1 ],
+            [ 1, 1, 1, 1, 1, 1, 1, 1 ]
+        ]
+    },
+    {
+        spawn: [ 1.5, 1.5 ],
+        map: [
+            [ 1, 1, 1, 1, 1, 1, 1, 1 ],
+            [ 1, 0, 0, 0, 0, 0, 0, 1 ],
+            [ 1, 0, 1, 0, 0, 1, 0, 1 ],
+            [ 1, 0, 0, 0, 0, 0, 0, 1 ],
+            [ 1, 0, 0, 0, 0, 0, 0, 1 ],
+            [ 1, 0, 1, 0, 0, 1, 0, 1 ],
+            [ 1, 0, 0, 0, 0, 0, 0, 1 ],
+            [ 1, 1, 1, 1, 1, 1, 1, 1 ]
+        ]
+    },
+    {
+        spawn: [ 4, 4 ],
+        map: [
+            [ 1, 1, 1, 1, 1, 1, 1, 1 ],
+            [ 1, 0, 1, 0, 0, 0, 0, 1 ],
+            [ 1, 0, 1, 0, 0, 0, 0, 1 ],
+            [ 1, 0, 1, 0, 0, 0, 0, 1 ],
+            [ 1, 0, 0, 0, 0, 0, 0, 1 ],
+            [ 1, 0, 0, 0, 0, 1, 0, 1 ],
+            [ 1, 0, 0, 0, 0, 0, 0, 1 ],
+            [ 1, 1, 1, 1, 1, 1, 1, 1 ]
+        ]
+    },
+    {
+        spawn: [ 5.5, 6.5 ],
+        map: [
+            [ 1, 1, 1, 1, 1, 1, 1, 1 ],
+            [ 1, 0, 1, 0, 0, 0, 0, 1 ],
+            [ 1, 0, 1, 0, 1, 0, 1, 1 ],
+            [ 1, 0, 1, 0, 1, 0, 0, 1 ],
+            [ 1, 0, 1, 0, 1, 1, 0, 1 ],
+            [ 1, 0, 1, 0, 1, 1, 0, 1 ],
+            [ 1, 0, 0, 0, 1, 0, 0, 1 ],
+            [ 1, 1, 1, 1, 1, 1, 1, 1 ]
+        ]
+    },
+];
+
+let nowMap = 0;
 let map = [
     [ 1, 1, 1, 1, 1, 1, 1, 1 ],
     [ 1, 0, 0, 0, 0, 0, 0, 1 ],
-    [ 1, 0, 1, 0, 0, 1, 0, 1 ],
     [ 1, 0, 0, 0, 0, 0, 0, 1 ],
     [ 1, 0, 0, 0, 0, 0, 0, 1 ],
-    [ 1, 0, 1, 0, 0, 1, 0, 1 ],
+    [ 1, 0, 0, 0, 0, 0, 0, 1 ],
+    [ 1, 0, 0, 0, 0, 0, 0, 1 ],
     [ 1, 0, 0, 0, 0, 0, 0, 1 ],
     [ 1, 1, 1, 1, 1, 1, 1, 1 ]
 ];
 
 let player = {
-    pos: [ 2, 2 ],
+    pos: [ 4, 4 ],
     press: [ 
         [ false, false, false, false ], //move to [ up left down right ]
         [ false, false ] //turn to [ left right ]
@@ -287,4 +343,12 @@ document.body.addEventListener("keyup", () => {
 
     if(event.keyCode == 37) player.press[1][0] = false;
     if(event.keyCode == 39) player.press[1][1] = false;
+});
+
+document.getElementById("mapChange").addEventListener("click", () => {
+    nowMap++;
+    if(nowMap >= maps.length) nowMap = 0;
+
+    player.pos = copyArray(maps[nowMap].spawn);
+    map = copyArray(maps[nowMap].map);
 });

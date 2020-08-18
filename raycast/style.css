@@ -22,3 +22,9 @@ canvas {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
     margin: 10px;
 }
+strong {
+    font-size: 50px;
+}
+button {
+    font-size: 30px;
+}
