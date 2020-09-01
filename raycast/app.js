@@ -77,6 +77,7 @@ const maps = [
 ];
 
 let nowMap = 0;
+let isNight = false;
 let map = [
     [ 1, 1, 1, 1, 1, 1, 1, 1 ],
     [ 1, 0, 0, 0, 0, 0, 0, 1 ],
@@ -110,8 +111,7 @@ setInterval(rend2d, 15);
 
 async function rend2d() {
     calculatePlayerDelta();
-    screenCtx.clearRect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
-    miniCtx.clearRect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+    await clearScreen();
     drawMap2d(miniCtx);
     drawPlayer2d(miniCtx);
     await calculateLines();
@@ -127,96 +127,105 @@ function calculatePlayerDelta() {
     player.delta[1] = Math.sin(player.angle);
 }
 
-function calculateLines() {
-    return new Promise(async res => {
-        let tilePosX = player.pos[0] % 1;
-        let tilePosY = player.pos[1] % 1;
-        for(let i = 0; i < LINE_COUNT; i++) {
-            let lineAngle = player.angle + (i - LINE_COUNT / 2) * ANGLE_BETWEEN_LINES;
-            if(lineAngle < 0) lineAngle += Math.PI * 2;
-            else if(lineAngle > Math.PI * 2) lineAngle -= Math.PI * 2;
+async function clearScreen() {
+    if(isNight) {
+        screenCtx.fillStyle = "#ababab";
+        screenCtx.fillRect(0, SCREEN_HEIGHT / 2, SCREEN_WIDTH, SCREEN_HEIGHT / 2);
+        screenCtx.fillStyle = "#000";
+        screenCtx.fillRect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT / 2);
+    }
+    else screenCtx.clearRect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+    miniCtx.clearRect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
 
-            let xOffset, yOffset, hitXH, hitXV, hitYH, hitYV, lineLength = 0;
-            if(lineAngle == Math.PI || lineAngle == 0) lineAngle += 0.0001;
-            
-            let angleTan = Math.tan(lineAngle);
+    return;
+}
 
-            //check horizon
-            if(lineAngle > Math.PI) { //looking down
-                hitYH = player.pos[1] - tilePosY - 0.005;
-                hitXH = player.pos[0] - tilePosY / angleTan;
-                yOffset = -1;
-                xOffset = yOffset / angleTan;
-            }
-            else if(lineAngle < Math.PI) { //looing up
-                hitYH = player.pos[1] + 1 - tilePosY + 0.005;
-                hitXH = player.pos[0] + (1 - tilePosY) / angleTan;
-                yOffset = 1;
-                xOffset = yOffset / angleTan;
-            }
-            for(lineLength; lineLength < 12; lineLength++) {
-                if(!(hitYH < 8 && hitYH >= 0
-                    && hitXH < 8 && hitXH >= 0)) {
-                    hitXH += xOffset * 8;
-                    hitYH += yOffset * 8;
-                    break;
-                }
-                if(map[Math.floor(hitYH)]
-                    [Math.floor(hitXH)]) {
-                    break;
-                }
-                hitXH += xOffset;
-                hitYH += yOffset;
-            }
+async function calculateLines() {
+    let tilePosX = player.pos[0] % 1;
+    let tilePosY = player.pos[1] % 1;
+    for(let i = 0; i < LINE_COUNT; i++) {
+        let lineAngle = player.angle + (i - LINE_COUNT / 2) * ANGLE_BETWEEN_LINES;
+        if(lineAngle < 0) lineAngle += Math.PI * 2;
+        else if(lineAngle > Math.PI * 2) lineAngle -= Math.PI * 2;
 
-            //check vertical
-            if(lineAngle > Math.PI / 2 && lineAngle < Math.PI * 3 / 2) { //looking left
-                hitXV = player.pos[0] - tilePosX - 0.005;
-                hitYV = player.pos[1] - tilePosX * angleTan;
-                xOffset = -1;
-                yOffset = xOffset * angleTan;
-            }
-            else if(lineAngle < Math.PI / 2 || lineAngle > Math.PI * 3 / 2) { //looing right
-                hitXV = player.pos[0] + 1 - tilePosX + 0.005;
-                hitYV = player.pos[1] + (1 - tilePosX) * angleTan;
-                xOffset = 1;
-                yOffset = xOffset * angleTan;
-            }
+        let xOffset, yOffset, hitXH, hitXV, hitYH, hitYV, lineLength = 0;
+        if(lineAngle == Math.PI || lineAngle == 0) lineAngle += 0.0001;
+        
+        let angleTan = Math.tan(lineAngle);
 
-            for(lineLength; lineLength < 12; lineLength++) {
-                if(!(hitYV < 8 && hitYV >= 0
-                    && hitXV < 8 && hitXV >= 0)) {
-                    hitXV += xOffset * 8;
-                    hitYV += yOffset * 8;
-                    break;
-                }
-                if(map[Math.floor(hitYV)]
-                    [Math.floor(hitXV)]) break;
-                hitXV += xOffset;
-                hitYV += yOffset;
-            }
-
-            let hitX, hitY, shortLen;
-            
-            let horizonLen = getLengthBetween([hitXH, hitYH], player.pos);
-            let verticalLen = getLengthBetween([hitXV, hitYV], player.pos);
-            //console.log(hitXH, hitYH, hitXV, hitYV); //catch errors
-            let isVerticalBig = horizonLen < verticalLen
-            shortLen = isVerticalBig? horizonLen: verticalLen;
-            hitX = isVerticalBig? hitXH: hitXV;
-            hitY = isVerticalBig? hitYH: hitYV;
-            let relativeAngle = player.angle - lineAngle;
-            if(relativeAngle < 0) relativeAngle += Math.PI * 2;
-            else if(relativeAngle > Math.PI * 2) relativeAngle -= Math.PI * 2;
-            shortLen *= Math.cos(relativeAngle);
-            await drawCastLine(miniCtx, hitX, hitY).then(() => {
-                if(i == LINE_COUNT - 1) res(); //For Async
-            });
-            await drawAPixelLine(screenCtx, i, shortLen, isVerticalBig? "#525252": "#808080").then(() => {
-                if(i == LINE_COUNT - 1) res(); //For Async
-            });
+        //check horizon
+        if(lineAngle > Math.PI) { //looking down
+            hitYH = player.pos[1] - tilePosY - 0.005;
+            hitXH = player.pos[0] - tilePosY / angleTan;
+            yOffset = -1;
+            xOffset = yOffset / angleTan;
         }
-    });
+        else if(lineAngle < Math.PI) { //looing up
+            hitYH = player.pos[1] + 1 - tilePosY + 0.005;
+            hitXH = player.pos[0] + (1 - tilePosY) / angleTan;
+            yOffset = 1;
+            xOffset = yOffset / angleTan;
+        }
+        for(lineLength; lineLength < 12; lineLength++) {
+            if(!(hitYH < 8 && hitYH >= 0
+                && hitXH < 8 && hitXH >= 0)) {
+                hitXH += xOffset * 8;
+                hitYH += yOffset * 8;
+                break;
+            }
+            if(map[Math.floor(hitYH)]
+                [Math.floor(hitXH)]) {
+                break;
+            }
+            hitXH += xOffset;
+            hitYH += yOffset;
+        }
+
+        //check vertical
+        if(lineAngle > Math.PI / 2 && lineAngle < Math.PI * 3 / 2) { //looking left
+            hitXV = player.pos[0] - tilePosX - 0.005;
+            hitYV = player.pos[1] - tilePosX * angleTan;
+            xOffset = -1;
+            yOffset = xOffset * angleTan;
+        }
+        else if(lineAngle < Math.PI / 2 || lineAngle > Math.PI * 3 / 2) { //looing right
+            hitXV = player.pos[0] + 1 - tilePosX + 0.005;
+            hitYV = player.pos[1] + (1 - tilePosX) * angleTan;
+            xOffset = 1;
+            yOffset = xOffset * angleTan;
+        }
+
+        for(lineLength; lineLength < 12; lineLength++) {
+            if(!(hitYV < 8 && hitYV >= 0
+                && hitXV < 8 && hitXV >= 0)) {
+                hitXV += xOffset * 8;
+                hitYV += yOffset * 8;
+                break;
+            }
+            if(map[Math.floor(hitYV)]
+                [Math.floor(hitXV)]) break;
+            hitXV += xOffset;
+            hitYV += yOffset;
+        }
+
+        let hitX, hitY, shortLen;
+        
+        let horizonLen = getLengthBetween([hitXH, hitYH], player.pos);
+        let verticalLen = getLengthBetween([hitXV, hitYV], player.pos);
+        //console.log(hitXH, hitYH, hitXV, hitYV); //catch errors
+        let isVerticalBig = horizonLen < verticalLen
+        shortLen = isVerticalBig? horizonLen: verticalLen;
+        hitX = isVerticalBig? hitXH: hitXV;
+        hitY = isVerticalBig? hitYH: hitYV;
+        let relativeAngle = player.angle - lineAngle;
+        if(relativeAngle < 0) relativeAngle += Math.PI * 2;
+        else if(relativeAngle > Math.PI * 2) relativeAngle -= Math.PI * 2;
+        shortLen *= Math.cos(relativeAngle);
+        await drawCastLine(miniCtx, hitX, hitY);
+        await drawAPixelLine(screenCtx, i, shortLen, isNight? undefined: (isVerticalBig? "#525252": "#808080")).then(() => {
+            if(i == LINE_COUNT - 1) return; //For Async
+        });
+    }
 }
 
 function getLengthBetween(pos1, pos2) {
@@ -249,6 +258,15 @@ function drawAPixelLine(ctx, index, depth, color = "gray") {
             SCREEN_WIDTH / LINE_COUNT,
             8 / depth * 100
         );
+        if(isNight) {
+            ctx.fillStyle = "rgba(0, 0, 0, " + (depth / 10) + ")";
+            ctx.fillRect(
+                index * (SCREEN_WIDTH / LINE_COUNT),
+                SCREEN_HEIGHT / 2 - 8 / depth * 50,
+                SCREEN_WIDTH / LINE_COUNT,
+                8 / depth * 100
+            );
+        }
 
         res();
     });
@@ -352,3 +370,5 @@ document.getElementById("mapChange").addEventListener("click", () => {
     player.pos = copyArray(maps[nowMap].spawn);
     map = copyArray(maps[nowMap].map);
 });
+
+document.getElementById("nightMode").addEventListener("click", () => isNight = !isNight);
