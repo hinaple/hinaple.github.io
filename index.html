@@ -1,119 +1,76 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta charset="UTF-8" />
+        <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-        <link rel="stylesheet" href="style.css" />
-        <script src="//code.jquery.com/jquery-3.4.1.min.js"></script>
-        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-        <title>portfolio</title>
+        <title>숫자 MBTI 변환기</title>
+        <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
     </head>
     <body>
-        <div class="browser">
-            <div class="top-page">
-                <div class="tab">
-                    portfolio
-                </div>
-                <div class="urltab">
-                    <input class="url" value="http://odcb.kr/">
-                </div>
-            </div>
-            <div class="page">
-                <div id="main">
-                    <div id="front">
-                        <p class="title"><strong>WELCOME,</strong> WORLD!</p>
-                        <p class="text">THIS IS<br>SIWON'S<br>PORTFOLIO.</p>
-                        <hr class="under-bar">
-                    </div>
-                    <div class="works">
-                        <a href="https://github.com/hinaple/" title="MY GITHUB">
-                            <image class="work github" src="images/github.svg"></image>
-                        </a>
-                        <div class="work-bar">
-                            <image class="w-black" src="images/workblack.svg" title="MY WORKS"></image>
-                            <div class="work-box">
-                                <a href="#meal">
-                                    <image class="wrk tray" src="images/tray.svg" title="meal.odcb.kr"></image>
-                                </a>
-                                <a href="#haksa">
-                                    <image class="wrk haksa" src="images/haksa.svg" title="haksa.odcb.kr"></image>
-                                </a>
-                                <a href="#chat">
-                                    <image class="wrk onchat" src="images/chat.svg" title="onchat.odcb.kr"></image>
-                                </a>
-                                </div>
-                        </div>
-                        <image class="work w" src="images/work.svg"></image>
-                    </div>
-                    <div class="circle"></div>
-                    <image src="images/meal.png" class="meal" title="http://meal.odcb.kr/"></image>
-                    <image src="images/chat.png" class="chat" title="http://onchat.odcb.kr/"></image>
-                </div>
-            </div>
-            <hr>
-            <div id="meal">
-                <p class="intro mealt">Bongdam Middle School<br></p><p class="intro mealt" style="top:120%;font-size: 94px;"><strong>School Meal Site</strong></p>
-                <p class="content mealc">
-                    I made this site<br>
-                    that can see the <strong>school meal menu</strong>.<br><br>
-                    This site was made by <strong>Node.js</strong>.<br>
-                    And it <strong>crawls school home page</strong>.<br><br>
-                    You can use it <a href="http://meal.odcb.kr/">
-                        <strong>HERE</strong>
-                    </a><br>
-                    And you can see the code
-                    <a href="https://github.com/hinaple/bongmeal.js/blob/master/bongmeal.js">
-                        <strong>HERE</strong>
-                    </a>.
-                </p>
-                <a href="http://meal.odcb.kr/">
-                    <image src="images/meal.png" class="img mealimg" title="http://meal.odcb.kr/"></image>
-                </a>
-                <image src="images/tray.svg" class="icon"></image>
-            </div>
-            <hr>
-            <div id="haksa">
-                <p class="intro haksat">Bongdam Middle School<br></p>
-                <p class="intro mealt" style="top:219%;font-size: 94px;">
-                    <strong>School Calendar Site</strong>
-                </p>
-                    <p class="content haksac">
-                        This site shows you<br><strong>Bongdam Middle School's calendar</strong>.<br>
-                        There is a <strong>tomorrow's schedule</strong> on the top part,<br>
-                        And you can check <strong>this month's schedule</strong> below.<br><br>
-                        This site was made by <strong>Node.js</strong>.<br>
-                        And it <strong>crawls school home page</strong>.<br><br>
-                        You can use it
-                        <a href="http://haksa.odcb.kr/">
-                            <strong>HERE</strong>
-                        </a><br>
-                        And you can see the code
-                        <a href="https://github.com/hinaple/bongmeal.js/blob/master/haksa.js">
-                            <strong>HERE</strong>
-                        </a>.
-                    </p>
-                <a href="http://haksa.odcb.kr/">
-                    <image src="images/haksa.png" class="img haksaimg" title="http://haksa.odcb.kr/"></image>
-                </a>
-                <div class="bibe haksa">
-                    <div class="mealb">
-                        <img src="images/tray.svg" class="bibeimg">
-                    </div>
-                    <div class="haksab">
-                        <img src="images/haksa.svg" class="bibeimg">
-                    </div>
-                    <div class="chatb">
-                        <img src="images/chat.svg" class="bibeimg">
-                    </div>
-                </div>
-                <image src="images/haksa.svg" class="icon haksa"></image>
-            </div>
-            <hr>
-            <div id="chat">
-    
-            </div>
-        </div>
-        <script src="app.js"></script>
+        <h1>숫자 MBTI 변환기</h1>
+        <br><br><br>
+        <input type="text" id="mbti" placeholder="MBTI">
+        <br><br>▼<br><br>
+        <input type="text" id="number" placeholder="숫자" style="text-align: center;" disabled>
+
+        <script>
+            const MBTIS = [
+                [ 'E', 'I'],
+                [ 'S', 'N' ],
+                [ 'T', 'F' ],
+                [ 'J', 'P' ]
+            ];
+
+            const mbti = document.getElementById("mbti");
+            const number = document.getElementById("number");
+
+            function mbti2number(str) {
+                if(str.length != 4) return false;
+
+                str = str.toUpperCase();
+
+                let arr = new Array(4);
+                for(let i = 0; i < 4; i++) {
+                    arr[i] = MBTIS[i].indexOf(str[i]);
+                    if(arr[i] === -1) return false;
+                }
+
+                return Number(parseInt(Number(arr.join('')), 2).toString(10));
+            }
+
+            mbti.addEventListener("input" ,() => {
+                dec = mbti2number(mbti.value);
+                if(dec === false) dec = null;
+                number.value = dec;
+            });
+        </script>
+
+        <style>
+            h1 {
+                margin-top: 100px;
+                font-size: 50px;
+            }
+            body {
+                text-align: center;
+                font-size: 40px;
+                font-family: 'Jua', sans-serif;
+            }
+            input {
+                font-size: 40px;
+                font-family: 'Jua', sans-serif;
+                border-radius: 20px;
+                border: solid 5px #000;
+                width: 250px;
+            }
+            button {
+                background-color: #fff;
+                margin-top: 100px;
+                font-size: 40px;
+                font-family: 'Jua', sans-serif;
+                border-radius: 20px;
+                border: solid 5px #000;
+                width: 200px; 
+            }
+        </style>
     </body>
 </html>
