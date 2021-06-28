@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta http-equiv="ScreenOrientation" content="autoRotate:disabled">
+        <title>webGame</title>
+    </head> 
+    <body onload="setup()">
+        <div id="screen">
+            <img src="src/ingame/cbg/cbg_bg.png" class="background">
+            <img src="src/ingame/cbg/cbg_ob03.png" class="background mountain">
+            <canvas id="canvas"></canvas>
+            <div class="status">
+                <div class="score-elmnt" id="scoreElmnt">
+                    100
+                </div>
+                <div class="life-wrap">
+                    <div class="life empty">
+                        <img src="src/ingame/cbg/cbg_heart.png" class="heart empty">
+                        <img src="src/ingame/cbg/cbg_heart.png" class="heart empty">
+                        <img src="src/ingame/cbg/cbg_heart.png" class="heart empty">
+                    </div>
+                    <div class="life full">
+                        <img src="src/ingame/icon/icon_heart.png" class="heart full">
+                        <img src="src/ingame/icon/icon_heart.png" class="heart full">
+                        <img src="src/ingame/icon/icon_heart.png" class="heart full">
+                    </div>
+                </div>
+                <img src="src/ingame/btn/btn_pause.png" class="pauseButton" onclick="pause();">
+            </div>
+            <div class="guage">
+                <img src="src/ingame/cbg/cbg_guage_bg.png" class="guage-bg">
+                <div class="real-guage" id="guage">
+                    <img src="src/ingame/cbg/cbg_guage.png">
+                </div>
+            </div>
+            <div class="popup-wrap aresult" id="resultScr">
+                <div class="popupAll">
+                    <img src="src/result/cbg/cbg_bg.png" class="result">
+                    <div class="result-zone">
+                        <span class="title">결과</span>
+                        <span class="score" id="score">8</span>
+                        <div class="abutton start result" id="startR" onclick="play(true);">
+                            <img src="src/result/btn/btn_start.png" style="width: 100%;">
+                            <span class="buttonText">다시하기</span>
+                        </div>
+                        <div class="abutton main result" id="goMainR" onclick="goMain();">
+                            <img src="src/result/btn/btn_main.png" style="width: 100%;">
+                            <span class="buttonText">메인으로</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="popup-wrap apause" id="nextStage">
+                <div class="popupAll">
+                    <img src="src/pause/cbg/cbg_bg.png" class="result">
+                    <div class="result-zone bpause">
+                        <span class="title">Clear</span>
+                        <div class="abutton start result" style="top: 140px;" onclick="play(true);">
+                            <img src="src/result/btn/btn_start.png" style="width: 100%;">
+                            <span class="buttonText">높은단계</span>
+                        </div>
+                        <div class="abutton main result" style="top: 200px;" onclick="goMain();">
+                            <img src="src/result/btn/btn_main.png" style="width: 100%;">
+                            <span class="buttonText">메인으로</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="popup-wrap apause" id="pauseScr">
+                <div class="popupAll">
+                    <img src="src/pause/cbg/cbg_bg.png" class="result">
+                    <div class="result-zone bpause">
+                        <span class="title">일시정지</span>
+                        <div class="abutton start result" style="top: 140px;" onclick="play();">
+                            <img src="src/result/btn/btn_start.png" style="width: 100%;">
+                            <span class="buttonText">계속하기</span>
+                        </div>
+                        <div class="abutton main result" style="top: 200px;" onclick="goMain();">
+                            <img src="src/result/btn/btn_main.png" style="width: 100%;">
+                            <span class="buttonText">메인으로</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="main" id="mainScr">
+                <img src="src/ingame/cbg/cbg_bg.png" class="background">
+                <img src="src/ingame/cbg/cbg_ob03.png" class="background mountain">
+                <img src="src/title/ca/ca_01.png" class="main-char">
+                <img src="src/title/cbg/cbg_title.png" class="main-title">
+
+                <div class="buttonBox">
+                    <div class="aabutton amain" style="bottom: 80px;" onclick="play(true);">
+                        <img src="src/title/btn/btn_start.png" style="width: 100%;">
+                        <span class="buttonText big">게임시작</span>
+                    </div>
+                    <div class="aabutton amain" style="bottom: 0px;" onclick="tutorial();">
+                        <img src="src/title/btn/btn_tutorial.png" style="width: 100%;">
+                        <span class="buttonText big">게임방법</span>
+                    </div>
+                </div>
+            </div>
+            <div class="tutorial" id="tutoScr">
+                <img src="src/ingame/cbg/cbg_bg.png" class="background">
+                <img src="src/ingame/cbg/cbg_ob03.png" class="background mountain">
+
+                <div class="tuto-info-bg">
+                    <img src="src/loby/cbg/cbg_info_bg.png">
+                    <span class="tuto-title">게임 방법</span>
+                </div>
+                <div class="tuto-box">
+                    <img class="tuto-popup" src="src/loby/cbg/cbg_popup.png">
+
+                    <div class="tuto-real-box">
+                        <div class="tuto-obj-wrap">
+                            <div class="tuto-info-text">
+                                <span class="center" style="width: 100%; text-align: center;">
+                                    기체 입자의 확산을 관찰하여 입자가 운동하고 있음을 게임을 통해 알아봅니다.
+                                </span>
+                            </div>
+                            <img src="src/loby/icon/icon_ca.png" class="tuto-obj-icon">
+                            <img src="src/loby/cbg/cbg_info.png" class="tuto-obj-back">
+                        </div>
+                        <div class="tuto-obj-wrap">
+                            <div class="tuto-info-text">
+                                <span class="center" style="width: 100%; text-align: center;">
+                                    바람개비에 부딪히면 생명이 없어집니다.
+                                </span>
+                            </div>
+                            <img src="src/loby/icon/icon_pinwhee.png" class="tuto-obj-icon">
+                            <img src="src/loby/cbg/cbg_info.png" class="tuto-obj-back">
+                        </div>
+                        <div class="tuto-obj-wrap">
+                            <div class="tuto-info-text">
+                                <span class="center" style="width: 100%; text-align: center;">
+                                    폭탄에 닿으면 처음부터 다시 해야 합니다.
+                                </span>
+                            </div>
+                            <img src="src/loby/icon/icon_bomb.png" class="tuto-obj-icon">
+                            <img src="src/loby/cbg/cbg_info.png" class="tuto-obj-back">
+                        </div>
+                        <div class="tuto-obj-wrap">
+                            <div class="tuto-info-text">
+                                <span class="center" style="width: 100%; text-align: center;">
+                                    벌: 기체 온도가 높을수록, 기체 분자량과 밀도가 작을수록 기체 속도가 빨라집니다.
+                                </span>
+                            </div>
+                            <img src="src/loby/icon/icon_bee.png" class="tuto-obj-icon">
+                            <img src="src/loby/cbg/cbg_info.png" class="tuto-obj-back">
+                        </div>
+                        <div class="tuto-obj-wrap">
+                            <div class="tuto-info-text">
+                                <span class="center" style="width: 100%; text-align: center;">
+                                    나비: 기체 온도가 낮을수록, 기체 분자량과 밀도가 클수록 기체 속도는 느려집니다.
+                                </span>
+                            </div>
+                            <img src="src/loby/icon/icon_butterfly.png" class="tuto-obj-icon">
+                            <img src="src/loby/cbg/cbg_info.png" class="tuto-obj-back">
+                        </div>
+                    </div>
+                    <div class="tuto-start-btn" onclick="play(true)">
+                        <img style="width: 100%" src="src/loby/btn/btn_start.png">
+                        <span class="buttonText tuto">게임 시작</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+    <script src="src/app.js"></script>
+    <style>
+        @font-face {
+            font-family: 'NanumGothicCoding';
+            src: url(src/NanumGothicCoding-Bold.ttf);
+        }
+        html, body {
+            width: 100%;
+            height: 100%;
+            padding: 0px;
+            margin: 0px;
+            overflow: hidden;
+            background-color: #000;
+            
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            -khtml-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+        .background {
+            position: absolute;
+            left: 50%;
+            bottom: 50%;
+            transform: translate(-50%, 50%);
+        }
+        .background.mountain {
+            bottom: 0px;
+            transform: translateX(-50%);
+        }
+        .main-title {
+            position: absolute;
+            left: 50%;
+            top: 120px;
+            transform: translateX(-50%);
+            width: 400px;
+        }
+        .main-char {
+            position: absolute;
+            left: 50%;
+            top: 10px;
+            transform: translateX(-50%);
+            width: 200px;
+        }
+        .tutorial {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            opacity: 0;
+            pointer-events: none;
+        }
+        .tuto-box {
+            position: fixed;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            width: 90%;
+            height: 90%;
+        }
+        .tuto-real-box {
+            position: absolute;
+            width: 95%;
+            height: 65%;
+            left: 50%;
+            transform: translateX(-50%);
+            top: 12%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+        }
+        .tuto-popup {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            width: 100%;
+            height: 100%;
+        }
+        .tuto-info-bg {
+            position: absolute;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            top: 10%;
+            z-index: 2;
+            text-align: center;
+        }
+        .tuto-title {
+            font-family: 'NanumGothicCoding';
+            position: absolute;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            top: 40%;
+            font-size: 28px;
+            color: #fff;
+        }
+        .tuto-obj-wrap {
+            width: 100%;
+            height: 70px;
+        }
+        .tuto-obj-icon {
+            position: absolute;
+            z-index: 3;
+            transform: translateX(-50%);
+            left: 50px;
+            height: 80px;
+        }
+        .tuto-obj-back {
+            position: absolute;
+            z-index: 3;
+            margin-top: 2px;
+            left: 100px;
+            width: 80%;
+            height: 75px;
+        }
+        .tuto-info-text {
+            position: absolute;
+            z-index: 4;
+            margin-top: 2px;
+            left: 100px;
+            width: 80%;
+            height: 75px;
+            font-family: 'NanumGothicCoding', sans-serif;
+            color: #015c7b;
+            font-size: 20px;
+        }
+        .tuto-start-btn {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            bottom: 20px;
+        }
+        .center {
+            position: absolute;
+            left: 50%;
+            top: 45%;
+            transform: translate(-50%, -50%);
+        }
+        #screen {
+            overflow: hidden;
+            position: relative;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            width: 100%;
+            height: 100%;
+            max-width: 900px;
+            max-height: 600px;
+        }
+        canvas {
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            width: 100%;
+            height: 100%;
+            margin: 0px;
+        }
+        .mode {
+            position: absolute;
+            left: 50%;
+            top: 50px;
+            width: 160px;
+            height: 80px;
+            transform: translateX(-50%);
+            border: solid #000 2px;
+        }
+        #mode {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 30px;
+        }
+        .footer {
+            position: fixed;
+            width: 100%;
+            height: 200px;
+            bottom: 0px;
+        }
+        .status {
+            position: fixed;
+            left: 50%;
+            top: 10px;
+            transform: translateX(-50%);
+            width: 100%;
+            height: 80px;
+            font-size: 25px;
+        }
+        .score-elmnt {
+            width: 130px;
+            height: 40px;
+            position: fixed;
+            left: 10px;
+            top: 0px;
+            background-color: rgba(255, 255, 255, 0.5);
+            border-radius: 5px;
+            text-align: center;
+            font-family: 'NanumGothicCoding', sans-serif;
+            font-size: 40px;
+            pointer-events: none;
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            -khtml-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+        .life-wrap {
+            position: absolute;
+            top: 0px;
+            left: 150px;
+            width: 130px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.5);
+            border-radius: 5px;
+        }
+        .life {
+            position: absolute;
+            top: 5px;
+            left: 15px;
+            margin: 0px;
+            pointer-events: none;
+        }
+        .heart {
+            margin: 0px;
+            margin-left: -6px;
+            width: 35px;
+            transition: opacity 0.2s linear;
+        }
+        .guage {
+            position: absolute;
+            left: 50%;
+            bottom: 30px;
+            transform: translateX(-50%);
+        }
+        .real-guage {
+            position: absolute;
+            top: 3px;
+            left: 3px;
+            width: 50%;
+            overflow: hidden;
+            transition: width 0.2s 0s ease;
+        }
+        .pauseButton {
+            position: fixed;
+            right: 10px;
+            top: 0px;
+        }
+        .popup-wrap {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+        }
+        .popup-wrap.aresult {
+            pointer-events: none;
+            opacity: 0;
+        }
+        .popup-wrap.apause {
+            pointer-events: none;
+            opacity: 0;
+        }
+        .popupAll {
+            position: absolute;
+        }
+        .result {
+            position: fixed;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            width: 280px;
+        }
+        .result-zone {
+            position: fixed;
+            left: 50%;
+            top: calc(50% + 50px);
+            transform: translate(-50%, -50%);
+            width: 250px;
+            height: 300px;
+        }
+        .result-zone.bpause {
+            top: calc(50% + 23px);
+        }
+        .pause-scr {
+            position: fixed;
+            left: 50%;
+            top: 300px;
+            transform: translateX(-50%);
+            width: 280px;
+        }
+        .title {
+            font-family: 'NanumGothicCoding';
+            font-size: 30px;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            top: 21px;
+            color: #fff;
+        }
+        .score {
+            font-family: 'NanumGothicCoding';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            top: 90px;
+            color: #ad0201;
+            letter-spacing: -2px;
+            font-size: 60px;
+        }
+        .score.title {
+            font-size: 25px;
+            top: 91px;
+        }
+        .abutton {
+            width: 80%;
+            position: absolute;
+            top: 185px;
+        }
+        .aabutton.amain {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 300px;
+        }
+        .buttonBox {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            bottom: 10%;
+        }
+        .abutton.main {
+            top: 245px;
+        }
+        .buttonText {
+            font-family: 'NanumGothicCoding';
+            font-size: 25px;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            top: 13px;
+            color: #fff;
+            pointer-events: none;
+        }
+        .buttonText.tuto {
+            font-size: 30px;
+            top: 19px;
+        }
+        .buttonText.big {
+            top: 16px;
+            font-size: 35px;
+        }
+        #framerate {
+            font-size: 40px;
+            font-weight: 900;
+            position: absolute;
+            left: 10px;
+            top: 10px;
+        }
+
+        @media screen and (orientation: portrait) {
+            html {
+                transform: rotate(-90deg);
+                transform-origin: left top;
+                width: 100vh;
+                height: 100vw;
+                overflow-x: hidden;
+                position: absolute;
+                top: 100%;
+                left: 0;
+            }
+        }
+    </style>
+</html>

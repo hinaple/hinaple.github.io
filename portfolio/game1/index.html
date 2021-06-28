@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta http-equiv="ScreenOrientation" content="autoRotate:disabled">
+        <title>webGame</title>
+        <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css"/>
+    </head> 
+    <body onload="setup()">
+        <div id="screen">
+            <img src="src/title/cbg/cbg_bg.png" class="background">
+            <canvas id="canvas"></canvas>
+            <img src="src/ingame/cbg/cbg_quiz_bg.png" class="mode">
+            <div class="modeText"><span id="mode">물</span></div>
+            <img src="src/ingame/btn/btn_arrow.png" class="button" id="leftButton" onContextMenu="return false;">
+            <img src="src/ingame/btn/btn_arrow_right.png" class="button" id="rightButton" onContextMenu="return false;">
+            <div class="status">
+                <div class="life empty">
+                    <img src="src/ingame/cbg/cbg_heart.png" class="heart empty">
+                    <img src="src/ingame/cbg/cbg_heart.png" class="heart empty">
+                    <img src="src/ingame/cbg/cbg_heart.png" class="heart empty">
+                </div>
+                <div class="life full">
+                    <img src="src/ingame/icon/icon_heart.png" class="heart full">
+                    <img src="src/ingame/icon/icon_heart.png" class="heart full">
+                    <img src="src/ingame/icon/icon_heart.png" class="heart full">
+                </div>
+                <div class="fuel empty">
+                    <img src="src/ingame/cbg/cbg_guage_bg.png" class="afuel empty">
+                    <img src="src/ingame/cbg/cbg_guage_bg.png" class="afuel empty">
+                    <img src="src/ingame/cbg/cbg_guage_bg.png" class="afuel empty">
+                    <img src="src/ingame/cbg/cbg_guage_bg.png" class="afuel empty">
+                    <img src="src/ingame/cbg/cbg_guage_bg.png" class="afuel empty">
+                    <img src="src/ingame/cbg/cbg_guage_bg.png" class="afuel empty">
+                    <img src="src/ingame/cbg/cbg_guage_bg.png" class="afuel empty">
+                    <img src="src/ingame/cbg/cbg_guage_bg.png" class="afuel empty">
+                    <img src="src/ingame/cbg/cbg_guage_bg.png" class="afuel empty">
+                    <img src="src/ingame/cbg/cbg_guage_bg.png" class="afuel empty">
+                </div>
+                <div class="fuel full">
+                    <img src="src/ingame/cbg/cbg_guage.png" class="afuel full">
+                    <img src="src/ingame/cbg/cbg_guage.png" class="afuel full">
+                    <img src="src/ingame/cbg/cbg_guage.png" class="afuel full">
+                    <img src="src/ingame/cbg/cbg_guage.png" class="afuel full">
+                    <img src="src/ingame/cbg/cbg_guage.png" class="afuel full">
+                    <img src="src/ingame/cbg/cbg_guage.png" class="afuel full">
+                    <img src="src/ingame/cbg/cbg_guage.png" class="afuel full">
+                    <img src="src/ingame/cbg/cbg_guage.png" class="afuel full">
+                    <img src="src/ingame/cbg/cbg_guage.png" class="afuel full">
+                    <img src="src/ingame/cbg/cbg_guage.png" class="afuel full">
+                </div>
+                <img src="src/ingame/btn/btn_pause.png" class="pause" id="pause" onContextMenu="return false;">
+            </div>
+            <div class="popup-wrap aresult" id="resultScr">
+                <img src="src/result/cbg/cbg_bg.png" class="result">
+                <div class="result-zone">
+                    <span class="title">결과</span>
+                    <span class="score title">맞춘 개수</span>
+                    <span class="score" id="score">8</span>
+                    <div class="abutton start result" id="startR" onclick="play(true);">
+                        <img src="src/pause/btn/btn_start.png" style="width: 100%;">
+                        <span class="buttonText">다시하기</span>
+                    </div>
+                    <div class="abutton main result" id="goMainR" onclick="goMain();">
+                        <img src="src/pause/btn/btn_main.png" style="width: 100%;">
+                        <span class="buttonText">메인으로</span>
+                    </div>
+                </div>
+            </div>
+            <div class="popup-wrap apause" id="pauseScr">
+                <img src="src/pause/cbg/cbg_bg.png" class="pause-scr">
+                <div class="result-zone">
+                    <span class="title">결과</span>
+                    <div class="abutton start result" id="startP" style="top: 110px;" onclick="play();">
+                        <img src="src/pause/btn/btn_start.png" style="width: 100%;">
+                        <span class="buttonText">계속하기</span>
+                    </div>
+                    <div class="abutton main result" id="goMainP" style="top: 170px;" onclick="goMain();">
+                        <img src="src/pause/btn/btn_main.png" style="width: 100%;">
+                        <span class="buttonText">메인으로</span>
+                    </div>
+                </div>
+            </div>
+            <div class="main" id="main">
+                <img src="src/title/cbg/cbg_bg.png" class="background">
+                <img src="src/title/cbg/cbg_title.png" class="main-title">
+                <img src="src/title/icon/icon_roket.png" class="main-roket">
+
+                <div class="abbutton amain" style="bottom: 12%;" onclick="play(true);">
+                    <img src="src/title/btn/btn_play.png" style="width: 100%;">
+                    <span class="buttonText big">게임시작</span>
+                </div>
+                <div class="abbutton amain" style="bottom: 2%;" onclick="tutorial();">
+                    <img src="src/title/btn/btn_info.png" style="width: 100%;">
+                    <span class="buttonText big">게임방법</span>
+                </div>
+            </div>
+            <div class="tutorial" id="tutoScr">
+                <img src="src/title/cbg/cbg_bg.png" class="background">
+
+                <div class="tuto-info-bg">
+                    <img src="src/loby/cbg/cbg_info_bg.png">
+                    <span class="tuto-title">게임 방법</span>
+                </div>
+                <div class="tuto-box">
+                    <img class="tuto-popup" src="src/loby/cbg/bg.png">
+
+                    <div class="swiper">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide">
+                                <div class="tuto-real-box">
+                                    <div class="tuto-obj-wrap">
+                                        <img src="src/loby/icon/icon_ob01.png" class="tuto-obj-icon">
+                                        <div class="tuto-info-text">
+                                            액체괴물<br>
+                                            부정적 효과를 없애줘요
+                                        </div>
+                                    </div>
+                                    <div class="tuto-obj-wrap">
+                                        <img src="src/loby/icon/icon_ob02.png" class="tuto-obj-icon">
+                                        <div class="tuto-info-text">
+                                            <span class="tuto-desc">
+                                                타조<br>
+                                                아이템 떨어지는 속도가 빨라져요
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="tuto-obj-wrap">
+                                        <img src="src/loby/icon/icon_ob03.png" class="tuto-obj-icon">
+                                        <div class="tuto-info-text">
+                                            <span class="tuto-desc">
+                                                고체<br>
+                                                잡을 수 있고 볼 수 있는 고체,<br>
+                                                제시된 물체가 고체일 때 잡아주세요.
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="tuto-obj-wrap">
+                                        <img src="src/loby/icon/icon_ob04.png" class="tuto-obj-icon">
+                                        <div class="tuto-info-text">
+                                            <span class="tuto-desc">
+                                                달팽이<br>
+                                                아이템 떨어지는 속도가 느려져요
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="tuto-obj-wrap">
+                                        <img src="src/loby/icon/icon_ob05.png" class="tuto-obj-icon">
+                                        <div class="tuto-info-text">
+                                            <span class="tuto-desc">
+                                                기체<br>
+                                                잡을 수 없고 볼 수 없는 기체<br>
+                                                제시된 물체가 기체일 때 잡아주세요.
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="tuto-obj-wrap">
+                                        <img src="src/loby/icon/icon_ob06.png" class="tuto-obj-icon">
+                                        <div class="tuto-info-text">
+                                            <span class="tuto-desc">
+                                                액체<br>
+                                                잡을 수 없고 볼 수 있는 액체<br>
+                                                제시된 물체가 액체일 때 잡아주세요.
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="tuto-obj-wrap">
+                                        <img src="src/loby/icon/icon_ob07.png" class="tuto-obj-icon">
+                                        <div class="tuto-info-text">
+                                            <span class="tuto-desc">
+                                                폭탄<br>
+                                                잡으면 게임이 종료됩니다.
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="tuto-real-box">
+                                    <img src="src/loby/cbg/capture.png" class="capture">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-pagination"></div>
+                    
+                    <div class="button-vertical">
+                        <div class="aabutton main atutorial" onclick="goMain();">
+                            <img src="src/pause/btn/btn_main.png" class="buttonimg">
+                            <div class="btndiv">
+                                <span class="abuttonText">메인으로</span>
+                            </div>
+                        </div>
+                        <div class="aabutton start atutorial" onclick="play(true);">
+                            <img src="src/pause/btn/btn_start.png" class="buttonimg">
+                            <div class="btndiv">
+                                <span class="abuttonText">게임시작</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script src="src/app.js"></script>
+    <style>
+        @font-face {
+            font-family: 'NanumGothicCoding';
+            src: url(src/NanumGothicCoding-Bold.ttf);
+        }
+
+        html, body {
+            width: 100%;
+            height: 100%;
+            padding: 0px;
+            margin: 0px;
+            overflow: hidden;
+            background-color: #000;
+        }
+        #screen {
+            overflow: hidden;
+            position: relative;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            width: 100%;
+            height: 100%;
+            max-width: 600px;
+            max-height: 900px;
+        }
+        .background {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+        }
+        canvas {
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            width: 100%;
+            height: 100%;
+            margin: 0px;
+        }
+        .mode {
+            position: absolute;
+            left: 50%;
+            top: 90px;
+            transform: translateX(-50%);
+            width: 350px;
+        }
+        .modeText {
+            position: absolute;
+            left: 50%;
+            top: 90px;
+            width: 100%;
+            height: 80px;
+            transform: translateX(-50%);
+            font-family: 'NanumGothicCoding';
+        }
+        #mode {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 30px;
+        }
+        .footer {
+            position: fixed;
+            width: 100%;
+            height: 200px;
+            bottom: 0px;
+        }
+        .button {
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            -khtml-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            -webkit-user-drag: none;
+            -khtml-user-drag: none;
+            -moz-user-drag: none;
+            -o-user-drag: none;
+            user-drag: none;
+            position: absolute;
+            bottom: 30px;
+            height: 80px;
+            width: 70px;
+        }
+        #leftButton { left: 20px; }
+        #rightButton { right: 20px; }
+        .status {
+            position: absolute;
+            left: 50%;
+            top: 10px;
+            transform: translateX(-50%);
+            width: 100%;
+            height: 80px;
+            font-size: 25px;
+        }
+        .life {
+            position: absolute;
+            top: 0px;
+            left: 20px;
+            margin: 0px;
+        }
+        .heart {
+            margin: 0px;
+            margin-left: -10px;
+            width: 40px;
+            transition: opacity 0.2s linear;
+        }
+        .fuel {
+            position: absolute;
+            top: 0px;
+            right: 70px;
+            width: 100%;
+            text-align: right;
+        }
+        .fuel.full {
+            top: -3px;
+            right: 66px;
+        }
+        .afuel {
+            height: 32px;
+            margin-left: -10px;
+        }
+        .afuel.full {
+            height: 38px;
+            margin-left: -15.5px;
+            transition: opacity 0.2s 0s linear;
+        }
+        .capture {
+            position: absolute;
+            width: 80%;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+        }
+        .pause {
+            position: absolute;
+            right: 10px;
+            top: 0px;
+            width: 50px;
+        }
+        .popup-wrap {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+        }
+        .popup-wrap.aresult {
+            pointer-events: none;
+            opacity: 0;
+        }
+        .popup-wrap.apause {
+            pointer-events: none;
+            opacity: 0;
+        }
+        .tutorial {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            opacity: 0;
+            pointer-events: none;
+        }
+        .tuto-box {
+            position: fixed;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            width: 90%;
+            height: 95%;
+        }
+        .swiper {
+            width: 100%;
+            height: 75%;
+        }
+        .swiper-pagination {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            bottom: 110px;
+            width: 100px
+        }
+        .swiper-pagination-bullet {
+            margin-right: 7px;
+            margin-left: 7px;
+            width: 16px;
+            height: 16px;
+        }
+        .swiper-pagination-bullet-active {
+            background-color: #ffea00;
+        }
+        .tuto-real-box {
+            position: absolute;
+            width: 95%;
+            height: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            top: 9%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+        }
+        .tuto-popup {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            width: 100%;
+            height: 100%;
+        }
+        .tuto-info-bg {
+            position: absolute;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            top: 7%;
+            z-index: 2;
+            text-align: center;
+        }
+        .tuto-title {
+            font-family: 'NanumGothicCoding';
+            position: absolute;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            top: 40%;
+            font-size: 28px;
+            color: #fff;
+        }
+        .tuto-obj-wrap {
+            width: 100%;
+            display: inline-flex;
+            align-items: center;
+            min-height: 60px;
+        }
+        .tuto-obj-icon {
+            display: inline-flex;
+            width: 65px;
+            margin-left: 20px;
+        }
+        .tuto-obj-back {
+            position: absolute;
+            z-index: -10;
+            margin-top: 2px;
+            left: 0px;
+            width: 100%;
+            min-height: 100%;
+        }
+        .tuto-info-text {
+            margin-top: 2px;
+            margin-left: 10px;
+            min-height: 30px;
+            width: calc(100% - 140px);
+            font-family: 'NanumGothicCoding', sans-serif;
+            color: #015c7b;
+            font-size: 18px;
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 5px;
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.7);
+            line-height: 23px;
+        }
+        .tuto-desc {
+            min-height: 30px;
+            margin-top: 100px;
+        }
+        .tuto-start-btn {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            bottom: 20px;
+        }
+        .center {
+            position: absolute;
+            left: 50%;
+            top: 45%;
+            transform: translate(-50%, -50%);
+        }
+        .result {
+            position: fixed;
+            left: 50%;
+            top: 120px;
+            transform: translateX(-50%);
+            width: 280px;
+        }
+        .result-zone {
+            position: fixed;
+            left: 50%;
+            top: 290px;
+            transform: translateX(-50%);
+            width: 250px;
+            height: 300px;
+        }
+        .pause-scr {
+            position: fixed;
+            left: 50%;
+            top: 300px;
+            transform: translateX(-50%);
+            width: 280px;
+        }
+        .title {
+            font-family: 'NanumGothicCoding';
+            font-size: 30px;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            top: 21px;
+            color: #fff;
+        }
+        .score {
+            font-family: 'NanumGothicCoding';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            top: 115px;
+            color: #ad0201;
+            letter-spacing: -2px;
+            font-size: 50px;
+        }
+        .score.title {
+            font-size: 25px;
+            top: 91px;
+        }
+        .button-vertical {
+            height: 30px;
+            position: absolute;
+            bottom: 2%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 90%;
+            height: 80px;
+            display: inline-flex;
+            justify-content: center;
+        }
+        .abuttonText  {
+            font-family: 'NanumGothicCoding';
+            font-size: 25px;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            color: #fff;
+            pointer-events: none;
+            width: 100px;
+        }
+        .abutton {
+            width: 80%;
+            position: absolute;
+            top: 165px;
+        }
+        .abbutton {
+            width: 80%;
+            position: absolute;
+        }
+        .btndiv {
+            position: absolute;
+            width: 40%;
+            height: 50px;
+        }
+        .aabutton {
+            width: 40%;
+            margin-left: 20px;
+            margin-right: 20px;
+        }
+        .buttonimg {
+            position: absolute;
+            width: 40%;
+        }
+        .abutton.amain {
+            left: 50%;
+            transform: translateX(-50%);
+            width: 300px;
+        }
+        .abbutton.amain {
+            left: 50%;
+            transform: translateX(-50%);
+            width: 300px;
+        }
+        .abutton.main {
+            top: 225px;
+        }
+        .buttonText {
+            font-family: 'NanumGothicCoding';
+            font-size: 25px;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            top: 13px;
+            color: #fff;
+            pointer-events: none;
+        }
+        .buttonText.big {
+            top: 16px;
+            font-size: 35px;
+        }
+        .main-title {
+            position: absolute;
+            left: 50%;
+            top: 50px;
+            transform: translateX(-50%);
+            width: 250px;
+        }
+        .main-roket {
+            position: absolute;
+            left: 50%;
+            top: 230px;
+            transform: translateX(-50%);
+            width: 160px;
+        }
+        #framerate {
+            font-size: 40px;
+            font-weight: 900;
+            position: absolute;
+            left: 10px;
+            top: 10px;
+        }
+    </style>
+</html>
