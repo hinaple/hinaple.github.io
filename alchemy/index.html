@@ -8,6 +8,8 @@
         
         <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css"/>
         <link rel="stylesheet" href="style.css" type="text/css">
+        <link rel="stylesheet" href="ibconsole.css" type="text/css">
+        
     </head>
     <body>
         <div class="header">
@@ -25,7 +27,7 @@
             <div class="page second">
                 <div class="title forPage">COVID-19 INFO</div>
                 <div class="card-news-wrapper">
-                    <div class="card-news" id="cardNews">
+                    <div class="card-news" id="covid">
                         <div class="swiper-wrapper">
                             <div class="swiper-slide">
                                 <img class="cardnews-img" src="assets/covid/1.png">
@@ -59,19 +61,64 @@
                             </div>
                         </div>
                         
-                        <div class="swiper-pagination"></div>
+                        <div class="swiper-pagination" id="covidPag"></div>
                     
-                        <div class="swiper-button-prev"></div>
-                        <div class="swiper-button-next"></div>
+                        <div class="swiper-button-prev" id="covidPrev"></div>
+                        <div class="swiper-button-next" id="covidNext"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="page second">
+                <div class="title forPage">CHEMISTRY CARTOONS</div>
+                <div class="card-news-wrapper">
+                    <div class="card-news" id="cartoons">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide">
+                                <img class="cardnews-img" src="assets/cartoons/0.jpg">
+                            </div>
+                            <div class="swiper-slide">
+                                <img class="cardnews-img" src="assets/cartoons/1.jpg">
+                            </div>
+                            <div class="swiper-slide">
+                                <img class="cardnews-img" src="assets/cartoons/2.jpg">
+                            </div>
+                            <div class="swiper-slide">
+                                <img class="cardnews-img" src="assets/cartoons/3.jpg">
+                            </div>
+                            <div class="swiper-slide">
+                                <img class="cardnews-img" src="assets/cartoons/4.jpg">
+                            </div>
+                            <div class="swiper-slide">
+                                <img class="cardnews-img" src="assets/cartoons/5.jpg">
+                            </div>
+                            <div class="swiper-slide">
+                                <img class="cardnews-img" src="assets/cartoons/6.jpg">
+                            </div>
+                            <div class="swiper-slide">
+                                <img class="cardnews-img" src="assets/cartoons/7.jpg">
+                            </div>
+                            <div class="swiper-slide">
+                                <img class="cardnews-img" src="assets/cartoons/8.jpg">
+                            </div>
+                        </div>
+
+                        <div class="swiper-pagination" id="cartoonPag"></div>
+                    
+                        <div class="swiper-button-prev" id="cartoonPrev"></div>
+                        <div class="swiper-button-next" id="cartoonNext"></div>
                     </div>
                 </div>
             </div>
             <div class="page third">
+                <div class="title forPage">OUR WORKS(DOWNLOADABLE!)</div>
+                <div class="file-wrapper" id="fileWrapper">
+                </div>
             </div>
         </div>
 
+        <script src="ibconsole.js"></script>
         <script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.8.0/lottie.min.js" integrity="sha512-mdyZsdRAVdjUM6dKsRxu03wcxXMtt1UDkkQSDs+hZCtGoO0NsIgPHpYPoD7VzrlB/auvVFQlWP+w/6Co+SGi3Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-        <script src="app.js"></script>
+        <script src="app.js" defer></script>
     </body>
 </html>

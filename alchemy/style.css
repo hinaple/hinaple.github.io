@@ -52,8 +52,17 @@ html, body {
 }
 .page.second {
     padding-top: 30px;
+    flex-direction: column;
+    height: auto;
+    display: flex;
+}
+.page.third {
+    box-sizing: border-box;
+    padding-top: 30px;
+    height: auto;
     display: flex;
     flex-direction: column;
+    align-items: center;
 }
 .main-logo {
     width: 350px;
@@ -71,6 +80,7 @@ html, body {
     font-size: 100px;
 }
 .title.forPage {
+    width: 100%;
     font-size: 60px;
     padding-left: 100px;
     box-sizing: border-box;
@@ -81,6 +91,7 @@ html, body {
     overflow-x: hidden;
     z-index: 0;
     position: relative;
+    margin: 50px 0 50px 0;
 }
 .cardnews-img {
     width: 100%;
@@ -98,6 +109,39 @@ html, body {
     display: flex;
     flex-direction: column;
     height: 100%;
+}
+.file-wrapper {
+    width: 100%;
+    max-width: 1100px;
+    padding: 50px 100px 50px 100px;
+    box-sizing: border-box;
+    height: 100%;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    justify-content: center;
+    gap: 30px;
+    align-content: start;
+}
+.file {
+    background-color: #fff;
+    color: #000;
+    border: solid #000 5px;
+    box-sizing: border-box;
+    height: 70px;
+    border-radius: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 20px;
+    text-decoration: none;
+
+    transition: all 0.2s 0s ease;
+}
+.file:hover {
+    box-shadow: #000000a8 0 0 10px;
+    font-size: 24px;
 }
 
 @media (max-width: 900px) {
@@ -121,5 +165,13 @@ html, body {
         max-width: 350px;
         height: calc(vw * 0.9);
         max-height: 350px;
+    }
+    .file-wrapper {
+        gap: 10px;
+        grid-template-columns: repeat(4, 1fr);
+    }
+    .file {
+        border: solid #000 3px;
+        font-size: 15px;
     }
 }
