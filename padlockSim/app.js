@@ -94,6 +94,7 @@ async function searchInRange(
     min,
     max,
     target,
+    cases,
     currentCombinationCallback = () => {},
     realtime = false
 ) {
@@ -106,6 +107,7 @@ async function searchInRange(
                 i,
                 target,
                 currentCombinationCallback,
+                cases,
                 realtime
             )
         );
@@ -121,6 +123,7 @@ async function searchDuplicated(
     length,
     target,
     currentCombinationCallback,
+    cases,
     realtime = false,
     prvComb = "",
     prvDisks = null
@@ -130,6 +133,7 @@ async function searchDuplicated(
 
         if (prvDisks === null) prvDisks = inputComb(prvComb);
         const currentSeed = getEntireSeed(prvDisks);
+        if (!cases.includes(currentSeed)) cases.push(currentSeed);
         // dictionary[currentSeed].push(prvComb);
 
         if (currentSeed === target) return [prvComb];
@@ -153,6 +157,7 @@ async function searchDuplicated(
                 length,
                 target,
                 currentCombinationCallback,
+                cases,
                 realtime,
                 currentComb,
                 currentDisks
@@ -177,6 +182,7 @@ const TargetSeed = document.getElementById("targetSeed");
 const CurrentComb = document.getElementById("currentComb");
 const SearchResult = document.getElementById("result");
 const SearchBtn = document.getElementById("searchBtn");
+const CaseCount = document.getElementById("caseCount");
 const CalcTime = document.getElementById("calcTime");
 const RealTime = document.getElementById("realtime");
 
@@ -260,6 +266,7 @@ SearchBtn.addEventListener("click", handleSearchBtn);
 async function handleSearchBtn() {
     const startTime = new Date().getTime();
     const doesRealtime = RealTime.checked;
+    const cases = [];
 
     SearchTarget.value = SearchTarget.value
         .toUpperCase()
@@ -275,13 +282,14 @@ async function handleSearchBtn() {
         Number(MinLength.value),
         Number(MaxLength.value),
         TargetSeedValue,
+        cases,
         (v) => {
             CurrentComb.value = v;
         },
         doesRealtime
     );
     CalcTime.innerText = new Date().getTime() - startTime;
-    console.log(results);
+    CaseCount.innerText = cases.length;
     // This comments are for dictionary feature that might be added soon.
     // console.log(dictionary);
     // let dicStr = [];
