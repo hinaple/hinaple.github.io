@@ -1,0 +1,4013 @@
+{
+  "2": {
+    "type": "menu",
+    "name": "颖橙云简介",
+    "id": "2",
+    "pre_id": null,
+    "sort_number": "001"
+  },
+  "3": {
+    "type": "menu",
+    "name": "工作台",
+    "id": "3",
+    "pre_id": "323",
+    "sort_number": "001"
+  },
+  "5": {
+    "type": "menu",
+    "name": "个人资料",
+    "id": "5",
+    "pre_id": "3",
+    "sort_number": "001"
+  },
+  "6": {
+    "type": "menu",
+    "name": "组织管理",
+    "id": "6",
+    "pre_id": "3",
+    "sort_number": "002"
+  },
+  "7": {
+    "type": "menu",
+    "name": "组织信息",
+    "id": "7",
+    "pre_id": "6",
+    "sort_number": "001"
+  },
+  "8": {
+    "type": "menu",
+    "name": "智芯流程编辑平台",
+    "id": "8",
+    "pre_id": "47",
+    "sort_number": "003"
+  },
+  "9": {
+    "type": "menu",
+    "name": "颖橙智芯Pro设备",
+    "id": "9",
+    "pre_id": null,
+    "sort_number": "011"
+  },
+  "10": {
+    "type": "menu",
+    "name": "网络部署",
+    "id": "10",
+    "pre_id": "217",
+    "sort_number": "004"
+  },
+  "11": {
+    "type": "menu",
+    "name": "输入终端控制器",
+    "id": "11",
+    "pre_id": "9",
+    "sort_number": "001"
+  },
+  "12": {
+    "type": "menu",
+    "name": "用户管理",
+    "id": "12",
+    "pre_id": "6",
+    "sort_number": "002"
+  },
+  "13": {
+    "type": "menu",
+    "name": "角色",
+    "id": "13",
+    "pre_id": "6",
+    "sort_number": "003"
+  },
+  "14": {
+    "type": "menu",
+    "name": "订单管理",
+    "id": "14",
+    "pre_id": "6",
+    "sort_number": "004"
+  },
+  "31": {
+    "type": "menu",
+    "name": "输入端口拓展板",
+    "id": "31",
+    "pre_id": "9",
+    "sort_number": "002"
+  },
+  "32": {
+    "type": "menu",
+    "name": "输出终端控制器",
+    "id": "32",
+    "pre_id": "9",
+    "sort_number": "003"
+  },
+  "33": {
+    "type": "menu",
+    "name": "继电器输出拓展板",
+    "id": "33",
+    "pre_id": "9",
+    "sort_number": "004"
+  },
+  "34": {
+    "type": "menu",
+    "name": "MOS输出拓展板",
+    "id": "34",
+    "pre_id": "9",
+    "sort_number": "005"
+  },
+  "35": {
+    "type": "menu",
+    "name": "音效终端控制器",
+    "id": "35",
+    "pre_id": "9",
+    "sort_number": "006"
+  },
+  "36": {
+    "type": "menu",
+    "name": "多路音效终端控制器",
+    "id": "36",
+    "pre_id": "9",
+    "sort_number": "007"
+  },
+  "37": {
+    "type": "menu",
+    "name": "多路音效拓展板",
+    "id": "37",
+    "pre_id": "9",
+    "sort_number": "008"
+  },
+  "38": {
+    "type": "menu",
+    "name": "颖橙智芯Pro主控",
+    "id": "38",
+    "pre_id": "9",
+    "sort_number": "009"
+  },
+  "46": {
+    "type": "menu",
+    "name": "主题管理",
+    "id": "46",
+    "pre_id": "323",
+    "sort_number": "001"
+  },
+  "47": {
+    "type": "menu",
+    "name": "颖橙智芯开发者平台",
+    "id": "47",
+    "pre_id": "323",
+    "sort_number": "003"
+  },
+  "48": {
+    "type": "menu",
+    "name": "蓝图列表",
+    "id": "48",
+    "pre_id": "47",
+    "sort_number": "001"
+  },
+  "49": {
+    "type": "menu",
+    "name": "设备列表",
+    "id": "49",
+    "pre_id": "47",
+    "sort_number": "002"
+  },
+  "52": {
+    "type": "menu",
+    "name": "颖橙智芯在线调试平台",
+    "id": "52",
+    "pre_id": "248",
+    "sort_number": "000"
+  },
+  "53": {
+    "type": "menu",
+    "name": "颖橙云离线控制系统",
+    "id": "53",
+    "pre_id": null,
+    "sort_number": "010"
+  },
+  "54": {
+    "type": "menu",
+    "name": "创意中心",
+    "id": "54",
+    "pre_id": "323",
+    "sort_number": "004"
+  },
+  "56": {
+    "type": "menu",
+    "name": "DMX设备模板编辑平台",
+    "id": "56",
+    "pre_id": "54",
+    "sort_number": "002"
+  },
+  "59": {
+    "type": "menu",
+    "name": "DMX设备模板列表",
+    "id": "59",
+    "pre_id": "54",
+    "sort_number": "001"
+  },
+  "60": {
+    "type": "menu",
+    "name": "颖橙慧芯开发者平台",
+    "id": "60",
+    "pre_id": "323",
+    "sort_number": "003"
+  },
+  "66": {
+    "type": "menu",
+    "name": "项目列表",
+    "id": "66",
+    "pre_id": "60",
+    "sort_number": "001"
+  },
+  "67": {
+    "type": "menu",
+    "name": "颖橙慧芯设备",
+    "id": "67",
+    "pre_id": null,
+    "sort_number": "012"
+  },
+  "68": {
+    "type": "menu",
+    "name": "集成中心",
+    "id": "68",
+    "pre_id": "323",
+    "sort_number": "005"
+  },
+  "75": {
+    "type": "menu",
+    "name": "感应器玩法节点",
+    "id": "75",
+    "pre_id": "48",
+    "sort_number": "003"
+  },
+  "76": {
+    "type": "menu",
+    "name": "逻辑节点",
+    "id": "76",
+    "pre_id": "48",
+    "sort_number": "004"
+  },
+  "77": {
+    "type": "menu",
+    "name": "网络节点",
+    "id": "77",
+    "pre_id": "48",
+    "sort_number": "015"
+  },
+  "78": {
+    "type": "menu",
+    "name": "自触发节点",
+    "id": "78",
+    "pre_id": "48",
+    "sort_number": "006"
+  },
+  "79": {
+    "type": "menu",
+    "name": "画布",
+    "id": "79",
+    "pre_id": "48",
+    "sort_number": "003"
+  },
+  "80": {
+    "type": "menu",
+    "name": "虚拟协同设备管理",
+    "id": "80",
+    "pre_id": "79",
+    "sort_number": "001"
+  },
+  "81": {
+    "type": "menu",
+    "name": "全屏",
+    "id": "81",
+    "pre_id": "79",
+    "sort_number": "002"
+  },
+  "82": {
+    "type": "menu",
+    "name": "聚焦",
+    "id": "82",
+    "pre_id": "79",
+    "sort_number": "003"
+  },
+  "85": {
+    "type": "menu",
+    "name": "开始节点",
+    "id": "85",
+    "pre_id": "48",
+    "sort_number": "002"
+  },
+  "86": {
+    "type": "menu",
+    "name": "启动端口",
+    "id": "86",
+    "pre_id": "85",
+    "sort_number": "001"
+  },
+  "87": {
+    "type": "menu",
+    "name": "复位端口",
+    "id": "87",
+    "pre_id": "85",
+    "sort_number": "002"
+  },
+  "88": {
+    "type": "menu",
+    "name": "跳关端口",
+    "id": "88",
+    "pre_id": "85",
+    "sort_number": "003"
+  },
+  "89": {
+    "type": "menu",
+    "name": "一键全开",
+    "id": "89",
+    "pre_id": "85",
+    "sort_number": "004"
+  },
+  "90": {
+    "type": "menu",
+    "name": "端口",
+    "id": "90",
+    "pre_id": "75",
+    "sort_number": "001"
+  },
+  "92": {
+    "type": "menu",
+    "name": "启动环节效果设置",
+    "id": "92",
+    "pre_id": "75",
+    "sort_number": "003"
+  },
+  "93": {
+    "type": "menu",
+    "name": "游戏环节效果设置",
+    "id": "93",
+    "pre_id": "75",
+    "sort_number": "004"
+  },
+  "94": {
+    "type": "menu",
+    "name": "错误环节效果设置",
+    "id": "94",
+    "pre_id": "75",
+    "sort_number": "005"
+  },
+  "95": {
+    "type": "menu",
+    "name": "成功环节效果设置",
+    "id": "95",
+    "pre_id": "75",
+    "sort_number": "006"
+  },
+  "97": {
+    "type": "menu",
+    "name": "网络输入",
+    "id": "97",
+    "pre_id": "77",
+    "sort_number": "001"
+  },
+  "98": {
+    "type": "menu",
+    "name": "虚拟拓展板",
+    "id": "98",
+    "pre_id": "80",
+    "sort_number": "003"
+  },
+  "100": {
+    "type": "menu",
+    "name": "标准模式",
+    "id": "100",
+    "pre_id": "52",
+    "sort_number": "001"
+  },
+  "101": {
+    "type": "menu",
+    "name": "启动",
+    "id": "101",
+    "pre_id": "100",
+    "sort_number": "002"
+  },
+  "102": {
+    "type": "menu",
+    "name": "一键全开",
+    "id": "102",
+    "pre_id": "100",
+    "sort_number": "003"
+  },
+  "103": {
+    "type": "menu",
+    "name": "提词器",
+    "id": "103",
+    "pre_id": "100",
+    "sort_number": "004"
+  },
+  "105": {
+    "type": "menu",
+    "name": "分区跳关",
+    "id": "105",
+    "pre_id": "100",
+    "sort_number": "006"
+  },
+  "106": {
+    "type": "menu",
+    "name": "重启",
+    "id": "106",
+    "pre_id": "100",
+    "sort_number": "007"
+  },
+  "107": {
+    "type": "menu",
+    "name": "关机",
+    "id": "107",
+    "pre_id": "100",
+    "sort_number": "008"
+  },
+  "111": {
+    "type": "menu",
+    "name": "节点控制区域",
+    "id": "111",
+    "pre_id": "100",
+    "sort_number": "012"
+  },
+  "112": {
+    "type": "menu",
+    "name": "开启节点",
+    "id": "112",
+    "pre_id": "111",
+    "sort_number": "001"
+  },
+  "113": {
+    "type": "menu",
+    "name": "关闭节点",
+    "id": "113",
+    "pre_id": "111",
+    "sort_number": "002"
+  },
+  "114": {
+    "type": "menu",
+    "name": "节点跳关",
+    "id": "114",
+    "pre_id": "111",
+    "sort_number": "003"
+  },
+  "116": {
+    "type": "menu",
+    "name": "复位",
+    "id": "116",
+    "pre_id": "100",
+    "sort_number": "001"
+  },
+  "118": {
+    "type": "menu",
+    "name": "自定义模式",
+    "id": "118",
+    "pre_id": "52",
+    "sort_number": "002"
+  },
+  "120": {
+    "type": "menu",
+    "name": "设置",
+    "id": "120",
+    "pre_id": "100",
+    "sort_number": "017"
+  },
+  "121": {
+    "type": "menu",
+    "name": "设置",
+    "id": "121",
+    "pre_id": "118",
+    "sort_number": "001"
+  },
+  "122": {
+    "type": "menu",
+    "name": "输入终端控制区域",
+    "id": "122",
+    "pre_id": "100",
+    "sort_number": "013"
+  },
+  "123": {
+    "type": "menu",
+    "name": "输出终端控制区域",
+    "id": "123",
+    "pre_id": "100",
+    "sort_number": "014"
+  },
+  "124": {
+    "type": "menu",
+    "name": "音效终端控制区域",
+    "id": "124",
+    "pre_id": "100",
+    "sort_number": "015"
+  },
+  "125": {
+    "type": "menu",
+    "name": "DMX终端控制区域",
+    "id": "125",
+    "pre_id": "100",
+    "sort_number": "016"
+  },
+  "126": {
+    "type": "menu",
+    "name": "复制节点",
+    "id": "126",
+    "pre_id": "48",
+    "sort_number": "008"
+  },
+  "127": {
+    "type": "menu",
+    "name": "提词器",
+    "id": "127",
+    "pre_id": "462",
+    "sort_number": "012"
+  },
+  "128": {
+    "type": "menu",
+    "name": "添加设备",
+    "id": "128",
+    "pre_id": "59",
+    "sort_number": "001"
+  },
+  "129": {
+    "type": "menu",
+    "name": "删除设备",
+    "id": "129",
+    "pre_id": "59",
+    "sort_number": "002"
+  },
+  "130": {
+    "type": "menu",
+    "name": "修改设备",
+    "id": "130",
+    "pre_id": "59",
+    "sort_number": "003"
+  },
+  "132": {
+    "type": "menu",
+    "name": "灯具类型",
+    "id": "132",
+    "pre_id": "56",
+    "sort_number": "001"
+  },
+  "133": {
+    "type": "menu",
+    "name": "RDM设定",
+    "id": "133",
+    "pre_id": "56",
+    "sort_number": "002"
+  },
+  "134": {
+    "type": "menu",
+    "name": "光束角度",
+    "id": "134",
+    "pre_id": "56",
+    "sort_number": "003"
+  },
+  "139": {
+    "type": "menu",
+    "name": "图标设定",
+    "id": "139",
+    "pre_id": "56",
+    "sort_number": "008"
+  },
+  "140": {
+    "type": "menu",
+    "name": "官方",
+    "id": "140",
+    "pre_id": "80",
+    "sort_number": "003"
+  },
+  "141": {
+    "type": "menu",
+    "name": "第三方",
+    "id": "141",
+    "pre_id": "80",
+    "sort_number": "002"
+  },
+  "144": {
+    "type": "menu",
+    "name": "添加项目",
+    "id": "144",
+    "pre_id": "66",
+    "sort_number": "001"
+  },
+  "145": {
+    "type": "menu",
+    "name": "编辑项目",
+    "id": "145",
+    "pre_id": "66",
+    "sort_number": "002"
+  },
+  "146": {
+    "type": "menu",
+    "name": "删除项目",
+    "id": "146",
+    "pre_id": "66",
+    "sort_number": "003"
+  },
+  "147": {
+    "type": "menu",
+    "name": "创建角色",
+    "id": "147",
+    "pre_id": "66",
+    "sort_number": "004"
+  },
+  "148": {
+    "type": "menu",
+    "name": "重命名",
+    "id": "148",
+    "pre_id": "49",
+    "sort_number": "002"
+  },
+  "149": {
+    "type": "menu",
+    "name": "版本更新",
+    "id": "149",
+    "pre_id": "49",
+    "sort_number": "003"
+  },
+  "150": {
+    "type": "menu",
+    "name": "设备优化",
+    "id": "150",
+    "pre_id": "49",
+    "sort_number": "004"
+  },
+  "151": {
+    "type": "menu",
+    "name": "设备转移",
+    "id": "151",
+    "pre_id": "49",
+    "sort_number": "005"
+  },
+  "153": {
+    "type": "menu",
+    "name": "蜂鸣器关闭",
+    "id": "153",
+    "pre_id": "49",
+    "sort_number": "007"
+  },
+  "154": {
+    "type": "menu",
+    "name": "设备日志",
+    "id": "154",
+    "pre_id": "49",
+    "sort_number": "008"
+  },
+  "155": {
+    "type": "menu",
+    "name": "慧芯流程编辑平台",
+    "id": "155",
+    "pre_id": "66",
+    "sort_number": "005"
+  },
+  "156": {
+    "type": "menu",
+    "name": "页面设计",
+    "id": "156",
+    "pre_id": "155",
+    "sort_number": "001"
+  },
+  "157": {
+    "type": "menu",
+    "name": "颖橙慧芯",
+    "id": "157",
+    "pre_id": "60",
+    "sort_number": "002"
+  },
+  "158": {
+    "type": "menu",
+    "name": "重命名",
+    "id": "158",
+    "pre_id": "157",
+    "sort_number": "001"
+  },
+  "159": {
+    "type": "menu",
+    "name": "版本更新",
+    "id": "159",
+    "pre_id": "157",
+    "sort_number": "001"
+  },
+  "160": {
+    "type": "menu",
+    "name": "设备转移",
+    "id": "160",
+    "pre_id": "157",
+    "sort_number": "003"
+  },
+  "161": {
+    "type": "menu",
+    "name": "慧芯在线调试平台",
+    "id": "161",
+    "pre_id": "157",
+    "sort_number": "004"
+  },
+  "162": {
+    "type": "menu",
+    "name": "流程设计",
+    "id": "162",
+    "pre_id": "155",
+    "sort_number": "002"
+  },
+  "163": {
+    "type": "menu",
+    "name": "慧芯在线模拟平台",
+    "id": "163",
+    "pre_id": "155",
+    "sort_number": "003"
+  },
+  "164": {
+    "type": "menu",
+    "name": "页面",
+    "id": "164",
+    "pre_id": "156",
+    "sort_number": "001"
+  },
+  "165": {
+    "type": "menu",
+    "name": "图层",
+    "id": "165",
+    "pre_id": "156",
+    "sort_number": "002"
+  },
+  "166": {
+    "type": "menu",
+    "name": "文字",
+    "id": "166",
+    "pre_id": "156",
+    "sort_number": "003"
+  },
+  "167": {
+    "type": "menu",
+    "name": "输入框",
+    "id": "167",
+    "pre_id": "156",
+    "sort_number": "004"
+  },
+  "168": {
+    "type": "menu",
+    "name": "视频",
+    "id": "168",
+    "pre_id": "156",
+    "sort_number": "005"
+  },
+  "169": {
+    "type": "menu",
+    "name": "音乐",
+    "id": "169",
+    "pre_id": "156",
+    "sort_number": "006"
+  },
+  "170": {
+    "type": "menu",
+    "name": "按钮",
+    "id": "170",
+    "pre_id": "156",
+    "sort_number": "007"
+  },
+  "171": {
+    "type": "menu",
+    "name": "图形",
+    "id": "171",
+    "pre_id": "156",
+    "sort_number": "008"
+  },
+  "173": {
+    "type": "menu",
+    "name": "页面设置",
+    "id": "173",
+    "pre_id": "164",
+    "sort_number": "001"
+  },
+  "174": {
+    "type": "menu",
+    "name": "慧芯设置",
+    "id": "174",
+    "pre_id": "164",
+    "sort_number": "002"
+  },
+  "175": {
+    "type": "menu",
+    "name": "阿里云OSS",
+    "id": "175",
+    "pre_id": "68",
+    "sort_number": "001"
+  },
+  "179": {
+    "type": "menu",
+    "name": "DMX512终端控制器",
+    "id": "179",
+    "pre_id": "9",
+    "sort_number": "010"
+  },
+  "180": {
+    "type": "menu",
+    "name": "DMX512拓展板",
+    "id": "180",
+    "pre_id": "9",
+    "sort_number": "011"
+  },
+  "182": {
+    "type": "menu",
+    "name": "数据库节点",
+    "id": "182",
+    "pre_id": "48",
+    "sort_number": "007"
+  },
+  "184": {
+    "type": "menu",
+    "name": "颖橙云平台基础教程",
+    "id": "184",
+    "pre_id": null,
+    "sort_number": "002"
+  },
+  "185": {
+    "type": "menu",
+    "name": "颖橙智芯SE系列",
+    "id": "185",
+    "pre_id": null,
+    "sort_number": "013"
+  },
+  "186": {
+    "type": "menu",
+    "name": "颖橙智芯SE主控",
+    "id": "186",
+    "pre_id": "185",
+    "sort_number": "001"
+  },
+  "187": {
+    "type": "menu",
+    "name": "安卓版本",
+    "id": "187",
+    "pre_id": "53",
+    "sort_number": "001"
+  },
+  "188": {
+    "type": "menu",
+    "name": "Windows版本",
+    "id": "188",
+    "pre_id": "53",
+    "sort_number": "002"
+  },
+  "189": {
+    "type": "menu",
+    "name": "智芯离线控制系统（Windows版本）",
+    "id": "189",
+    "pre_id": "188",
+    "sort_number": "001"
+  },
+  "191": {
+    "type": "menu",
+    "name": "颖橙摄像头控制系统",
+    "id": "191",
+    "pre_id": "188",
+    "sort_number": "003"
+  },
+  "192": {
+    "type": "menu",
+    "name": "智芯离线控制系统（安卓版本）",
+    "id": "192",
+    "pre_id": "187",
+    "sort_number": "001"
+  },
+  "194": {
+    "type": "menu",
+    "name": "音效",
+    "id": "194",
+    "pre_id": "462",
+    "sort_number": "001"
+  },
+  "195": {
+    "type": "menu",
+    "name": "时间",
+    "id": "195",
+    "pre_id": "462",
+    "sort_number": "002"
+  },
+  "203": {
+    "type": "menu",
+    "name": "继电器",
+    "id": "203",
+    "pre_id": "462",
+    "sort_number": "003"
+  },
+  "204": {
+    "type": "menu",
+    "name": "循环",
+    "id": "204",
+    "pre_id": "472",
+    "sort_number": "001"
+  },
+  "205": {
+    "type": "menu",
+    "name": "交互",
+    "id": "205",
+    "pre_id": "462",
+    "sort_number": "012"
+  },
+  "206": {
+    "type": "menu",
+    "name": "DMX设备",
+    "id": "206",
+    "pre_id": "462",
+    "sort_number": "013"
+  },
+  "207": {
+    "type": "menu",
+    "name": "分区",
+    "id": "207",
+    "pre_id": "462",
+    "sort_number": "005"
+  },
+  "208": {
+    "type": "menu",
+    "name": "数据库",
+    "id": "208",
+    "pre_id": "462",
+    "sort_number": "007"
+  },
+  "209": {
+    "type": "menu",
+    "name": "摄像头",
+    "id": "209",
+    "pre_id": "462",
+    "sort_number": "008"
+  },
+  "211": {
+    "type": "menu",
+    "name": "输入端口拓展板",
+    "id": "211",
+    "pre_id": "185",
+    "sort_number": "002"
+  },
+  "212": {
+    "type": "menu",
+    "name": "MOS输出拓展板",
+    "id": "212",
+    "pre_id": "185",
+    "sort_number": "003"
+  },
+  "213": {
+    "type": "menu",
+    "name": "继电器输出拓展板",
+    "id": "213",
+    "pre_id": "185",
+    "sort_number": "004"
+  },
+  "214": {
+    "type": "menu",
+    "name": "音效播放拓展板",
+    "id": "214",
+    "pre_id": "185",
+    "sort_number": "005"
+  },
+  "215": {
+    "type": "menu",
+    "name": "无损声卡拓展板",
+    "id": "215",
+    "pre_id": "185",
+    "sort_number": "006"
+  },
+  "216": {
+    "type": "menu",
+    "name": "RGBIC幻彩灯带拓展板",
+    "id": "216",
+    "pre_id": "185",
+    "sort_number": "007"
+  },
+  "217": {
+    "type": "menu",
+    "name": "施工安装",
+    "id": "217",
+    "pre_id": null,
+    "sort_number": "014"
+  },
+  "218": {
+    "type": "menu",
+    "name": "运营操作",
+    "id": "218",
+    "pre_id": null,
+    "sort_number": "015"
+  },
+  "219": {
+    "type": "menu",
+    "name": "下单购买",
+    "id": "219",
+    "pre_id": "217",
+    "sort_number": "001"
+  },
+  "220": {
+    "type": "menu",
+    "name": "开箱教程",
+    "id": "220",
+    "pre_id": "217",
+    "sort_number": "003"
+  },
+  "221": {
+    "type": "menu",
+    "name": "接线教程",
+    "id": "221",
+    "pre_id": "217",
+    "sort_number": "006"
+  },
+  "222": {
+    "type": "menu",
+    "name": "1、收货检查",
+    "id": "222",
+    "pre_id": "220",
+    "sort_number": "001"
+  },
+  "223": {
+    "type": "menu",
+    "name": "2、用户自备",
+    "id": "223",
+    "pre_id": "220",
+    "sort_number": "002"
+  },
+  "224": {
+    "type": "menu",
+    "name": "1、主控与电源接线",
+    "id": "224",
+    "pre_id": "221",
+    "sort_number": "001"
+  },
+  "225": {
+    "type": "menu",
+    "name": "2、主控与输出拓展板接线",
+    "id": "225",
+    "pre_id": "221",
+    "sort_number": "002"
+  },
+  "227": {
+    "type": "menu",
+    "name": "3、感应器接线",
+    "id": "227",
+    "pre_id": "221",
+    "sort_number": "003"
+  },
+  "228": {
+    "type": "menu",
+    "name": "4、音效与功放接线",
+    "id": "228",
+    "pre_id": "221",
+    "sort_number": "004"
+  },
+  "229": {
+    "type": "menu",
+    "name": "5、继电器接线",
+    "id": "229",
+    "pre_id": "221",
+    "sort_number": "005"
+  },
+  "230": {
+    "type": "menu",
+    "name": "6、MOS接线",
+    "id": "230",
+    "pre_id": "221",
+    "sort_number": "006"
+  },
+  "231": {
+    "type": "menu",
+    "name": "7、RGBIC灯带接线",
+    "id": "231",
+    "pre_id": "221",
+    "sort_number": "007"
+  },
+  "232": {
+    "type": "menu",
+    "name": "6.1、继电器与12V电磁锁接线",
+    "id": "232",
+    "pre_id": "229",
+    "sort_number": "001"
+  },
+  "233": {
+    "type": "menu",
+    "name": "6.2、继电器与12V灯接线",
+    "id": "233",
+    "pre_id": "229",
+    "sort_number": "002"
+  },
+  "234": {
+    "type": "menu",
+    "name": "设备调试",
+    "id": "234",
+    "pre_id": "217",
+    "sort_number": "007"
+  },
+  "235": {
+    "type": "menu",
+    "name": "常见问题",
+    "id": "235",
+    "pre_id": null,
+    "sort_number": "016"
+  },
+  "236": {
+    "type": "menu",
+    "name": "1、设备通电",
+    "id": "236",
+    "pre_id": "234",
+    "sort_number": "001"
+  },
+  "237": {
+    "type": "menu",
+    "name": "4.1、不带灯按钮接线",
+    "id": "237",
+    "pre_id": "227",
+    "sort_number": "001"
+  },
+  "238": {
+    "type": "menu",
+    "name": "2、主控联网",
+    "id": "238",
+    "pre_id": "234",
+    "sort_number": "002"
+  },
+  "239": {
+    "type": "menu",
+    "name": "接线问题",
+    "id": "239",
+    "pre_id": "235",
+    "sort_number": "006"
+  },
+  "240": {
+    "type": "menu",
+    "name": "网络问题",
+    "id": "240",
+    "pre_id": "235",
+    "sort_number": "001"
+  },
+  "241": {
+    "type": "menu",
+    "name": "干扰问题",
+    "id": "241",
+    "pre_id": "235",
+    "sort_number": "002"
+  },
+  "242": {
+    "type": "menu",
+    "name": "配置问题",
+    "id": "242",
+    "pre_id": "235",
+    "sort_number": "003"
+  },
+  "243": {
+    "type": "menu",
+    "name": "3、下发配置",
+    "id": "243",
+    "pre_id": "234",
+    "sort_number": "003"
+  },
+  "244": {
+    "type": "menu",
+    "name": "4、输入设备测试",
+    "id": "244",
+    "pre_id": "234",
+    "sort_number": "004"
+  },
+  "245": {
+    "type": "menu",
+    "name": "5、输出设备测试",
+    "id": "245",
+    "pre_id": "234",
+    "sort_number": "005"
+  },
+  "246": {
+    "type": "menu",
+    "name": "创建店铺",
+    "id": "246",
+    "pre_id": "46",
+    "sort_number": "001"
+  },
+  "247": {
+    "type": "menu",
+    "name": "6、主题流程调试",
+    "id": "247",
+    "pre_id": "234",
+    "sort_number": "006"
+  },
+  "248": {
+    "type": "menu",
+    "name": "创建主题",
+    "id": "248",
+    "pre_id": "46",
+    "sort_number": "002"
+  },
+  "249": {
+    "type": "menu",
+    "name": "更新问题",
+    "id": "249",
+    "pre_id": "235",
+    "sort_number": "004"
+  },
+  "250": {
+    "type": "menu",
+    "name": "版本号变为 0.0.xx",
+    "id": "250",
+    "pre_id": "249",
+    "sort_number": "001"
+  },
+  "251": {
+    "type": "menu",
+    "name": "继电器控制电磁锁或电机时抖动",
+    "id": "251",
+    "pre_id": "241",
+    "sort_number": "001"
+  },
+  "252": {
+    "type": "menu",
+    "name": "接收主题",
+    "id": "252",
+    "pre_id": "217",
+    "sort_number": "005"
+  },
+  "253": {
+    "type": "menu",
+    "name": "1、创建账号",
+    "id": "253",
+    "pre_id": "252",
+    "sort_number": "001"
+  },
+  "259": {
+    "type": "menu",
+    "name": "辅助线",
+    "id": "259",
+    "pre_id": "79",
+    "sort_number": "004"
+  },
+  "260": {
+    "type": "menu",
+    "name": "连接器",
+    "id": "260",
+    "pre_id": "79",
+    "sort_number": "005"
+  },
+  "261": {
+    "type": "menu",
+    "name": "管理",
+    "id": "261",
+    "pre_id": "79",
+    "sort_number": "006"
+  },
+  "262": {
+    "type": "menu",
+    "name": "连接器节点",
+    "id": "262",
+    "pre_id": "48",
+    "sort_number": "010"
+  },
+  "264": {
+    "type": "menu",
+    "name": "手持设备玩法节点",
+    "id": "264",
+    "pre_id": "48",
+    "sort_number": "015"
+  },
+  "273": {
+    "type": "menu",
+    "name": "继电器",
+    "id": "273",
+    "pre_id": "203",
+    "sort_number": "001"
+  },
+  "274": {
+    "type": "menu",
+    "name": "MOS",
+    "id": "274",
+    "pre_id": "203",
+    "sort_number": "002"
+  },
+  "276": {
+    "type": "menu",
+    "name": "DMX直控",
+    "id": "276",
+    "pre_id": "206",
+    "sort_number": "001"
+  },
+  "277": {
+    "type": "menu",
+    "name": "DMX脱机",
+    "id": "277",
+    "pre_id": "206",
+    "sort_number": "002"
+  },
+  "278": {
+    "type": "menu",
+    "name": "DMX控台",
+    "id": "278",
+    "pre_id": "206",
+    "sort_number": "003"
+  },
+  "279": {
+    "type": "menu",
+    "name": "无损音效文件格式注意事项",
+    "id": "279",
+    "pre_id": "317",
+    "sort_number": "002"
+  },
+  "280": {
+    "type": "menu",
+    "name": "循环继电器",
+    "id": "280",
+    "pre_id": "203",
+    "sort_number": "003"
+  },
+  "281": {
+    "type": "menu",
+    "name": "逻辑继电器组",
+    "id": "281",
+    "pre_id": "203",
+    "sort_number": "004"
+  },
+  "282": {
+    "type": "menu",
+    "name": "逻辑MOS组",
+    "id": "282",
+    "pre_id": "203",
+    "sort_number": "005"
+  },
+  "283": {
+    "type": "menu",
+    "name": "增加/减少MOS",
+    "id": "283",
+    "pre_id": "203",
+    "sort_number": "006"
+  },
+  "284": {
+    "type": "menu",
+    "name": "循环MOS",
+    "id": "284",
+    "pre_id": "203",
+    "sort_number": "007"
+  },
+  "285": {
+    "type": "menu",
+    "name": "灯光效果",
+    "id": "285",
+    "pre_id": "462",
+    "sort_number": "010"
+  },
+  "286": {
+    "type": "menu",
+    "name": "打开灯",
+    "id": "286",
+    "pre_id": "285",
+    "sort_number": "001"
+  },
+  "287": {
+    "type": "menu",
+    "name": "关闭灯",
+    "id": "287",
+    "pre_id": "285",
+    "sort_number": "001"
+  },
+  "288": {
+    "type": "menu",
+    "name": "呼吸灯",
+    "id": "288",
+    "pre_id": "285",
+    "sort_number": "003"
+  },
+  "289": {
+    "type": "menu",
+    "name": "闪烁灯",
+    "id": "289",
+    "pre_id": "285",
+    "sort_number": "003"
+  },
+  "290": {
+    "type": "menu",
+    "name": "故障灯",
+    "id": "290",
+    "pre_id": "285",
+    "sort_number": "005"
+  },
+  "291": {
+    "type": "menu",
+    "name": "跑马灯",
+    "id": "291",
+    "pre_id": "285",
+    "sort_number": "006"
+  },
+  "292": {
+    "type": "menu",
+    "name": "流水灯",
+    "id": "292",
+    "pre_id": "285",
+    "sort_number": "007"
+  },
+  "293": {
+    "type": "menu",
+    "name": "递增灯",
+    "id": "293",
+    "pre_id": "285",
+    "sort_number": "008"
+  },
+  "294": {
+    "type": "menu",
+    "name": "递减灯",
+    "id": "294",
+    "pre_id": "285",
+    "sort_number": "009"
+  },
+  "295": {
+    "type": "menu",
+    "name": "播放音效",
+    "id": "295",
+    "pre_id": "194",
+    "sort_number": "001"
+  },
+  "296": {
+    "type": "menu",
+    "name": "调整音量",
+    "id": "296",
+    "pre_id": "194",
+    "sort_number": "002"
+  },
+  "297": {
+    "type": "menu",
+    "name": "暂停播放",
+    "id": "297",
+    "pre_id": "194",
+    "sort_number": "003"
+  },
+  "298": {
+    "type": "menu",
+    "name": "继续播放",
+    "id": "298",
+    "pre_id": "194",
+    "sort_number": "003"
+  },
+  "299": {
+    "type": "menu",
+    "name": "停止播放",
+    "id": "299",
+    "pre_id": "194",
+    "sort_number": "005"
+  },
+  "300": {
+    "type": "menu",
+    "name": "效果编辑器",
+    "id": "300",
+    "pre_id": "462",
+    "sort_number": "011"
+  },
+  "301": {
+    "type": "menu",
+    "name": "控件锁定",
+    "id": "301",
+    "pre_id": "300",
+    "sort_number": "001"
+  },
+  "302": {
+    "type": "menu",
+    "name": "控件添加",
+    "id": "302",
+    "pre_id": "300",
+    "sort_number": "002"
+  },
+  "303": {
+    "type": "menu",
+    "name": "控件显隐切换",
+    "id": "303",
+    "pre_id": "300",
+    "sort_number": "003"
+  },
+  "304": {
+    "type": "menu",
+    "name": "快捷键查看",
+    "id": "304",
+    "pre_id": "300",
+    "sort_number": "004"
+  },
+  "305": {
+    "type": "menu",
+    "name": "时间显示",
+    "id": "305",
+    "pre_id": "300",
+    "sort_number": "005"
+  },
+  "306": {
+    "type": "menu",
+    "name": "时间轴缩放",
+    "id": "306",
+    "pre_id": "300",
+    "sort_number": "005"
+  },
+  "307": {
+    "type": "menu",
+    "name": "效果预览",
+    "id": "307",
+    "pre_id": "300",
+    "sort_number": "007"
+  },
+  "308": {
+    "type": "menu",
+    "name": "音效静音",
+    "id": "308",
+    "pre_id": "300",
+    "sort_number": "008"
+  },
+  "309": {
+    "type": "menu",
+    "name": "预览轴",
+    "id": "309",
+    "pre_id": "300",
+    "sort_number": "009"
+  },
+  "310": {
+    "type": "menu",
+    "name": "自动吸附",
+    "id": "310",
+    "pre_id": "300",
+    "sort_number": "010"
+  },
+  "311": {
+    "type": "menu",
+    "name": "复位分区",
+    "id": "311",
+    "pre_id": "207",
+    "sort_number": "001"
+  },
+  "312": {
+    "type": "menu",
+    "name": "启动分区",
+    "id": "312",
+    "pre_id": "207",
+    "sort_number": "002"
+  },
+  "313": {
+    "type": "menu",
+    "name": "PRO音效终端和音频播放拓展板音效需求",
+    "id": "313",
+    "pre_id": "317",
+    "sort_number": "002"
+  },
+  "314": {
+    "type": "menu",
+    "name": "主控绑定魔法棒失败的常见原因排查",
+    "id": "314",
+    "pre_id": "315",
+    "sort_number": "001"
+  },
+  "315": {
+    "type": "menu",
+    "name": "添加设备问题",
+    "id": "315",
+    "pre_id": "235",
+    "sort_number": "008"
+  },
+  "316": {
+    "type": "menu",
+    "name": "设备无法绑定或不在线的问题排查方法",
+    "id": "316",
+    "pre_id": "315",
+    "sort_number": "002"
+  },
+  "317": {
+    "type": "menu",
+    "name": "音效文件格式问题",
+    "id": "317",
+    "pre_id": "347",
+    "sort_number": "001"
+  },
+  "319": {
+    "type": "menu",
+    "name": "音视频格式转换及压缩",
+    "id": "319",
+    "pre_id": "347",
+    "sort_number": "001"
+  },
+  "320": {
+    "type": "menu",
+    "name": "节点运行相关问题",
+    "id": "320",
+    "pre_id": "235",
+    "sort_number": "010"
+  },
+  "321": {
+    "type": "menu",
+    "name": "流程一直停在某一节点无法继续",
+    "id": "321",
+    "pre_id": "242",
+    "sort_number": "001"
+  },
+  "322": {
+    "type": "menu",
+    "name": "开启游戏自启动",
+    "id": "322",
+    "pre_id": "49",
+    "sort_number": "010"
+  },
+  "323": {
+    "type": "menu",
+    "name": "颖橙云平台",
+    "id": "323",
+    "pre_id": null,
+    "sort_number": "004"
+  },
+  "326": {
+    "type": "menu",
+    "name": "SE系列拓展板如何更新版本",
+    "id": "326",
+    "pre_id": "185",
+    "sort_number": "008"
+  },
+  "328": {
+    "type": "menu",
+    "name": "视频录制",
+    "id": "328",
+    "pre_id": "209",
+    "sort_number": "001"
+  },
+  "329": {
+    "type": "menu",
+    "name": "拍照",
+    "id": "329",
+    "pre_id": "209",
+    "sort_number": "002"
+  },
+  "330": {
+    "type": "menu",
+    "name": "合成视频",
+    "id": "330",
+    "pre_id": "209",
+    "sort_number": "003"
+  },
+  "331": {
+    "type": "menu",
+    "name": "手持设备",
+    "id": "331",
+    "pre_id": "462",
+    "sort_number": "011"
+  },
+  "332": {
+    "type": "menu",
+    "name": "互动智能魔杖",
+    "id": "332",
+    "pre_id": "331",
+    "sort_number": "001"
+  },
+  "333": {
+    "type": "menu",
+    "name": "罗盘-怪事屋版",
+    "id": "333",
+    "pre_id": "331",
+    "sort_number": "002"
+  },
+  "334": {
+    "type": "menu",
+    "name": "手持灯-RGBIC版",
+    "id": "334",
+    "pre_id": "331",
+    "sort_number": "003"
+  },
+  "335": {
+    "type": "menu",
+    "name": "慧芯事件",
+    "id": "335",
+    "pre_id": "205",
+    "sort_number": "001"
+  },
+  "336": {
+    "type": "menu",
+    "name": "网络输出",
+    "id": "336",
+    "pre_id": "205",
+    "sort_number": "002"
+  },
+  "337": {
+    "type": "menu",
+    "name": "跨主控事件",
+    "id": "337",
+    "pre_id": "205",
+    "sort_number": "003"
+  },
+  "339": {
+    "type": "menu",
+    "name": "慧芯SE硬件如何接线/激活/加载项目/绑定",
+    "id": "339",
+    "pre_id": "67",
+    "sort_number": "001"
+  },
+  "340": {
+    "type": "menu",
+    "name": "玩法类型",
+    "id": "340",
+    "pre_id": "93",
+    "sort_number": "001"
+  },
+  "341": {
+    "type": "menu",
+    "name": "组数/次数",
+    "id": "341",
+    "pre_id": "340",
+    "sort_number": "001"
+  },
+  "342": {
+    "type": "menu",
+    "name": "慧芯SE设备如何设置通电自开机",
+    "id": "342",
+    "pre_id": "67",
+    "sort_number": "002"
+  },
+  "343": {
+    "type": "menu",
+    "name": "安卓盒子如何设置慧芯app开机自启动",
+    "id": "343",
+    "pre_id": "67",
+    "sort_number": "003"
+  },
+  "344": {
+    "type": "menu",
+    "name": "如何给设备固定IP地址",
+    "id": "344",
+    "pre_id": "240",
+    "sort_number": "001"
+  },
+  "345": {
+    "type": "menu",
+    "name": "终端设备删除失败的原因",
+    "id": "345",
+    "pre_id": "315",
+    "sort_number": "003"
+  },
+  "347": {
+    "type": "menu",
+    "name": "音效问题",
+    "id": "347",
+    "pre_id": "235",
+    "sort_number": "012"
+  },
+  "348": {
+    "type": "menu",
+    "name": "音频不播放但日志可以看到播放n毫秒的解决方案",
+    "id": "348",
+    "pre_id": "347",
+    "sort_number": "010"
+  },
+  "349": {
+    "type": "menu",
+    "name": "供电问题",
+    "id": "349",
+    "pre_id": "235",
+    "sort_number": "013"
+  },
+  "350": {
+    "type": "menu",
+    "name": "颖橙智芯标准版提示电压过低",
+    "id": "350",
+    "pre_id": "533",
+    "sort_number": "002"
+  },
+  "352": {
+    "type": "menu",
+    "name": "时间",
+    "id": "352",
+    "pre_id": "93",
+    "sort_number": "001"
+  },
+  "353": {
+    "type": "menu",
+    "name": "持续触发时间",
+    "id": "353",
+    "pre_id": "352",
+    "sort_number": "001"
+  },
+  "354": {
+    "type": "menu",
+    "name": "持续无触发时间",
+    "id": "354",
+    "pre_id": "352",
+    "sort_number": "002"
+  },
+  "355": {
+    "type": "menu",
+    "name": "输入限制时间",
+    "id": "355",
+    "pre_id": "352",
+    "sort_number": "003"
+  },
+  "356": {
+    "type": "menu",
+    "name": "自动成功时间",
+    "id": "356",
+    "pre_id": "352",
+    "sort_number": "004"
+  },
+  "357": {
+    "type": "menu",
+    "name": "自动失败时间",
+    "id": "357",
+    "pre_id": "352",
+    "sort_number": "005"
+  },
+  "358": {
+    "type": "menu",
+    "name": "音效",
+    "id": "358",
+    "pre_id": "93",
+    "sort_number": "003"
+  },
+  "359": {
+    "type": "menu",
+    "name": "触发音效",
+    "id": "359",
+    "pre_id": "358",
+    "sort_number": "001"
+  },
+  "360": {
+    "type": "menu",
+    "name": "玩法提示音效",
+    "id": "360",
+    "pre_id": "358",
+    "sort_number": "002"
+  },
+  "361": {
+    "type": "menu",
+    "name": "游戏环节计时音效",
+    "id": "361",
+    "pre_id": "358",
+    "sort_number": "003"
+  },
+  "362": {
+    "type": "menu",
+    "name": "感应器工作状态",
+    "id": "362",
+    "pre_id": "93",
+    "sort_number": "004"
+  },
+  "363": {
+    "type": "menu",
+    "name": "正常模式",
+    "id": "363",
+    "pre_id": "362",
+    "sort_number": "001"
+  },
+  "364": {
+    "type": "menu",
+    "name": "每个感应器只输入一次模式",
+    "id": "364",
+    "pre_id": "362",
+    "sort_number": "002"
+  },
+  "365": {
+    "type": "menu",
+    "name": "每个感应器不能连续输入模式",
+    "id": "365",
+    "pre_id": "362",
+    "sort_number": "003"
+  },
+  "366": {
+    "type": "menu",
+    "name": "感应器触发一次，离开触发一次模式",
+    "id": "366",
+    "pre_id": "362",
+    "sort_number": "003"
+  },
+  "367": {
+    "type": "menu",
+    "name": "摩斯",
+    "id": "367",
+    "pre_id": "340",
+    "sort_number": "002"
+  },
+  "368": {
+    "type": "menu",
+    "name": "输出终端控制器选择",
+    "id": "368",
+    "pre_id": "93",
+    "sort_number": "005"
+  },
+  "369": {
+    "type": "menu",
+    "name": "跟随端口工作继电器",
+    "id": "369",
+    "pre_id": "368",
+    "sort_number": "001"
+  },
+  "370": {
+    "type": "menu",
+    "name": "跟随端口工作MOS",
+    "id": "370",
+    "pre_id": "368",
+    "sort_number": "002"
+  },
+  "371": {
+    "type": "menu",
+    "name": "跟隨LED灯工作继电器",
+    "id": "371",
+    "pre_id": "368",
+    "sort_number": "003"
+  },
+  "372": {
+    "type": "menu",
+    "name": "跟随LED灯工作MOS",
+    "id": "372",
+    "pre_id": "368",
+    "sort_number": "004"
+  },
+  "373": {
+    "type": "menu",
+    "name": "端口自锁继电器",
+    "id": "373",
+    "pre_id": "368",
+    "sort_number": "004"
+  },
+  "374": {
+    "type": "menu",
+    "name": "端口自锁MOS",
+    "id": "374",
+    "pre_id": "368",
+    "sort_number": "005"
+  },
+  "375": {
+    "type": "menu",
+    "name": "指示灯效果设置",
+    "id": "375",
+    "pre_id": "93",
+    "sort_number": "006"
+  },
+  "376": {
+    "type": "menu",
+    "name": "工作模式选择",
+    "id": "376",
+    "pre_id": "93",
+    "sort_number": "007"
+  },
+  "377": {
+    "type": "menu",
+    "name": "上电按键灯状态",
+    "id": "377",
+    "pre_id": "375",
+    "sort_number": "001"
+  },
+  "378": {
+    "type": "menu",
+    "name": "游戏中按键灯状态",
+    "id": "378",
+    "pre_id": "375",
+    "sort_number": "002"
+  },
+  "379": {
+    "type": "menu",
+    "name": "错误时按键灯状态",
+    "id": "379",
+    "pre_id": "375",
+    "sort_number": "003"
+  },
+  "380": {
+    "type": "menu",
+    "name": "成功时按键灯状态",
+    "id": "380",
+    "pre_id": "375",
+    "sort_number": "004"
+  },
+  "381": {
+    "type": "menu",
+    "name": "触发一次后启动",
+    "id": "381",
+    "pre_id": "376",
+    "sort_number": "001"
+  },
+  "384": {
+    "type": "menu",
+    "name": "跳过端囗检测",
+    "id": "384",
+    "pre_id": "376",
+    "sort_number": "004"
+  },
+  "385": {
+    "type": "menu",
+    "name": "启动效果只执行一次",
+    "id": "385",
+    "pre_id": "376",
+    "sort_number": "005"
+  },
+  "386": {
+    "type": "menu",
+    "name": "禁止分区跳关",
+    "id": "386",
+    "pre_id": "376",
+    "sort_number": "006"
+  },
+  "387": {
+    "type": "menu",
+    "name": "可重复触发",
+    "id": "387",
+    "pre_id": "376",
+    "sort_number": "007"
+  },
+  "388": {
+    "type": "menu",
+    "name": "移开触发",
+    "id": "388",
+    "pre_id": "376",
+    "sort_number": "008"
+  },
+  "389": {
+    "type": "menu",
+    "name": "工作后常亮",
+    "id": "389",
+    "pre_id": "376",
+    "sort_number": "009"
+  },
+  "390": {
+    "type": "menu",
+    "name": "密码设置",
+    "id": "390",
+    "pre_id": "93",
+    "sort_number": "008"
+  },
+  "391": {
+    "type": "menu",
+    "name": "添加DMX设备",
+    "id": "391",
+    "pre_id": "98",
+    "sort_number": "002"
+  },
+  "392": {
+    "type": "menu",
+    "name": "快速搜索",
+    "id": "392",
+    "pre_id": "79",
+    "sort_number": "007"
+  },
+  "393": {
+    "type": "menu",
+    "name": "4.2、ID感应机关",
+    "id": "393",
+    "pre_id": "227",
+    "sort_number": "002"
+  },
+  "394": {
+    "type": "menu",
+    "name": "标准模式",
+    "id": "394",
+    "pre_id": "393",
+    "sort_number": "001"
+  },
+  "397": {
+    "type": "menu",
+    "name": "分区启动",
+    "id": "397",
+    "pre_id": "100",
+    "sort_number": "018"
+  },
+  "398": {
+    "type": "menu",
+    "name": "输入",
+    "id": "398",
+    "pre_id": "261",
+    "sort_number": "001"
+  },
+  "399": {
+    "type": "menu",
+    "name": "输出",
+    "id": "399",
+    "pre_id": "261",
+    "sort_number": "002"
+  },
+  "400": {
+    "type": "menu",
+    "name": "音效",
+    "id": "400",
+    "pre_id": "261",
+    "sort_number": "003"
+  },
+  "401": {
+    "type": "menu",
+    "name": "全局模式",
+    "id": "401",
+    "pre_id": "52",
+    "sort_number": "003"
+  },
+  "402": {
+    "type": "menu",
+    "name": "设置",
+    "id": "402",
+    "pre_id": "401",
+    "sort_number": "001"
+  },
+  "403": {
+    "type": "menu",
+    "name": "切换分区",
+    "id": "403",
+    "pre_id": "100",
+    "sort_number": "018"
+  },
+  "404": {
+    "type": "menu",
+    "name": "手持设备",
+    "id": "404",
+    "pre_id": "261",
+    "sort_number": "004"
+  },
+  "405": {
+    "type": "menu",
+    "name": "灯带协同设备",
+    "id": "405",
+    "pre_id": "261",
+    "sort_number": "005"
+  },
+  "406": {
+    "type": "menu",
+    "name": "DMX设备",
+    "id": "406",
+    "pre_id": "261",
+    "sort_number": "006"
+  },
+  "407": {
+    "type": "menu",
+    "name": "离线控制系统搜不到主控的解决办法",
+    "id": "407",
+    "pre_id": "240",
+    "sort_number": "002"
+  },
+  "408": {
+    "type": "menu",
+    "name": "跟随启动交互",
+    "id": "408",
+    "pre_id": "85",
+    "sort_number": "005"
+  },
+  "409": {
+    "type": "menu",
+    "name": "跟随复位交互",
+    "id": "409",
+    "pre_id": "85",
+    "sort_number": "006"
+  },
+  "410": {
+    "type": "menu",
+    "name": "分区启动/复位/跳关连接器",
+    "id": "410",
+    "pre_id": "85",
+    "sort_number": "007"
+  },
+  "411": {
+    "type": "menu",
+    "name": "关机连接器",
+    "id": "411",
+    "pre_id": "85",
+    "sort_number": "008"
+  },
+  "412": {
+    "type": "menu",
+    "name": "手持设备输入",
+    "id": "412",
+    "pre_id": "264",
+    "sort_number": "001"
+  },
+  "413": {
+    "type": "menu",
+    "name": "连接中心",
+    "id": "413",
+    "pre_id": "323",
+    "sort_number": "010"
+  },
+  "414": {
+    "type": "menu",
+    "name": "连接器列表",
+    "id": "414",
+    "pre_id": "413",
+    "sort_number": "001"
+  },
+  "415": {
+    "type": "menu",
+    "name": "主控类问题",
+    "id": "415",
+    "pre_id": "235",
+    "sort_number": "014"
+  },
+  "416": {
+    "type": "menu",
+    "name": "错误代码-100",
+    "id": "416",
+    "pre_id": "415",
+    "sort_number": "001"
+  },
+  "417": {
+    "type": "menu",
+    "name": "离线控制系统添加后显示不在线",
+    "id": "417",
+    "pre_id": "315",
+    "sort_number": "005"
+  },
+  "418": {
+    "type": "menu",
+    "name": "慧芯SE添加后显示不在线",
+    "id": "418",
+    "pre_id": "315",
+    "sort_number": "005"
+  },
+  "419": {
+    "type": "menu",
+    "name": "错误音效或者成功音效不播放",
+    "id": "419",
+    "pre_id": "347",
+    "sort_number": "011"
+  },
+  "420": {
+    "type": "menu",
+    "name": "慧芯问题",
+    "id": "420",
+    "pre_id": "235",
+    "sort_number": "015"
+  },
+  "421": {
+    "type": "menu",
+    "name": "慧芯视频无法播放",
+    "id": "421",
+    "pre_id": "420",
+    "sort_number": "001"
+  },
+  "422": {
+    "type": "menu",
+    "name": "SE主控如何更新版本",
+    "id": "422",
+    "pre_id": "185",
+    "sort_number": "009"
+  },
+  "424": {
+    "type": "menu",
+    "name": "循环继电器多选设置结束工作后单路继电器未停止工作问题排查方案",
+    "id": "424",
+    "pre_id": "242",
+    "sort_number": "001"
+  },
+  "425": {
+    "type": "menu",
+    "name": "音效播放拓展板-SE 混音功能介绍及操作方法",
+    "id": "425",
+    "pre_id": "214",
+    "sort_number": "001"
+  },
+  "427": {
+    "type": "menu",
+    "name": "SE主控启动无语音播放问题",
+    "id": "427",
+    "pre_id": "415",
+    "sort_number": "003"
+  },
+  "428": {
+    "type": "menu",
+    "name": "互动智能魔杖",
+    "id": "428",
+    "pre_id": "487",
+    "sort_number": "001"
+  },
+  "429": {
+    "type": "menu",
+    "name": "手持设备类问题",
+    "id": "429",
+    "pre_id": "235",
+    "sort_number": "017"
+  },
+  "430": {
+    "type": "menu",
+    "name": "互动智能魔杖绑定不上主控问题",
+    "id": "430",
+    "pre_id": "429",
+    "sort_number": "001"
+  },
+  "431": {
+    "type": "menu",
+    "name": "树莓派修复方法",
+    "id": "431",
+    "pre_id": "435",
+    "sort_number": "001"
+  },
+  "432": {
+    "type": "menu",
+    "name": "输入拓展板过载保护灯亮起问题排查方法",
+    "id": "432",
+    "pre_id": "349",
+    "sort_number": "002"
+  },
+  "433": {
+    "type": "menu",
+    "name": "8、点阵屏接线",
+    "id": "433",
+    "pre_id": "221",
+    "sort_number": "009"
+  },
+  "434": {
+    "type": "menu",
+    "name": "主控无法启动",
+    "id": "434",
+    "pre_id": "415",
+    "sort_number": "004"
+  },
+  "435": {
+    "type": "menu",
+    "name": "树莓派类问题",
+    "id": "435",
+    "pre_id": "235",
+    "sort_number": "019"
+  },
+  "436": {
+    "type": "menu",
+    "name": "树莓派无法启动",
+    "id": "436",
+    "pre_id": "435",
+    "sort_number": "019"
+  },
+  "437": {
+    "type": "menu",
+    "name": "节点无法过关",
+    "id": "437",
+    "pre_id": "320",
+    "sort_number": "001"
+  },
+  "438": {
+    "type": "menu",
+    "name": "主控不在线",
+    "id": "438",
+    "pre_id": "240",
+    "sort_number": "017"
+  },
+  "439": {
+    "type": "menu",
+    "name": "自定义参数节点",
+    "id": "439",
+    "pre_id": "48",
+    "sort_number": "013"
+  },
+  "440": {
+    "type": "menu",
+    "name": "RGB按键玩法节点",
+    "id": "440",
+    "pre_id": "48",
+    "sort_number": "014"
+  },
+  "441": {
+    "type": "menu",
+    "name": "多卡识别玩法节点",
+    "id": "441",
+    "pre_id": "48",
+    "sort_number": "015"
+  },
+  "442": {
+    "type": "menu",
+    "name": "主控语音提示本地流程下载失败",
+    "id": "442",
+    "pre_id": "415",
+    "sort_number": "005"
+  },
+  "443": {
+    "type": "menu",
+    "name": "灯效玩法节点",
+    "id": "443",
+    "pre_id": "48",
+    "sort_number": "016"
+  },
+  "444": {
+    "type": "menu",
+    "name": "如何判断感应器输入端口是否正常",
+    "id": "444",
+    "pre_id": "453",
+    "sort_number": "003"
+  },
+  "445": {
+    "type": "menu",
+    "name": "摄像头搜索不出来问题",
+    "id": "445",
+    "pre_id": "240",
+    "sort_number": "004"
+  },
+  "446": {
+    "type": "menu",
+    "name": "9、485如何连接视频模块",
+    "id": "446",
+    "pre_id": "221",
+    "sort_number": "010"
+  },
+  "447": {
+    "type": "menu",
+    "name": "MOS输出拓展板Plus部分端口过载",
+    "id": "447",
+    "pre_id": "349",
+    "sort_number": "003"
+  },
+  "448": {
+    "type": "menu",
+    "name": "音效拓展板状态灯说明",
+    "id": "448",
+    "pre_id": "214",
+    "sort_number": "002"
+  },
+  "449": {
+    "type": "menu",
+    "name": "2、接收与新建主题",
+    "id": "449",
+    "pre_id": "252",
+    "sort_number": "002"
+  },
+  "450": {
+    "type": "menu",
+    "name": "3、绑定设备",
+    "id": "450",
+    "pre_id": "252",
+    "sort_number": "003"
+  },
+  "451": {
+    "type": "menu",
+    "name": "标准版感应器触发无效且看到端口板过载保护灯亮黄灯",
+    "id": "451",
+    "pre_id": "533",
+    "sort_number": "001"
+  },
+  "452": {
+    "type": "menu",
+    "name": "慧芯SE手机端支持设备型号",
+    "id": "452",
+    "pre_id": "67",
+    "sort_number": "004"
+  },
+  "453": {
+    "type": "menu",
+    "name": "调试问题",
+    "id": "453",
+    "pre_id": "235",
+    "sort_number": "022"
+  },
+  "454": {
+    "type": "menu",
+    "name": "在线调试平台 无法点击调试",
+    "id": "454",
+    "pre_id": "453",
+    "sort_number": "001"
+  },
+  "455": {
+    "type": "menu",
+    "name": "安卓盒子如何安装慧芯交互系统",
+    "id": "455",
+    "pre_id": "67",
+    "sort_number": "005"
+  },
+  "456": {
+    "type": "menu",
+    "name": "在线调试无法复位主控",
+    "id": "456",
+    "pre_id": "453",
+    "sort_number": "002"
+  },
+  "457": {
+    "type": "menu",
+    "name": "在线调试区域灰色无法点击",
+    "id": "457",
+    "pre_id": "453",
+    "sort_number": "003"
+  },
+  "458": {
+    "type": "menu",
+    "name": "路由器后台显示颖橙设备名称问题",
+    "id": "458",
+    "pre_id": "490",
+    "sort_number": "003"
+  },
+  "459": {
+    "type": "menu",
+    "name": "ID卡感应器设置",
+    "id": "459",
+    "pre_id": "75",
+    "sort_number": "007"
+  },
+  "460": {
+    "type": "menu",
+    "name": "点阵屏设置",
+    "id": "460",
+    "pre_id": "462",
+    "sort_number": "017"
+  },
+  "461": {
+    "type": "menu",
+    "name": "感应器测试板的使用方法",
+    "id": "461",
+    "pre_id": "244",
+    "sort_number": "001"
+  },
+  "462": {
+    "type": "menu",
+    "name": "节点效果设置",
+    "id": "462",
+    "pre_id": "48",
+    "sort_number": "001"
+  },
+  "463": {
+    "type": "menu",
+    "name": "自定义参数节点有的时候不能判定成功",
+    "id": "463",
+    "pre_id": "242",
+    "sort_number": "002"
+  },
+  "464": {
+    "type": "menu",
+    "name": "自定义参数",
+    "id": "464",
+    "pre_id": "462",
+    "sort_number": "019"
+  },
+  "465": {
+    "type": "menu",
+    "name": "追加",
+    "id": "465",
+    "pre_id": "464",
+    "sort_number": "001"
+  },
+  "466": {
+    "type": "menu",
+    "name": "回删",
+    "id": "466",
+    "pre_id": "464",
+    "sort_number": "002"
+  },
+  "467": {
+    "type": "menu",
+    "name": "清空",
+    "id": "467",
+    "pre_id": "464",
+    "sort_number": "003"
+  },
+  "468": {
+    "type": "menu",
+    "name": "赋值",
+    "id": "468",
+    "pre_id": "464",
+    "sort_number": "004"
+  },
+  "469": {
+    "type": "menu",
+    "name": "MOS输出拓展板未匹配到实际的拓展板",
+    "id": "469",
+    "pre_id": "315",
+    "sort_number": "006"
+  },
+  "470": {
+    "type": "menu",
+    "name": "舵机设置",
+    "id": "470",
+    "pre_id": "462",
+    "sort_number": "017"
+  },
+  "471": {
+    "type": "menu",
+    "name": "随机数",
+    "id": "471",
+    "pre_id": "462",
+    "sort_number": "020"
+  },
+  "472": {
+    "type": "menu",
+    "name": "逻辑",
+    "id": "472",
+    "pre_id": "462",
+    "sort_number": "021"
+  },
+  "473": {
+    "type": "menu",
+    "name": "重置随机数",
+    "id": "473",
+    "pre_id": "472",
+    "sort_number": "005"
+  },
+  "474": {
+    "type": "menu",
+    "name": "颖橙智芯在线调试平台",
+    "id": "474",
+    "pre_id": null,
+    "sort_number": "012"
+  },
+  "475": {
+    "type": "menu",
+    "name": "右侧设置栏说明",
+    "id": "475",
+    "pre_id": "474",
+    "sort_number": "001"
+  },
+  "476": {
+    "type": "menu",
+    "name": "流程模式",
+    "id": "476",
+    "pre_id": "474",
+    "sort_number": "002"
+  },
+  "477": {
+    "type": "menu",
+    "name": "全局模式",
+    "id": "477",
+    "pre_id": "474",
+    "sort_number": "003"
+  },
+  "478": {
+    "type": "menu",
+    "name": "标准模式",
+    "id": "478",
+    "pre_id": "474",
+    "sort_number": "004"
+  },
+  "479": {
+    "type": "menu",
+    "name": "DMX 模式",
+    "id": "479",
+    "pre_id": "474",
+    "sort_number": "005"
+  },
+  "480": {
+    "type": "menu",
+    "name": "自定义模式",
+    "id": "480",
+    "pre_id": "474",
+    "sort_number": "006"
+  },
+  "481": {
+    "type": "menu",
+    "name": "音效播放模式",
+    "id": "481",
+    "pre_id": "474",
+    "sort_number": "007"
+  },
+  "482": {
+    "type": "menu",
+    "name": "输出模式",
+    "id": "482",
+    "pre_id": "474",
+    "sort_number": "008"
+  },
+  "483": {
+    "type": "menu",
+    "name": "输入模式",
+    "id": "483",
+    "pre_id": "474",
+    "sort_number": "009"
+  },
+  "484": {
+    "type": "menu",
+    "name": "端口组",
+    "id": "484",
+    "pre_id": "75",
+    "sort_number": "007"
+  },
+  "485": {
+    "type": "menu",
+    "name": "错误码为-6000",
+    "id": "485",
+    "pre_id": "415",
+    "sort_number": "006"
+  },
+  "486": {
+    "type": "menu",
+    "name": "DMX设备控制无反应",
+    "id": "486",
+    "pre_id": "490",
+    "sort_number": "003"
+  },
+  "487": {
+    "type": "menu",
+    "name": "设备介绍",
+    "id": "487",
+    "pre_id": null,
+    "sort_number": "013"
+  },
+  "488": {
+    "type": "menu",
+    "name": "点阵屏控制器",
+    "id": "488",
+    "pre_id": "487",
+    "sort_number": "013"
+  },
+  "490": {
+    "type": "menu",
+    "name": "其他问题",
+    "id": "490",
+    "pre_id": "235",
+    "sort_number": "025"
+  },
+  "491": {
+    "type": "menu",
+    "name": "SE类型主控支持拓展设备类型及数量说明",
+    "id": "491",
+    "pre_id": "490",
+    "sort_number": "025"
+  },
+  "492": {
+    "type": "menu",
+    "name": "视频播放机关",
+    "id": "492",
+    "pre_id": "487",
+    "sort_number": "014"
+  },
+  "493": {
+    "type": "menu",
+    "name": "智芯与慧芯设备启动、复位、关机交互操作",
+    "id": "493",
+    "pre_id": "218",
+    "sort_number": "001"
+  },
+  "494": {
+    "type": "menu",
+    "name": "软件费用说明",
+    "id": "494",
+    "pre_id": "217",
+    "sort_number": "027"
+  },
+  "495": {
+    "type": "menu",
+    "name": "4、删除设备",
+    "id": "495",
+    "pre_id": "252",
+    "sort_number": "004"
+  },
+  "496": {
+    "type": "menu",
+    "name": "10、推杆模块接线",
+    "id": "496",
+    "pre_id": "221",
+    "sort_number": "011"
+  },
+  "497": {
+    "type": "menu",
+    "name": "拓展板供电问题",
+    "id": "497",
+    "pre_id": "239",
+    "sort_number": "003"
+  },
+  "498": {
+    "type": "menu",
+    "name": "11、数码管接线",
+    "id": "498",
+    "pre_id": "221",
+    "sort_number": "012"
+  },
+  "499": {
+    "type": "menu",
+    "name": "更新版本操作规范",
+    "id": "499",
+    "pre_id": "249",
+    "sort_number": "003"
+  },
+  "500": {
+    "type": "menu",
+    "name": "节点角标颜色含义",
+    "id": "500",
+    "pre_id": "320",
+    "sort_number": "002"
+  },
+  "501": {
+    "type": "menu",
+    "name": "下载中心",
+    "id": "501",
+    "pre_id": "323",
+    "sort_number": "011"
+  },
+  "502": {
+    "type": "menu",
+    "name": "12、DMX灯泡接线",
+    "id": "502",
+    "pre_id": "221",
+    "sort_number": "013"
+  },
+  "503": {
+    "type": "menu",
+    "name": "数码管设置",
+    "id": "503",
+    "pre_id": "462",
+    "sort_number": "022"
+  },
+  "504": {
+    "type": "menu",
+    "name": "视频模块播放的视频顺序跟程序里设置要播放的对不上",
+    "id": "504",
+    "pre_id": "490",
+    "sort_number": "027"
+  },
+  "505": {
+    "type": "menu",
+    "name": "金属门禁",
+    "id": "505",
+    "pre_id": "487",
+    "sort_number": "015"
+  },
+  "506": {
+    "type": "menu",
+    "name": "塑料门禁",
+    "id": "506",
+    "pre_id": "487",
+    "sort_number": "016"
+  },
+  "507": {
+    "type": "menu",
+    "name": "分享主题",
+    "id": "507",
+    "pre_id": "217",
+    "sort_number": "003"
+  },
+  "508": {
+    "type": "menu",
+    "name": "主控下发流程失败",
+    "id": "508",
+    "pre_id": "490",
+    "sort_number": "028"
+  },
+  "509": {
+    "type": "menu",
+    "name": "电源拓展板供电问题",
+    "id": "509",
+    "pre_id": "349",
+    "sort_number": "007"
+  },
+  "510": {
+    "type": "menu",
+    "name": "慧芯和智芯交互接收不到信号，在线调试可以控制",
+    "id": "510",
+    "pre_id": "420",
+    "sort_number": "002"
+  },
+  "511": {
+    "type": "menu",
+    "name": "慧芯设备中图片未加载成功",
+    "id": "511",
+    "pre_id": "420",
+    "sort_number": "003"
+  },
+  "512": {
+    "type": "menu",
+    "name": "13、舵机接线",
+    "id": "512",
+    "pre_id": "221",
+    "sort_number": "014"
+  },
+  "513": {
+    "type": "menu",
+    "name": "触摸感应",
+    "id": "513",
+    "pre_id": "487",
+    "sort_number": "017"
+  },
+  "514": {
+    "type": "menu",
+    "name": "素材转存失败",
+    "id": "514",
+    "pre_id": "420",
+    "sort_number": "004"
+  },
+  "515": {
+    "type": "menu",
+    "name": "慧芯SE输入组织代码后在组织里找不到该设备",
+    "id": "515",
+    "pre_id": "420",
+    "sort_number": "005"
+  },
+  "516": {
+    "type": "menu",
+    "name": "配置摄像头",
+    "id": "516",
+    "pre_id": "315",
+    "sort_number": "007"
+  },
+  "517": {
+    "type": "menu",
+    "name": "离线控制系统提示信息发送超时",
+    "id": "517",
+    "pre_id": "240",
+    "sort_number": "022"
+  },
+  "518": {
+    "type": "menu",
+    "name": "设备管理添加设备空白无设备",
+    "id": "518",
+    "pre_id": "490",
+    "sort_number": "029"
+  },
+  "519": {
+    "type": "menu",
+    "name": "重新加载慧芯项目",
+    "id": "519",
+    "pre_id": "420",
+    "sort_number": "006"
+  },
+  "520": {
+    "type": "menu",
+    "name": "DMX512拓展板-SE",
+    "id": "520",
+    "pre_id": "185",
+    "sort_number": "010"
+  },
+  "521": {
+    "type": "menu",
+    "name": "RS485接口增强拓展板-SE",
+    "id": "521",
+    "pre_id": "185",
+    "sort_number": "011"
+  },
+  "522": {
+    "type": "menu",
+    "name": "离线控制系统错误提示",
+    "id": "522",
+    "pre_id": "490",
+    "sort_number": "006"
+  },
+  "523": {
+    "type": "menu",
+    "name": "ID卡感应器",
+    "id": "523",
+    "pre_id": "487",
+    "sort_number": "018"
+  },
+  "524": {
+    "type": "menu",
+    "name": "树莓派无限重启问题",
+    "id": "524",
+    "pre_id": "435",
+    "sort_number": "020"
+  },
+  "525": {
+    "type": "menu",
+    "name": "漫反射感应机关",
+    "id": "525",
+    "pre_id": "487",
+    "sort_number": "019"
+  },
+  "526": {
+    "type": "menu",
+    "name": "人体电桥机关 - 电击版",
+    "id": "526",
+    "pre_id": "487",
+    "sort_number": "020"
+  },
+  "527": {
+    "type": "menu",
+    "name": "遥控器机关",
+    "id": "527",
+    "pre_id": "487",
+    "sort_number": "021"
+  },
+  "528": {
+    "type": "menu",
+    "name": "日志提示：服务器响应主控请求流程，生成流程异常",
+    "id": "528",
+    "pre_id": "242",
+    "sort_number": "003"
+  },
+  "529": {
+    "type": "menu",
+    "name": "流程执行中节点乱跳关",
+    "id": "529",
+    "pre_id": "453",
+    "sort_number": "021"
+  },
+  "530": {
+    "type": "menu",
+    "name": "标准版主控乱码执行",
+    "id": "530",
+    "pre_id": "533",
+    "sort_number": "001"
+  },
+  "531": {
+    "type": "menu",
+    "name": "端口替换",
+    "id": "531",
+    "pre_id": "261",
+    "sort_number": "007"
+  },
+  "532": {
+    "type": "menu",
+    "name": "主控加载旧流程",
+    "id": "532",
+    "pre_id": "490",
+    "sort_number": "030"
+  },
+  "533": {
+    "type": "menu",
+    "name": "颖橙智芯标准版",
+    "id": "533",
+    "pre_id": null,
+    "sort_number": "014"
+  },
+  "534": {
+    "type": "menu",
+    "name": "音效拓展板连接功放时有电流声",
+    "id": "534",
+    "pre_id": "347",
+    "sort_number": "012"
+  },
+  "535": {
+    "type": "menu",
+    "name": "连线机关",
+    "id": "535",
+    "pre_id": "487",
+    "sort_number": "022"
+  },
+  "536": {
+    "type": "menu",
+    "name": "常见开孔尺寸",
+    "id": "536",
+    "pre_id": "217",
+    "sort_number": "028"
+  },
+  "537": {
+    "type": "menu",
+    "name": "第三方产品推荐链接",
+    "id": "537",
+    "pre_id": "217",
+    "sort_number": "029"
+  },
+  "538": {
+    "type": "menu",
+    "name": "SE主控如何重置",
+    "id": "538",
+    "pre_id": "415",
+    "sort_number": "007"
+  },
+  "539": {
+    "type": "menu",
+    "name": "常规玩法示例",
+    "id": "539",
+    "pre_id": null,
+    "sort_number": "015"
+  },
+  "540": {
+    "type": "menu",
+    "name": "单线独立任务 可重复触发",
+    "id": "540",
+    "pre_id": "539",
+    "sort_number": "001"
+  },
+  "541": {
+    "type": "menu",
+    "name": "5、下载端口表",
+    "id": "541",
+    "pre_id": "252",
+    "sort_number": "005"
+  },
+  "542": {
+    "type": "menu",
+    "name": "电话机关",
+    "id": "542",
+    "pre_id": "487",
+    "sort_number": "023"
+  },
+  "543": {
+    "type": "menu",
+    "name": "14、DMX灯带接线",
+    "id": "543",
+    "pre_id": "221",
+    "sort_number": "015"
+  },
+  "544": {
+    "type": "menu",
+    "name": "摄像头问题排查方案",
+    "id": "544",
+    "pre_id": "490",
+    "sort_number": "031"
+  },
+  "545": {
+    "type": "menu",
+    "name": "15、MOS拓展板转接继电器接线",
+    "id": "545",
+    "pre_id": "221",
+    "sort_number": "016"
+  },
+  "546": {
+    "type": "menu",
+    "name": "PRO/SE类型主控离线控制系统",
+    "id": "546",
+    "pre_id": "218",
+    "sort_number": "002"
+  },
+  "547": {
+    "type": "menu",
+    "name": "标准版/增强版类型主控离线控制",
+    "id": "547",
+    "pre_id": "218",
+    "sort_number": "003"
+  },
+  "548": {
+    "type": "menu",
+    "name": "灯效玩法设置",
+    "id": "548",
+    "pre_id": "443",
+    "sort_number": "001"
+  },
+  "549": {
+    "type": "menu",
+    "name": "树莓派无法进入程序频繁重启问题",
+    "id": "549",
+    "pre_id": "435",
+    "sort_number": "021"
+  },
+  "550": {
+    "type": "menu",
+    "name": "遥控手电筒/遥控蜡烛的遥控",
+    "id": "550",
+    "pre_id": "487",
+    "sort_number": "024"
+  },
+  "551": {
+    "type": "menu",
+    "name": "7、版本一键更新功能",
+    "id": "551",
+    "pre_id": "234",
+    "sort_number": "007"
+  },
+  "552": {
+    "type": "menu",
+    "name": "灯带乱闪干扰排查方案",
+    "id": "552",
+    "pre_id": "241",
+    "sort_number": "002"
+  },
+  "553": {
+    "type": "menu",
+    "name": "ID卡感应器-485版",
+    "id": "553",
+    "pre_id": "487",
+    "sort_number": "025"
+  },
+  "554": {
+    "type": "menu",
+    "name": "调试平台点击继电器后指令下发成功后设备不工作问题",
+    "id": "554",
+    "pre_id": "453",
+    "sort_number": "022"
+  },
+  "556": {
+    "type": "menu",
+    "name": "485指令视频不播放",
+    "id": "556",
+    "pre_id": "490",
+    "sort_number": "032"
+  },
+  "557": {
+    "type": "menu",
+    "name": "电子手轮玩法节点",
+    "id": "557",
+    "pre_id": "48",
+    "sort_number": "017"
+  },
+  "558": {
+    "type": "menu",
+    "name": "电子手轮玩法设置",
+    "id": "558",
+    "pre_id": "557",
+    "sort_number": "001"
+  },
+  "559": {
+    "type": "menu",
+    "name": "电子手轮-485版",
+    "id": "559",
+    "pre_id": "487",
+    "sort_number": "026"
+  },
+  "560": {
+    "type": "menu",
+    "name": "遥控器玩法节点",
+    "id": "560",
+    "pre_id": "48",
+    "sort_number": "016"
+  },
+  "561": {
+    "type": "menu",
+    "name": "遥控器设置",
+    "id": "561",
+    "pre_id": "560",
+    "sort_number": "001"
+  },
+  "562": {
+    "type": "menu",
+    "name": "315遥控收发模块",
+    "id": "562",
+    "pre_id": "487",
+    "sort_number": "027"
+  },
+  "563": {
+    "type": "menu",
+    "name": "门禁玩法节点",
+    "id": "563",
+    "pre_id": "48",
+    "sort_number": "017"
+  },
+  "564": {
+    "type": "menu",
+    "name": "门禁设置",
+    "id": "564",
+    "pre_id": "563",
+    "sort_number": "001"
+  },
+  "565": {
+    "type": "menu",
+    "name": "黑洞慧芯的绑定",
+    "id": "565",
+    "pre_id": "234",
+    "sort_number": "008"
+  },
+  "566": {
+    "type": "menu",
+    "name": "如何更换颖橙云开放平台登录手机号",
+    "id": "566",
+    "pre_id": "218",
+    "sort_number": "004"
+  },
+  "567": {
+    "type": "menu",
+    "name": "摇头灯A点移动到B点",
+    "id": "567",
+    "pre_id": "539",
+    "sort_number": "002"
+  },
+  "568": {
+    "type": "menu",
+    "name": "慧芯项目加载后显示有空白区域",
+    "id": "568",
+    "pre_id": "420",
+    "sort_number": "007"
+  },
+  "569": {
+    "type": "menu",
+    "name": "MOS端口没有启动时指示灯微亮红灯",
+    "id": "569",
+    "pre_id": "349",
+    "sort_number": "008"
+  },
+  "570": {
+    "type": "menu",
+    "name": "账号密码登录提示账号未注册",
+    "id": "570",
+    "pre_id": "490",
+    "sort_number": "033"
+  },
+  "571": {
+    "type": "menu",
+    "name": "人体感应指示灯如何涂黑",
+    "id": "571",
+    "pre_id": "490",
+    "sort_number": "034"
+  },
+  "572": {
+    "type": "menu",
+    "name": "标准版链接主板的时候一直转圈圈",
+    "id": "572",
+    "pre_id": "533",
+    "sort_number": "009"
+  },
+  "573": {
+    "type": "menu",
+    "name": "标准版主控转移教程",
+    "id": "573",
+    "pre_id": "533",
+    "sort_number": "010"
+  },
+  "574": {
+    "type": "menu",
+    "name": "音效声音忽大忽小问题",
+    "id": "574",
+    "pre_id": "347",
+    "sort_number": "013"
+  },
+  "575": {
+    "type": "menu",
+    "name": "矩阵键盘设置",
+    "id": "575",
+    "pre_id": "75",
+    "sort_number": "008"
+  },
+  "576": {
+    "type": "menu",
+    "name": "RGB按键玩法设置",
+    "id": "576",
+    "pre_id": "440",
+    "sort_number": "001"
+  },
+  "577": {
+    "type": "menu",
+    "name": "315遥控器玩法设置示例",
+    "id": "577",
+    "pre_id": "539",
+    "sort_number": "003"
+  },
+  "578": {
+    "type": "menu",
+    "name": "RGB金属按键灯玩法示例",
+    "id": "578",
+    "pre_id": "539",
+    "sort_number": "004"
+  },
+  "579": {
+    "type": "menu",
+    "name": "重装乌班图系统慧芯SE教程",
+    "id": "579",
+    "pre_id": "218",
+    "sort_number": "005"
+  },
+  "580": {
+    "type": "menu",
+    "name": "转移甲方",
+    "id": "580",
+    "pre_id": "217",
+    "sort_number": "030"
+  },
+  "581": {
+    "type": "menu",
+    "name": "标准版主控指示灯含义说明",
+    "id": "581",
+    "pre_id": "533",
+    "sort_number": "011"
+  },
+  "582": {
+    "type": "menu",
+    "name": "小程序如何查看设备MAC码",
+    "id": "582",
+    "pre_id": "490",
+    "sort_number": "035"
+  },
+  "583": {
+    "type": "menu",
+    "name": "16、定制机关的接线",
+    "id": "583",
+    "pre_id": "221",
+    "sort_number": "017"
+  },
+  "584": {
+    "type": "menu",
+    "name": "矩阵键盘玩法示例",
+    "id": "584",
+    "pre_id": "539",
+    "sort_number": "005"
+  },
+  "585": {
+    "type": "menu",
+    "name": "如何查看阿里云AccessKey",
+    "id": "585",
+    "pre_id": "490",
+    "sort_number": "036"
+  },
+  "586": {
+    "type": "menu",
+    "name": "PRO逻辑流使用",
+    "id": "586",
+    "pre_id": "539",
+    "sort_number": "006"
+  },
+  "587": {
+    "type": "menu",
+    "name": "如何设置/取消离线密码",
+    "id": "587",
+    "pre_id": "490",
+    "sort_number": "037"
+  },
+  "588": {
+    "type": "menu",
+    "name": "17、RGB金属按键",
+    "id": "588",
+    "pre_id": "221",
+    "sort_number": "016"
+  },
+  "589": {
+    "type": "menu",
+    "name": "人体红外感应机关",
+    "id": "589",
+    "pre_id": "487",
+    "sort_number": "028"
+  },
+  "590": {
+    "type": "menu",
+    "name": "感应器未触发时灯呼吸，触发时常亮",
+    "id": "590",
+    "pre_id": "539",
+    "sort_number": "007"
+  },
+  "591": {
+    "type": "menu",
+    "name": "颖橙云平台登录失效",
+    "id": "591",
+    "pre_id": "490",
+    "sort_number": "038"
+  },
+  "592": {
+    "type": "menu",
+    "name": "停止继续执行已运行节点效果",
+    "id": "592",
+    "pre_id": "539",
+    "sort_number": "008"
+  },
+  "593": {
+    "type": "menu",
+    "name": "禁用三指退出慧芯项目操作",
+    "id": "593",
+    "pre_id": "218",
+    "sort_number": "006"
+  },
+  "594": {
+    "type": "menu",
+    "name": "单一节点设置触发通电移开断电",
+    "id": "594",
+    "pre_id": "539",
+    "sort_number": "009"
+  },
+  "595": {
+    "type": "menu",
+    "name": "短按按键播放提示音1长按按键播放提示音2",
+    "id": "595",
+    "pre_id": "539",
+    "sort_number": "010"
+  },
+  "596": {
+    "type": "menu",
+    "name": "视频播放机关不播放排查方案",
+    "id": "596",
+    "pre_id": "490",
+    "sort_number": "039"
+  },
+  "597": {
+    "type": "menu",
+    "name": "485门禁设置",
+    "id": "597",
+    "pre_id": "539",
+    "sort_number": "011"
+  },
+  "598": {
+    "type": "menu",
+    "name": "如何查看拓展板版本",
+    "id": "598",
+    "pre_id": "490",
+    "sort_number": "040"
+  },
+  "599": {
+    "type": "menu",
+    "name": "如何强制更新主控和终端控制器版本",
+    "id": "599",
+    "pre_id": "249",
+    "sort_number": "004"
+  },
+  "600": {
+    "type": "menu",
+    "name": "标准版独立任务作用",
+    "id": "600",
+    "pre_id": "533",
+    "sort_number": "012"
+  },
+  "601": {
+    "type": "menu",
+    "name": "替换素材",
+    "id": "601",
+    "pre_id": "66",
+    "sort_number": "006"
+  },
+  "602": {
+    "type": "menu",
+    "name": "授权主题",
+    "id": "602",
+    "pre_id": "217",
+    "sort_number": "031"
+  },
+  "603": {
+    "type": "menu",
+    "name": "离线控制系统提示主控连接失败",
+    "id": "603",
+    "pre_id": "249",
+    "sort_number": "005"
+  },
+  "604": {
+    "type": "menu",
+    "name": "小程序的本地控制和在线调试",
+    "id": "604",
+    "pre_id": "453",
+    "sort_number": "023"
+  },
+  "605": {
+    "type": "menu",
+    "name": "颖橙慧芯直连摄像头",
+    "id": "605",
+    "pre_id": "155",
+    "sort_number": "005"
+  },
+  "606": {
+    "type": "menu",
+    "name": "版本更新说明",
+    "id": "606",
+    "pre_id": null,
+    "sort_number": "016"
+  },
+  "607": {
+    "type": "menu",
+    "name": "颖橙云平台V1.8.0 更新说明",
+    "id": "607",
+    "pre_id": "606",
+    "sort_number": "001"
+  },
+  "608": {
+    "type": "menu",
+    "name": "离线控制系统闪退问题",
+    "id": "608",
+    "pre_id": "490",
+    "sort_number": "041"
+  },
+  "609": {
+    "type": "menu",
+    "name": "逻辑板更新程序",
+    "id": "609",
+    "pre_id": "249",
+    "sort_number": "006"
+  },
+  "610": {
+    "type": "menu",
+    "name": "售前使用须知（含配件采买与操作规范）",
+    "id": "610",
+    "pre_id": "217",
+    "sort_number": "002"
+  },
+  "611": {
+    "type": "menu",
+    "name": "16键矩阵键盘",
+    "id": "611",
+    "pre_id": "487",
+    "sort_number": "029"
+  },
+  "612": {
+    "type": "menu",
+    "name": "微信小程序本地控制",
+    "id": "612",
+    "pre_id": "53",
+    "sort_number": "003"
+  },
+  "613": {
+    "type": "menu",
+    "name": "数码管控制器-485版",
+    "id": "613",
+    "pre_id": "487",
+    "sort_number": "030"
+  },
+  "614": {
+    "type": "menu",
+    "name": "颖橙云平台V1.7.5 更新说明",
+    "id": "614",
+    "pre_id": "606",
+    "sort_number": "002"
+  },
+  "615": {
+    "type": "menu",
+    "name": "颖橙云平台V1.7.4 更新说明",
+    "id": "615",
+    "pre_id": "606",
+    "sort_number": "003"
+  },
+  "616": {
+    "type": "menu",
+    "name": "颖橙云平台V1.7.3 更新说明",
+    "id": "616",
+    "pre_id": "606",
+    "sort_number": "004"
+  },
+  "617": {
+    "type": "menu",
+    "name": "颖橙云平台V1.7.2 更新说明",
+    "id": "617",
+    "pre_id": "606",
+    "sort_number": "005"
+  },
+  "618": {
+    "type": "menu",
+    "name": "颖橙云平台V1.7.1 更新说明",
+    "id": "618",
+    "pre_id": "606",
+    "sort_number": "006"
+  },
+  "619": {
+    "type": "menu",
+    "name": "颖橙云平台V1.7 更新说明",
+    "id": "619",
+    "pre_id": "606",
+    "sort_number": "007"
+  },
+  "620": {
+    "type": "menu",
+    "name": "IC感应机关",
+    "id": "620",
+    "pre_id": "487",
+    "sort_number": "031"
+  },
+  "621": {
+    "type": "menu",
+    "name": "颖橙门禁-485版",
+    "id": "621",
+    "pre_id": "487",
+    "sort_number": "032"
+  },
+  "622": {
+    "type": "menu",
+    "name": "颖橙云平台V1.6.6 更新说明",
+    "id": "622",
+    "pre_id": "606",
+    "sort_number": "008"
+  },
+  "623": {
+    "type": "menu",
+    "name": "颖橙云平台V1.6.5 更新说明",
+    "id": "623",
+    "pre_id": "606",
+    "sort_number": "009"
+  },
+  "624": {
+    "type": "menu",
+    "name": "颖橙云平台V1.6.4 更新说明",
+    "id": "624",
+    "pre_id": "606",
+    "sort_number": "010"
+  },
+  "625": {
+    "type": "menu",
+    "name": "颖橙云平台V1.6.3 更新说明",
+    "id": "625",
+    "pre_id": "606",
+    "sort_number": "011"
+  },
+  "626": {
+    "type": "menu",
+    "name": "颖橙云平台V1.6.2 更新说明",
+    "id": "626",
+    "pre_id": "606",
+    "sort_number": "012"
+  },
+  "627": {
+    "type": "menu",
+    "name": "颖橙云平台V1.6.1 更新说明",
+    "id": "627",
+    "pre_id": "606",
+    "sort_number": "012"
+  },
+  "628": {
+    "type": "menu",
+    "name": "颖橙云平台V1.6 更新说明",
+    "id": "628",
+    "pre_id": "606",
+    "sort_number": "013"
+  },
+  "629": {
+    "type": "menu",
+    "name": "颖橙云平台V1.5.5 更新说明",
+    "id": "629",
+    "pre_id": "606",
+    "sort_number": "014"
+  },
+  "630": {
+    "type": "menu",
+    "name": "颖橙云平台V1.5.4 更新说明",
+    "id": "630",
+    "pre_id": "606",
+    "sort_number": "015"
+  },
+  "631": {
+    "type": "menu",
+    "name": "颖橙云平台V1.5.3 更新说明",
+    "id": "631",
+    "pre_id": "606",
+    "sort_number": "016"
+  },
+  "632": {
+    "type": "menu",
+    "name": "颖橙云平台V1.5.2 更新说明",
+    "id": "632",
+    "pre_id": "606",
+    "sort_number": "017"
+  },
+  "633": {
+    "type": "menu",
+    "name": "颖橙云平台V1.5.1 更新说明",
+    "id": "633",
+    "pre_id": "606",
+    "sort_number": "017"
+  },
+  "634": {
+    "type": "menu",
+    "name": "颖橙云平台V1.5 更新说明",
+    "id": "634",
+    "pre_id": "606",
+    "sort_number": "018"
+  },
+  "635": {
+    "type": "menu",
+    "name": "颖橙云平台V1.4.5 更新说明",
+    "id": "635",
+    "pre_id": "606",
+    "sort_number": "019"
+  },
+  "636": {
+    "type": "menu",
+    "name": "颖橙云平台V1.4.4 更新说明",
+    "id": "636",
+    "pre_id": "606",
+    "sort_number": "019"
+  },
+  "637": {
+    "type": "menu",
+    "name": "颖橙云平台V1.4.3 更新说明",
+    "id": "637",
+    "pre_id": "606",
+    "sort_number": "020"
+  },
+  "638": {
+    "type": "menu",
+    "name": "颖橙云平台V1.4.2 更新说明",
+    "id": "638",
+    "pre_id": "606",
+    "sort_number": "021"
+  },
+  "639": {
+    "type": "menu",
+    "name": "颖橙云平台V1.4.1 更新说明",
+    "id": "639",
+    "pre_id": "606",
+    "sort_number": "022"
+  },
+  "640": {
+    "type": "menu",
+    "name": "颖橙云平台V1.4 更新说明",
+    "id": "640",
+    "pre_id": "606",
+    "sort_number": "022"
+  },
+  "641": {
+    "type": "menu",
+    "name": "颖橙云平台V1.3.1 更新说明",
+    "id": "641",
+    "pre_id": "606",
+    "sort_number": "023"
+  },
+  "642": {
+    "type": "menu",
+    "name": "颖橙云平台V1.3 更新说明",
+    "id": "642",
+    "pre_id": "606",
+    "sort_number": "024"
+  },
+  "643": {
+    "type": "menu",
+    "name": "颖橙云平台V1.2.2 更新说明",
+    "id": "643",
+    "pre_id": "606",
+    "sort_number": "025"
+  },
+  "644": {
+    "type": "menu",
+    "name": "颖橙云平台V1.2.1 更新说明",
+    "id": "644",
+    "pre_id": "606",
+    "sort_number": "026"
+  },
+  "645": {
+    "type": "menu",
+    "name": "颖橙云平台V1.2 更新说明",
+    "id": "645",
+    "pre_id": "606",
+    "sort_number": "027"
+  },
+  "646": {
+    "type": "menu",
+    "name": "颖橙云平台V1.1.1 更新说明",
+    "id": "646",
+    "pre_id": "606",
+    "sort_number": "028"
+  },
+  "647": {
+    "type": "menu",
+    "name": "颖橙云平台V1.1 更新说明",
+    "id": "647",
+    "pre_id": "606",
+    "sort_number": "034"
+  },
+  "648": {
+    "type": "menu",
+    "name": "震动感应机关",
+    "id": "648",
+    "pre_id": "487",
+    "sort_number": "033"
+  },
+  "649": {
+    "type": "menu",
+    "name": "颖橙云平台V1.0发布",
+    "id": "649",
+    "pre_id": "606",
+    "sort_number": "030"
+  },
+  "650": {
+    "type": "menu",
+    "name": "颖橙慧芯人脸识别",
+    "id": "650",
+    "pre_id": "155",
+    "sort_number": "006"
+  },
+  "651": {
+    "type": "menu",
+    "name": "如何判断主控和离线控制终端设备是否在同一网段",
+    "id": "651",
+    "pre_id": "240",
+    "sort_number": "023"
+  },
+  "652": {
+    "type": "menu",
+    "name": "颖橙慧芯人脸识别拍照",
+    "id": "652",
+    "pre_id": "155",
+    "sort_number": "004"
+  },
+  "653": {
+    "type": "menu",
+    "name": "数码管玩法节点",
+    "id": "653",
+    "pre_id": "48",
+    "sort_number": "018"
+  },
+  "654": {
+    "type": "menu",
+    "name": "点阵屏玩法节点",
+    "id": "654",
+    "pre_id": "48",
+    "sort_number": "019"
+  },
+  "655": {
+    "type": "menu",
+    "name": "时钟玩法节点",
+    "id": "655",
+    "pre_id": "48",
+    "sort_number": "020"
+  },
+  "656": {
+    "type": "menu",
+    "name": "颖橙慧芯拍照",
+    "id": "656",
+    "pre_id": "155",
+    "sort_number": "007"
+  },
+  "657": {
+    "type": "menu",
+    "name": "音效卡点",
+    "id": "657",
+    "pre_id": "462",
+    "sort_number": "023"
+  },
+  "658": {
+    "type": "menu",
+    "name": "时钟玩法设置",
+    "id": "658",
+    "pre_id": "655",
+    "sort_number": "000"
+  },
+  "659": {
+    "type": "menu",
+    "name": "数码管玩法设置",
+    "id": "659",
+    "pre_id": "653",
+    "sort_number": "001"
+  },
+  "660": {
+    "type": "menu",
+    "name": "点阵屏玩法设置",
+    "id": "660",
+    "pre_id": "654",
+    "sort_number": "001"
+  },
+  "661": {
+    "type": "menu",
+    "name": "人体电桥-电击脉冲版",
+    "id": "661",
+    "pre_id": "487",
+    "sort_number": "034"
+  },
+  "662": {
+    "type": "menu",
+    "name": "切换多语言模式",
+    "id": "662",
+    "pre_id": "474",
+    "sort_number": "010"
+  },
+  "663": {
+    "type": "menu",
+    "name": "websocket连接发生错误提示",
+    "id": "663",
+    "pre_id": "240",
+    "sort_number": "024"
+  },
+  "664": {
+    "type": "menu",
+    "name": "碰撞",
+    "id": "664",
+    "pre_id": "155",
+    "sort_number": "008"
+  },
+  "665": {
+    "type": "menu",
+    "name": "16x64点阵屏（倒计时版）",
+    "id": "665",
+    "pre_id": "487",
+    "sort_number": "035"
+  },
+  "666": {
+    "type": "menu",
+    "name": "颖橙云平台V1.8.1 更新说明",
+    "id": "666",
+    "pre_id": "606",
+    "sort_number": "031"
+  },
+  "667": {
+    "type": "menu",
+    "name": "RGB灯带颜色设置与实际执行颜色对应不上",
+    "id": "667",
+    "pre_id": "242",
+    "sort_number": "004"
+  },
+  "668": {
+    "type": "menu",
+    "name": "自定义参数节点设置",
+    "id": "668",
+    "pre_id": "439",
+    "sort_number": "001"
+  },
+  "669": {
+    "type": "menu",
+    "name": "Windows系统如何设置慧芯app开机自启动",
+    "id": "669",
+    "pre_id": "67",
+    "sort_number": "006"
+  },
+  "670": {
+    "type": "menu",
+    "name": "慧芯电脑弹出“热点登录”网络登录网页问题",
+    "id": "670",
+    "pre_id": "420",
+    "sort_number": "008"
+  },
+  "672": {
+    "type": "menu",
+    "name": "输入端口按键灯状态控制",
+    "id": "672",
+    "pre_id": "48",
+    "sort_number": "022"
+  },
+  "673": {
+    "type": "menu",
+    "name": "创建主题及分区",
+    "id": "673",
+    "pre_id": "184",
+    "sort_number": "003"
+  },
+  "674": {
+    "type": "menu",
+    "name": "蓝图内拓展板设备的新增、删除、排序",
+    "id": "674",
+    "pre_id": "184",
+    "sort_number": "004"
+  },
+  "675": {
+    "type": "menu",
+    "name": "节点的新增、复制、删除、编辑操作",
+    "id": "675",
+    "pre_id": "184",
+    "sort_number": "005"
+  },
+  "676": {
+    "type": "menu",
+    "name": "节点之间的连线与主控的运行顺序",
+    "id": "676",
+    "pre_id": "184",
+    "sort_number": "006"
+  },
+  "677": {
+    "type": "menu",
+    "name": "吐币器-485版",
+    "id": "677",
+    "pre_id": "487",
+    "sort_number": "036"
+  },
+  "678": {
+    "type": "menu",
+    "name": "时钟设置",
+    "id": "678",
+    "pre_id": "462",
+    "sort_number": "024"
+  },
+  "679": {
+    "type": "menu",
+    "name": "门禁设置",
+    "id": "679",
+    "pre_id": "462",
+    "sort_number": "025"
+  },
+  "680": {
+    "type": "menu",
+    "name": "吐币器效果设置",
+    "id": "680",
+    "pre_id": "462",
+    "sort_number": "026"
+  },
+  "681": {
+    "type": "menu",
+    "name": "添加效果",
+    "id": "681",
+    "pre_id": "184",
+    "sort_number": "007"
+  },
+  "682": {
+    "type": "menu",
+    "name": "节点内多个效果的执行顺序逻辑",
+    "id": "682",
+    "pre_id": "184",
+    "sort_number": "008"
+  }
+}

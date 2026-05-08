@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>오렌지 클라우드 - 도움말 센터</title>
+  <link rel="stylesheet" href="./assets/site.css">
+</head>
+<body>
+  <div id="app" class="app-wrapper">
+    <header class="title">
+      <a class="brand" href="#/home">
+        <span class="brand-mark" aria-hidden="true">O</span>
+        <span>오렌지 클라우드-도움말 센터</span>
+      </a>
+      <label class="language-toggle" title="끄면 중국어 원문으로 표시됩니다">
+        <span>한국어</span>
+        <input id="languageToggle" type="checkbox" checked>
+        <span class="toggle-track" aria-hidden="true"></span>
+      </label>
+    </header>
+
+    <aside id="sidebar" class="sidebar-container">
+      <div class="search-box">
+        <input id="search" class="search-input" type="search" placeholder="입력하고 검색" autocomplete="off">
+      </div>
+      <nav id="nav" class="menu" aria-label="문서 탐색"></nav>
+    </aside>
+
+    <button id="sidebarToggle" class="hamburger-container" type="button" aria-label="메뉴 접기">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <main class="main-container">
+      <section class="navbar" aria-hidden="true"></section>
+      <section class="dashboard-container">
+        <div class="dashboard-text">
+          <div id="breadcrumb" class="breadcrumb"></div>
+          <article id="page" class="ck ck-content append-con"></article>
+        </div>
+      </section>
+    </main>
+  </div>
+  <script type="module" src="./assets/app.js"></script>
+</body>
+</html>
