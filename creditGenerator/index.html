@@ -21,28 +21,21 @@
     </section>
 
     <section class="settings-tabs">
-      <input class="tab-radio" type="radio" name="settings-tab" id="tab-text" checked>
-      <input class="tab-radio" type="radio" name="settings-tab" id="tab-typography">
-      <input class="tab-radio" type="radio" name="settings-tab" id="tab-colors">
-      <input class="tab-radio" type="radio" name="settings-tab" id="tab-canvas">
-      <input class="tab-radio" type="radio" name="settings-tab" id="tab-timing">
-      <input class="tab-radio" type="radio" name="settings-tab" id="tab-audio">
-
       <div class="tab-list" role="tablist" aria-label="Credit settings">
-        <label for="tab-text">텍스트 / Text</label>
-        <label for="tab-typography">글꼴 / Typography</label>
-        <label for="tab-colors">색상 / Colors</label>
-        <label for="tab-canvas">화면 / Canvas</label>
-        <label for="tab-timing">시간 / Timing</label>
-        <label for="tab-audio">음성 / Audio</label>
+        <button type="button" role="tab" id="tab-text" aria-controls="panel-text" aria-selected="true" data-tab="text">텍스트 / Text</button>
+        <button type="button" role="tab" id="tab-typography" aria-controls="panel-typography" aria-selected="false" tabindex="-1" data-tab="typography">글꼴 / Typography</button>
+        <button type="button" role="tab" id="tab-colors" aria-controls="panel-colors" aria-selected="false" tabindex="-1" data-tab="colors">색상 / Colors</button>
+        <button type="button" role="tab" id="tab-canvas" aria-controls="panel-canvas" aria-selected="false" tabindex="-1" data-tab="canvas">화면 / Canvas</button>
+        <button type="button" role="tab" id="tab-timing" aria-controls="panel-timing" aria-selected="false" tabindex="-1" data-tab="timing">시간 / Timing</button>
+        <button type="button" role="tab" id="tab-audio" aria-controls="panel-audio" aria-selected="false" tabindex="-1" data-tab="audio">음성 / Audio</button>
       </div>
 
       <div class="tab-panels panel">
-        <div class="tab-panel" data-tab="text">
+        <div class="tab-panel" id="panel-text" role="tabpanel" aria-labelledby="tab-text" data-panel="text">
           <label class="inline"><input id="wrap" type="checkbox" checked> 자동 줄바꿈 / Wrap text</label>
         </div>
 
-        <div class="tab-panel" data-tab="typography">
+        <div class="tab-panel" id="panel-typography" role="tabpanel" aria-labelledby="tab-typography" data-panel="typography" hidden>
           <label>폰트 URL / Font URL
             <input id="fontUrl" type="url" value="https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-Thin.woff2" placeholder="https://example.com/font.woff2">
           </label>
@@ -60,7 +53,7 @@
           </div>
         </div>
 
-        <div class="tab-panel" data-tab="colors">
+        <div class="tab-panel" id="panel-colors" role="tabpanel" aria-labelledby="tab-colors" data-panel="colors" hidden>
           <div class="color-row">
             <label>글자색 / Text color <input id="textColorPicker" type="color" value="#ffffff"></label>
             <label>CSS 값 / CSS value <input id="textColor" type="text" value="#ffffff"></label>
@@ -71,7 +64,7 @@
           </div>
         </div>
 
-        <div class="tab-panel" data-tab="canvas">
+        <div class="tab-panel" id="panel-canvas" role="tabpanel" aria-labelledby="tab-canvas" data-panel="canvas" hidden>
           <div class="grid">
             <label>가로 여백 / Horizontal padding (px) <input id="padding" type="number" min="0" step="1" value="80"></label>
             <label>너비 / Width <input id="width" type="number" min="2" step="1" value="1920"></label>
@@ -80,7 +73,7 @@
           </div>
         </div>
 
-        <div class="tab-panel" data-tab="timing">
+        <div class="tab-panel" id="panel-timing" role="tabpanel" aria-labelledby="tab-timing" data-panel="timing" hidden>
           <div class="grid">
             <label>크레딧 길이 / Credit duration (s) <input id="duration" type="number" min="0.001" step="0.1" value="30"></label>
             <label>시작 공백 / Blank start (s) <input id="blankStart" type="number" min="0" step="0.1" value="0"></label>
@@ -88,7 +81,7 @@
           </div>
         </div>
 
-        <div class="tab-panel" data-tab="audio">
+        <div class="tab-panel" id="panel-audio" role="tabpanel" aria-labelledby="tab-audio" data-panel="audio" hidden>
           <div class="audio-grid">
             <label class="file-field">음성 파일 / Audio file
               <input id="audioFile" type="file" accept="audio/*">
@@ -131,6 +124,38 @@
     </section>
   </main>
 
+  <script>
+    (() => {
+      const tabs = [...document.querySelectorAll('[role="tab"]')];
+      const panels = [...document.querySelectorAll('[role="tabpanel"]')];
+
+      function activateTab(tab, focus = false) {
+        const name = tab.dataset.tab;
+        for (const item of tabs) {
+          const active = item === tab;
+          item.setAttribute('aria-selected', String(active));
+          item.tabIndex = active ? 0 : -1;
+        }
+        for (const panel of panels) panel.hidden = panel.dataset.panel !== name;
+        if (focus) tab.focus();
+      }
+
+      for (const tab of tabs) {
+        tab.addEventListener('click', () => activateTab(tab));
+        tab.addEventListener('keydown', (event) => {
+          const index = tabs.indexOf(tab);
+          let next = null;
+          if (event.key === 'ArrowRight') next = tabs[(index + 1) % tabs.length];
+          if (event.key === 'ArrowLeft') next = tabs[(index - 1 + tabs.length) % tabs.length];
+          if (event.key === 'Home') next = tabs[0];
+          if (event.key === 'End') next = tabs[tabs.length - 1];
+          if (!next) return;
+          event.preventDefault();
+          activateTab(next, true);
+        });
+      }
+    })();
+  </script>
   <script type="module" src="./main.js"></script>
 </body>
 </html>
