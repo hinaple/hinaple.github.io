@@ -10,11 +10,10 @@ body { margin: 0; background: #f3f4f6; }
 main { width: min(1180px, calc(100% - 32px)); margin: 0 auto; padding: 32px 0 48px; }
 h1, h2, p { margin-top: 0; }
 h1 { margin-bottom: 6px; font-size: 28px; }
-h2 { margin-bottom: 4px; font-size: 19px; }
+h2 { margin-bottom: 10px; font-size: 19px; }
 .page-header p, .muted { color: #6b7280; }
 .page-header { margin-bottom: 20px; }
 
-.settings-layout { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
 .panel, .output-panel {
   min-width: 0;
   border: 1px solid #d1d5db;
@@ -22,9 +21,8 @@ h2 { margin-bottom: 4px; font-size: 19px; }
   background: #fff;
   box-shadow: 0 1px 2px rgb(0 0 0 / 0.04);
 }
-.panel { padding: 14px 16px 16px; }
-.panel-wide { grid-column: 1 / -1; }
-.panel legend { padding: 0 7px; font-weight: 700; }
+.panel { padding: 16px; }
+.fixed-text-panel { margin-bottom: 16px; }
 
 label { display: block; margin: 8px 0; font-size: 13px; font-weight: 600; color: #374151; }
 input, textarea, select, button { font: inherit; }
@@ -41,6 +39,52 @@ input[type="file"] { padding: 6px; }
 textarea { min-height: 180px; padding: 10px; resize: vertical; line-height: 1.5; }
 input[type="color"] { width: 44px; height: 36px; margin-top: 5px; padding: 2px; border: 1px solid #cbd5e1; border-radius: 6px; background: #fff; }
 
+.settings-tabs { margin-bottom: 16px; }
+.tab-radio { position: absolute; opacity: 0; pointer-events: none; }
+.tab-list {
+  display: flex;
+  gap: 4px;
+  overflow-x: auto;
+  padding: 0 4px;
+  scrollbar-width: thin;
+}
+.tab-list label {
+  flex: 0 0 auto;
+  margin: 0;
+  padding: 9px 13px;
+  border: 1px solid transparent;
+  border-bottom: 0;
+  border-radius: 8px 8px 0 0;
+  color: #64748b;
+  cursor: pointer;
+  user-select: none;
+}
+.tab-list label:hover { color: #111827; background: #e9edf2; }
+.tab-panels { min-height: 98px; border-top-left-radius: 0; }
+.tab-panel { display: none; }
+
+#tab-text:checked ~ .tab-list label[for="tab-text"],
+#tab-typography:checked ~ .tab-list label[for="tab-typography"],
+#tab-colors:checked ~ .tab-list label[for="tab-colors"],
+#tab-canvas:checked ~ .tab-list label[for="tab-canvas"],
+#tab-timing:checked ~ .tab-list label[for="tab-timing"],
+#tab-audio:checked ~ .tab-list label[for="tab-audio"] {
+  position: relative;
+  z-index: 1;
+  border-color: #d1d5db;
+  background: #fff;
+  color: #111827;
+}
+
+#tab-text:checked ~ .tab-panels [data-tab="text"],
+#tab-typography:checked ~ .tab-panels [data-tab="typography"],
+#tab-colors:checked ~ .tab-panels [data-tab="colors"],
+#tab-canvas:checked ~ .tab-panels [data-tab="canvas"],
+#tab-timing:checked ~ .tab-panels [data-tab="timing"],
+#tab-audio:checked ~ .tab-panels [data-tab="audio"] {
+  display: block;
+}
+
 .grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 4px 14px; }
 .audio-grid { display: grid; grid-template-columns: minmax(240px, 2fr) repeat(3, minmax(150px, 1fr)); gap: 4px 14px; align-items: end; }
 .color-row { display: grid; grid-template-columns: minmax(160px, 0.7fr) minmax(180px, 1.3fr); gap: 10px 16px; align-items: end; }
@@ -48,7 +92,7 @@ input[type="color"] { width: 44px; height: 36px; margin-top: 5px; padding: 2px; 
 .inline input { margin: 0; }
 .muted { margin: 7px 0 0; font-size: 12px; }
 
-.output-panel { margin-top: 16px; padding: 18px; }
+.output-panel { padding: 18px; }
 .section-heading { display: flex; justify-content: space-between; gap: 16px; align-items: flex-start; flex-wrap: wrap; }
 .preview-controls, .export-row { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
 button {
@@ -73,8 +117,6 @@ progress { width: min(280px, 100%); }
 
 @media (max-width: 820px) {
   main { width: min(100% - 20px, 1180px); padding-top: 20px; }
-  .settings-layout { grid-template-columns: 1fr; }
-  .panel-wide { grid-column: auto; }
   .audio-grid { grid-template-columns: 1fr 1fr; }
 }
 
@@ -82,4 +124,5 @@ progress { width: min(280px, 100%); }
   .grid, .audio-grid, .color-row { grid-template-columns: 1fr; }
   .section-heading { display: block; }
   .preview-controls { margin-top: 12px; }
+  .tab-list label { padding: 8px 10px; font-size: 12px; }
 }
