@@ -8,6 +8,7 @@ import {
   canEncodeVideo,
   canEncodeAudio,
 } from 'https://cdn.jsdelivr.net/npm/mediabunny@1.56.3/+esm';
+import { paintCreditsFrame } from './render.js';
 
 function bitrateFor(width, height, fps) {
   return Math.max(1_000_000, Math.min(50_000_000, Math.round(width * height * fps * 0.15)));
@@ -17,43 +18,10 @@ async function loadFonts(layout) {
   if (!layout.fonts?.length) return;
   if (typeof FontFace === 'undefined' || !self.fonts) throw new Error('이 브라우저의 worker에서는 사용자 글꼴을 사용할 수 없습니다.');
   for (const font of layout.fonts) {
-    const face = new FontFace(font.family, `url(${JSON.stringify(font.url)})`);
+    const face = new FontFace(font.family, `url(${JSON.stringify(font.url)})`, { weight: String(font.weight) });
     self.fonts.add(face);
     await face.load();
   }
-}
-
-function paintFrame(ctx, canvas, config, layout, plan, frameIndex) {
-  ctx.fillStyle = config.backgroundColor;
-  ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-  if (frameIndex < plan.startFrames || frameIndex >= plan.startFrames + plan.creditFrames) return;
-  const creditFrame = frameIndex - plan.startFrames;
-  const progress = creditFrame / plan.creditFrames;
-  const startY = config.height - 1;
-  const endY = -layout.visualHeight;
-  const y = startY + (endY - startY) * progress;
-
-  ctx.save();
-  ctx.beginPath();
-  ctx.rect(0, 0, config.width, config.height);
-  ctx.clip();
-  ctx.fillStyle = config.textColor;
-  ctx.textBaseline = 'alphabetic';
-  ctx.textAlign = 'left';
-
-  for (const line of layout.lines) {
-    let originX;
-    if (config.textAlign === 'left') originX = config.padding;
-    else if (config.textAlign === 'right') originX = config.width - config.padding - line.width;
-    else originX = (config.width - line.width) / 2;
-
-    for (const run of line.runs) {
-      ctx.font = run.font;
-      ctx.fillText(run.text, originX + run.x, y + line.baseline);
-    }
-  }
-  ctx.restore();
 }
 
 async function addAudio(audioSource, audio, config, plan) {
@@ -149,7 +117,7 @@ self.onmessage = async ({ data }) => {
     const frameDuration = 1 / config.fps;
     const keyInterval = Math.max(1, Math.round(config.fps * 2));
     for (let frame = 0; frame < plan.totalFrames; frame++) {
-      paintFrame(ctx, canvas, config, layout, plan, frame);
+      paintCreditsFrame(ctx, config, layout, plan, frame);
       await source.add(frame * frameDuration, frameDuration, { keyFrame: frame % keyInterval === 0 });
       if (frame % 5 === 0 || frame + 1 === plan.totalFrames) {
         self.postMessage({ type: 'progress', frame: frame + 1, total: plan.totalFrames });
