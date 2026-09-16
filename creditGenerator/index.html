@@ -3,51 +3,47 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Credit Generator</title>
+  <title>크레딧 생성기</title>
   <link rel="stylesheet" href="./style.css">
 </head>
 <body>
   <main>
     <header class="page-header">
       <div>
-        <h1>Credit Generator</h1>
-        <p>스크롤 크레딧 MP4 생성기 / Scrolling credit MP4 generator</p>
+        <h1>크레딧 생성기</h1>
+        <p>스크롤 크레딧 MP4 생성기</p>
       </div>
     </header>
 
     <section class="panel fixed-text-panel">
-      <h2>크레딧 문구 / Credit text</h2>
+      <h2>크레딧 문구</h2>
       <textarea id="text" rows="10">SAMPLE TEXT</textarea>
     </section>
 
     <section class="settings-tabs">
-      <div class="tab-list" role="tablist" aria-label="Credit settings">
-        <button type="button" role="tab" id="tab-text" aria-controls="panel-text" aria-selected="true" data-tab="text">텍스트 / Text</button>
-        <button type="button" role="tab" id="tab-typography" aria-controls="panel-typography" aria-selected="false" tabindex="-1" data-tab="typography">글꼴 / Typography</button>
-        <button type="button" role="tab" id="tab-colors" aria-controls="panel-colors" aria-selected="false" tabindex="-1" data-tab="colors">색상 / Colors</button>
-        <button type="button" role="tab" id="tab-canvas" aria-controls="panel-canvas" aria-selected="false" tabindex="-1" data-tab="canvas">화면 / Canvas</button>
-        <button type="button" role="tab" id="tab-timing" aria-controls="panel-timing" aria-selected="false" tabindex="-1" data-tab="timing">시간 / Timing</button>
-        <button type="button" role="tab" id="tab-audio" aria-controls="panel-audio" aria-selected="false" tabindex="-1" data-tab="audio">음성 / Audio</button>
+      <div class="tab-list" role="tablist" aria-label="크레딧 설정">
+        <button type="button" role="tab" id="tab-typography" aria-controls="panel-typography" aria-selected="true" data-tab="typography">글꼴</button>
+        <button type="button" role="tab" id="tab-colors" aria-controls="panel-colors" aria-selected="false" tabindex="-1" data-tab="colors">색상</button>
+        <button type="button" role="tab" id="tab-canvas" aria-controls="panel-canvas" aria-selected="false" tabindex="-1" data-tab="canvas">화면</button>
+        <button type="button" role="tab" id="tab-timing" aria-controls="panel-timing" aria-selected="false" tabindex="-1" data-tab="timing">시간</button>
+        <button type="button" role="tab" id="tab-audio" aria-controls="panel-audio" aria-selected="false" tabindex="-1" data-tab="audio">음성</button>
       </div>
 
       <div class="tab-panels panel">
-        <div class="tab-panel" id="panel-text" role="tabpanel" aria-labelledby="tab-text" data-panel="text">
-          <label class="inline"><input id="wrap" type="checkbox" checked> 자동 줄바꿈 / Wrap text</label>
-        </div>
-
-        <div class="tab-panel" id="panel-typography" role="tabpanel" aria-labelledby="tab-typography" data-panel="typography" hidden>
-          <label>폰트 URL / Font URL
+        <div class="tab-panel" id="panel-typography" role="tabpanel" aria-labelledby="tab-typography" data-panel="typography">
+          <label class="inline"><input id="wrap" type="checkbox" checked> 자동 줄바꿈</label>
+          <label>폰트 URL
             <input id="fontUrl" type="url" value="https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-Thin.woff2" placeholder="https://example.com/font.woff2">
           </label>
           <div class="grid">
-            <label>글자 크기 / Font size (px) <input id="fontSize" type="number" min="1" step="1" value="48"></label>
-            <label>굵기 / Font weight <input id="fontWeight" type="number" min="1" max="1000" step="1" value="400"></label>
-            <label>줄 높이 / Line height <input id="lineHeight" type="text" value="1.2" placeholder="1.2 / 60px / 1.2em / 120%"></label>
-            <label>정렬 / Text align
+            <label>글자 크기 (px) <input id="fontSize" type="number" min="1" step="1" value="48"></label>
+            <label>굵기 <input id="fontWeight" type="number" min="1" max="1000" step="1" value="400"></label>
+            <label>줄 높이 <input id="lineHeight" type="text" value="1.2" placeholder="1.2 / 60px / 1.2em / 120%"></label>
+            <label>정렬
               <select id="textAlign">
-                <option value="left">왼쪽 / Left</option>
-                <option value="center" selected>가운데 / Center</option>
-                <option value="right">오른쪽 / Right</option>
+                <option value="left">왼쪽</option>
+                <option value="center" selected>가운데</option>
+                <option value="right">오른쪽</option>
               </select>
             </label>
           </div>
@@ -55,47 +51,47 @@
 
         <div class="tab-panel" id="panel-colors" role="tabpanel" aria-labelledby="tab-colors" data-panel="colors" hidden>
           <div class="color-row">
-            <label>글자색 / Text color <input id="textColorPicker" type="color" value="#ffffff"></label>
-            <label>CSS 값 / CSS value <input id="textColor" type="text" value="#ffffff"></label>
+            <label>글자색 <input id="textColorPicker" type="color" value="#ffffff"></label>
+            <label>CSS 값 <input id="textColor" type="text" value="#ffffff"></label>
           </div>
           <div class="color-row">
-            <label>배경색 / Background color <input id="backgroundColorPicker" type="color" value="#000000"></label>
-            <label>CSS 값 / CSS value <input id="backgroundColor" type="text" value="#000000"></label>
+            <label>배경색 <input id="backgroundColorPicker" type="color" value="#000000"></label>
+            <label>CSS 값 <input id="backgroundColor" type="text" value="#000000"></label>
           </div>
         </div>
 
         <div class="tab-panel" id="panel-canvas" role="tabpanel" aria-labelledby="tab-canvas" data-panel="canvas" hidden>
           <div class="grid">
-            <label>가로 여백 / Horizontal padding (px) <input id="padding" type="number" min="0" step="1" value="80"></label>
-            <label>너비 / Width <input id="width" type="number" min="2" step="1" value="1920"></label>
-            <label>높이 / Height <input id="height" type="number" min="2" step="1" value="1080"></label>
-            <label>프레임레이트 / Frame rate <input id="fps" type="number" min="1" max="120" step="1" value="30"></label>
+            <label>가로 여백 (px) <input id="padding" type="number" min="0" step="1" value="80"></label>
+            <label>너비 <input id="width" type="number" min="2" step="1" value="1920"></label>
+            <label>높이 <input id="height" type="number" min="2" step="1" value="1080"></label>
+            <label>프레임레이트 <input id="fps" type="number" min="1" max="120" step="1" value="30"></label>
           </div>
         </div>
 
         <div class="tab-panel" id="panel-timing" role="tabpanel" aria-labelledby="tab-timing" data-panel="timing" hidden>
           <div class="grid">
-            <label>크레딧 길이 / Credit duration (s) <input id="duration" type="number" min="0.001" step="0.1" value="30"></label>
-            <label>시작 공백 / Blank start (s) <input id="blankStart" type="number" min="0" step="0.1" value="0"></label>
-            <label>끝 공백 / Blank end (s) <input id="blankEnd" type="number" min="0" step="0.1" value="0"></label>
+            <label>크레딧 길이 (초) <input id="duration" type="number" min="0.001" step="0.1" value="30"></label>
+            <label>시작 공백 (초) <input id="blankStart" type="number" min="0" step="0.1" value="0"></label>
+            <label>끝 공백 (초) <input id="blankEnd" type="number" min="0" step="0.1" value="0"></label>
           </div>
         </div>
 
         <div class="tab-panel" id="panel-audio" role="tabpanel" aria-labelledby="tab-audio" data-panel="audio" hidden>
           <div class="audio-grid">
-            <label class="file-field">음성 파일 / Audio file
+            <label class="file-field">음성 파일
               <input id="audioFile" type="file" accept="audio/*">
             </label>
-            <label>결과 길이 기준 / Output duration
+            <label>결과 길이 기준
               <select id="durationMode">
-                <option value="credit" selected>크레딧 길이 / Credit duration</option>
-                <option value="audio">음성 파일 길이 / Audio duration</option>
+                <option value="credit" selected>크레딧 길이</option>
+                <option value="audio">음성 파일 길이</option>
               </select>
             </label>
-            <label>볼륨 / Volume <input id="volume" type="number" min="0" max="2" step="0.05" value="1"></label>
-            <label>음성 시작 / Audio start (s) <input id="audioStart" type="number" min="0" step="0.1" value="0"></label>
+            <label>볼륨 <input id="volume" type="number" min="0" max="2" step="0.05" value="1"></label>
+            <label>음성 시작 (초) <input id="audioStart" type="number" min="0" step="0.1" value="0"></label>
           </div>
-          <p id="audioInfo" class="muted">음성 파일 없음 / No audio file</p>
+          <p id="audioInfo" class="muted">음성 파일 없음</p>
         </div>
       </div>
     </section>
@@ -103,13 +99,13 @@
     <section class="output-panel">
       <div class="section-heading">
         <div>
-          <h2>미리보기 / Preview</h2>
+          <h2>미리보기</h2>
           <p id="info"></p>
         </div>
         <div class="preview-controls">
-          <button id="play" type="button">재생 / Play</button>
-          <button id="pause" type="button">일시정지 / Pause</button>
-          <button id="restart" type="button">처음부터 / Restart</button>
+          <button id="play" type="button">재생</button>
+          <button id="pause" type="button">일시정지</button>
+          <button id="restart" type="button">처음부터</button>
         </div>
       </div>
 
@@ -117,7 +113,7 @@
       <canvas id="preview"></canvas>
 
       <div class="export-row">
-        <button id="export" type="button" class="primary">MP4 내보내기 / Export MP4</button>
+        <button id="export" type="button" class="primary">MP4 내보내기</button>
         <progress id="progress" max="1" value="0"></progress>
         <span id="status"></span>
       </div>
@@ -154,6 +150,8 @@
           activateTab(next, true);
         });
       }
+
+      activateTab(tabs[0]);
     })();
   </script>
   <script type="module" src="./main.js"></script>
