@@ -3,7 +3,10 @@ import {
   Mp4OutputFormat,
   BufferTarget,
   CanvasSource,
+  AudioSampleSource,
+  AudioSample,
   canEncodeVideo,
+  canEncodeAudio,
 } from 'https://cdn.jsdelivr.net/npm/mediabunny@1.56.3/+esm';
 
 function bitrateFor(width, height, fps) {
@@ -42,18 +45,61 @@ function paintFrame(ctx, canvas, config, layout, plan, frameIndex) {
   ctx.restore();
 }
 
+async function addAudio(audioSource, audio, config, plan) {
+  const source = new Float32Array(audio.data);
+  const availableSeconds = Math.max(0, plan.total - config.audioStart);
+  const framesToWrite = Math.min(audio.numberOfFrames, Math.floor(availableSeconds * audio.sampleRate));
+  if (framesToWrite <= 0) return;
+
+  const chunkFrames = Math.max(1, Math.round(audio.sampleRate));
+  for (let offset = 0; offset < framesToWrite; offset += chunkFrames) {
+    const count = Math.min(chunkFrames, framesToWrite - offset);
+    const chunk = new Float32Array(count * audio.numberOfChannels);
+    for (let channel = 0; channel < audio.numberOfChannels; channel++) {
+      const sourceStart = channel * audio.numberOfFrames + offset;
+      const targetStart = channel * count;
+      chunk.set(source.subarray(sourceStart, sourceStart + count), targetStart);
+    }
+    if (config.volume !== 1) {
+      for (let i = 0; i < chunk.length; i++) chunk[i] *= config.volume;
+    }
+
+    const sample = new AudioSample({
+      data: chunk,
+      format: 'f32-planar',
+      numberOfChannels: audio.numberOfChannels,
+      sampleRate: audio.sampleRate,
+      timestamp: config.audioStart + offset / audio.sampleRate,
+    });
+    try {
+      await audioSource.add(sample);
+    } finally {
+      sample.close();
+    }
+  }
+}
+
 self.onmessage = async ({ data }) => {
   if (data.type !== 'export') return;
   try {
-    const { config, layout, plan } = data;
+    const { config, layout, plan, audio } = data;
     if (typeof OffscreenCanvas === 'undefined') throw new Error('OffscreenCanvas is not supported by this browser.');
     if (typeof VideoEncoder === 'undefined') throw new Error('WebCodecs VideoEncoder is not supported by this browser.');
+    const videoBitrate = bitrateFor(config.width, config.height, config.fps);
     const canEncodeAvc = await canEncodeVideo('avc', {
       width: config.width,
       height: config.height,
-      bitrate: bitrateFor(config.width, config.height, config.fps),
+      bitrate: videoBitrate,
     });
     if (!canEncodeAvc) throw new Error('H.264 (AVC) encoding is not supported for this size in this browser.');
+    if (audio) {
+      const canEncodeAac = await canEncodeAudio('aac', {
+        numberOfChannels: audio.numberOfChannels,
+        sampleRate: audio.sampleRate,
+        bitrate: 192_000,
+      });
+      if (!canEncodeAac) throw new Error('AAC audio encoding is not supported for this audio file in this browser.');
+    }
     await loadFont(config);
 
     const canvas = new OffscreenCanvas(config.width, config.height);
@@ -67,10 +113,24 @@ self.onmessage = async ({ data }) => {
     });
     const source = new CanvasSource(canvas, {
       codec: 'avc',
-      bitrate: bitrateFor(config.width, config.height, config.fps),
+      bitrate: videoBitrate,
     });
     output.addVideoTrack(source, { frameRate: config.fps });
+
+    let audioSource = null;
+    const audioFitsTimeline = audio && config.audioStart < plan.total && audio.numberOfFrames > 0;
+    if (audioFitsTimeline) {
+      audioSource = new AudioSampleSource({ codec: 'aac', bitrate: 192_000 });
+      output.addAudioTrack(audioSource);
+    }
+
     await output.start();
+
+    if (audioSource) {
+      self.postMessage({ type: 'status', message: 'Encoding audio...' });
+      await addAudio(audioSource, audio, config, plan);
+      audioSource.close();
+    }
 
     const frameDuration = 1 / config.fps;
     const keyInterval = Math.max(1, Math.round(config.fps * 2));

@@ -12,11 +12,13 @@ const fields = {
   backgroundColor: $('backgroundColor'), backgroundColorPicker: $('backgroundColorPicker'),
   padding: $('padding'), width: $('width'), height: $('height'), fps: $('fps'),
   duration: $('duration'), blankStart: $('blankStart'), blankEnd: $('blankEnd'),
+  audioFile: $('audioFile'), durationMode: $('durationMode'), volume: $('volume'), audioStart: $('audioStart'),
 };
 const preview = $('preview');
 const ctx = preview.getContext('2d');
 const errorEl = $('error');
 const infoEl = $('info');
+const audioInfoEl = $('audioInfo');
 const statusEl = $('status');
 const progressEl = $('progress');
 const exportButton = $('export');
@@ -27,6 +29,9 @@ let fontFace = null;
 let loadedFontUrl = '';
 let updateToken = 0;
 let updateTimer = 0;
+let audioDecodeToken = 0;
+let audioBuffer = null;
+let audioFileName = '';
 let playing = false;
 let previewTime = 0;
 let playStartedAt = 0;
@@ -62,17 +67,20 @@ function resolveLineHeight(value, fontSize) {
   return px;
 }
 
-function framePlan({ fps, duration, blankStart, blankEnd }) {
+function framePlan({ fps, duration, blankStart, blankEnd, durationMode, audioStart, audioDuration }) {
   const startFrames = Math.max(0, Math.round(blankStart * fps));
   const creditFrames = Math.max(1, Math.round(duration * fps));
   const endFrames = Math.max(0, Math.round(blankEnd * fps));
-  const totalFrames = startFrames + creditFrames + endFrames;
+  const creditTotalFrames = startFrames + creditFrames + endFrames;
+  const audioTotalFrames = Math.max(1, Math.round((audioStart + audioDuration) * fps));
+  const totalFrames = durationMode === 'audio' ? audioTotalFrames : creditTotalFrames;
   return {
     startFrames, creditFrames, endFrames, totalFrames,
     start: startFrames / fps,
     duration: creditFrames / fps,
     end: endFrames / fps,
     total: totalFrames / fps,
+    creditTotal: creditTotalFrames / fps,
   };
 }
 
@@ -106,6 +114,11 @@ function readConfig(fontFamily) {
   const duration = numberValue(fields.duration, 'Credit duration', { min: 0.001 });
   const blankStart = numberValue(fields.blankStart, 'Blank start', { min: 0 });
   const blankEnd = numberValue(fields.blankEnd, 'Blank end', { min: 0 });
+  const volume = numberValue(fields.volume, 'Volume', { min: 0, max: 2 });
+  const audioStart = numberValue(fields.audioStart, 'Audio start', { min: 0 });
+  const durationMode = fields.durationMode.value;
+  const audioDuration = audioBuffer?.duration ?? 0;
+  if (durationMode === 'audio' && !audioBuffer) throw new Error('Audio duration mode requires an audio file.');
   const text = fields.text.value.replace(/\r\n?/g, '\n');
   if (!text.trim()) throw new Error('Text is empty.');
   return {
@@ -114,6 +127,7 @@ function readConfig(fontFamily) {
     textColor: validateColor(fields.textColor.value.trim(), 'Text color'),
     backgroundColor: validateColor(fields.backgroundColor.value.trim(), 'Background color'),
     padding, width, height, fps, duration, blankStart, blankEnd,
+    durationMode, volume, audioStart, audioDuration,
   };
 }
 
@@ -192,10 +206,19 @@ function drawPreview() {
   ctx.restore();
 }
 
+function updateAudioInfo() {
+  if (!audioBuffer) {
+    audioInfoEl.textContent = '음성 파일 없음 / No audio file';
+    return;
+  }
+  audioInfoEl.textContent = `${audioFileName} / ${audioBuffer.duration.toFixed(3)} s / ${audioBuffer.sampleRate} Hz / ${audioBuffer.numberOfChannels} ch`;
+}
+
 function updateInfo() {
   if (!config) return;
   const plan = framePlan(config);
-  infoEl.textContent = `${config.width}×${config.height} / ${config.fps} fps / ${plan.totalFrames} frames / ${plan.total.toFixed(3)} s (credit ${plan.duration.toFixed(3)} s)`;
+  const source = config.durationMode === 'audio' ? 'audio' : 'credit';
+  infoEl.textContent = `${config.width}×${config.height} / ${config.fps} fps / ${plan.totalFrames} frames / ${plan.total.toFixed(3)} s (${source})`;
 }
 
 async function rebuild() {
@@ -271,10 +294,61 @@ fields.backgroundColorPicker.addEventListener('input', () => { fields.background
 fields.textColor.addEventListener('input', () => { syncPickerFromText(fields.textColor, fields.textColorPicker); scheduleRebuild(); });
 fields.backgroundColor.addEventListener('input', () => { syncPickerFromText(fields.backgroundColor, fields.backgroundColorPicker); scheduleRebuild(); });
 
+fields.audioFile.addEventListener('change', async () => {
+  const token = ++audioDecodeToken;
+  const file = fields.audioFile.files?.[0];
+  audioBuffer = null;
+  audioFileName = '';
+  updateAudioInfo();
+  if (!file) {
+    scheduleRebuild();
+    return;
+  }
+
+  audioInfoEl.textContent = '음성 파일 읽는 중... / Loading audio...';
+  try {
+    const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+    if (!AudioContextClass) throw new Error('Web Audio API is not supported by this browser.');
+    const audioContext = new AudioContextClass();
+    try {
+      const decoded = await audioContext.decodeAudioData(await file.arrayBuffer());
+      if (token !== audioDecodeToken) return;
+      audioBuffer = decoded;
+      audioFileName = file.name;
+      updateAudioInfo();
+    } finally {
+      await audioContext.close();
+    }
+  } catch (error) {
+    if (token !== audioDecodeToken) return;
+    audioBuffer = null;
+    audioFileName = '';
+    audioInfoEl.textContent = '음성 파일을 읽을 수 없음 / Could not decode audio';
+    errorEl.textContent = error instanceof Error ? error.message : String(error);
+  }
+  scheduleRebuild();
+});
+
 for (const [key, field] of Object.entries(fields)) {
-  if (key.includes('Color')) continue;
+  if (key.includes('Color') || key === 'audioFile') continue;
   field.addEventListener('input', scheduleRebuild);
   field.addEventListener('change', scheduleRebuild);
+}
+
+function createAudioPayload() {
+  if (!audioBuffer) return null;
+  const numberOfChannels = audioBuffer.numberOfChannels;
+  const numberOfFrames = audioBuffer.length;
+  const planar = new Float32Array(numberOfChannels * numberOfFrames);
+  for (let channel = 0; channel < numberOfChannels; channel++) {
+    planar.set(audioBuffer.getChannelData(channel), channel * numberOfFrames);
+  }
+  return {
+    data: planar.buffer,
+    sampleRate: audioBuffer.sampleRate,
+    numberOfChannels,
+    numberOfFrames,
+  };
 }
 
 exportButton.addEventListener('click', async () => {
@@ -286,10 +360,13 @@ exportButton.addEventListener('click', async () => {
 
   const worker = new Worker('./export-worker.js', { type: 'module' });
   const plan = framePlan(config);
+  const audio = createAudioPayload();
   worker.onmessage = ({ data }) => {
     if (data.type === 'progress') {
       progressEl.value = data.frame / data.total;
       statusEl.textContent = `Rendering ${data.frame} / ${data.total}`;
+    } else if (data.type === 'status') {
+      statusEl.textContent = data.message;
     } else if (data.type === 'done') {
       const blob = new Blob([data.buffer], { type: 'video/mp4' });
       const url = URL.createObjectURL(blob);
@@ -315,7 +392,9 @@ exportButton.addEventListener('click', async () => {
     exportButton.disabled = false;
     worker.terminate();
   };
-  worker.postMessage({ type: 'export', config, layout, plan });
+  const transfer = audio ? [audio.data] : [];
+  worker.postMessage({ type: 'export', config, layout, plan, audio }, transfer);
 });
 
+updateAudioInfo();
 rebuild();

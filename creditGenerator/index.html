@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="ko">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -8,68 +8,113 @@
 </head>
 <body>
   <main>
-    <h1>Credit Generator</h1>
+    <header class="page-header">
+      <div>
+        <h1>Credit Generator</h1>
+        <p>스크롤 크레딧 MP4 생성기 / Scrolling credit MP4 generator</p>
+      </div>
+    </header>
 
-    <label>Text
-      <textarea id="text" rows="14">DIRECTED BY
-SIWON PARK
+    <section class="settings-layout">
+      <fieldset class="panel panel-wide">
+        <legend>텍스트 / Text</legend>
+        <label>크레딧 문구 / Credit text
+          <textarea id="text" rows="10">SAMPLE TEXT</textarea>
+        </label>
+        <label class="inline"><input id="wrap" type="checkbox" checked> 자동 줄바꿈 / Wrap text</label>
+      </fieldset>
 
-SPECIAL THANKS
-EVERYONE</textarea>
-    </label>
-    <label class="inline"><input id="wrap" type="checkbox" checked> Wrap text</label>
+      <fieldset class="panel">
+        <legend>글꼴 / Typography</legend>
+        <label>폰트 URL / Font URL
+          <input id="fontUrl" type="url" value="https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-Thin.woff2" placeholder="https://example.com/font.woff2">
+        </label>
+        <div class="grid">
+          <label>글자 크기 / Font size (px) <input id="fontSize" type="number" min="1" step="1" value="48"></label>
+          <label>굵기 / Font weight <input id="fontWeight" type="number" min="1" max="1000" step="1" value="400"></label>
+          <label>줄 높이 / Line height <input id="lineHeight" type="text" value="1.2" placeholder="1.2 / 60px / 1.2em / 120%"></label>
+          <label>정렬 / Text align
+            <select id="textAlign">
+              <option value="left">왼쪽 / Left</option>
+              <option value="center" selected>가운데 / Center</option>
+              <option value="right">오른쪽 / Right</option>
+            </select>
+          </label>
+        </div>
+      </fieldset>
 
-    <label>Font URL <input id="fontUrl" type="url" placeholder="https://example.com/font.woff2"></label>
-    <div class="grid">
-      <label>Font size (px) <input id="fontSize" type="number" min="1" step="1" value="48"></label>
-      <label>Font weight <input id="fontWeight" type="number" min="1" max="1000" step="1" value="400"></label>
-      <label>Line height <input id="lineHeight" type="text" value="1.2" placeholder="1.2 / 60px / 1.2em / 120%"></label>
-      <label>Text align
-        <select id="textAlign">
-          <option value="left">left</option>
-          <option value="center" selected>center</option>
-          <option value="right">right</option>
-        </select>
-      </label>
-    </div>
+      <fieldset class="panel">
+        <legend>색상 / Colors</legend>
+        <div class="color-row">
+          <label>글자색 / Text color <input id="textColorPicker" type="color" value="#ffffff"></label>
+          <label>CSS 값 / CSS value <input id="textColor" type="text" value="#ffffff"></label>
+        </div>
+        <div class="color-row">
+          <label>배경색 / Background color <input id="backgroundColorPicker" type="color" value="#000000"></label>
+          <label>CSS 값 / CSS value <input id="backgroundColor" type="text" value="#000000"></label>
+        </div>
+      </fieldset>
 
-    <div class="color-row">
-      <label>Text color <input id="textColorPicker" type="color" value="#ffffff"></label>
-      <label>Text color CSS <input id="textColor" type="text" value="#ffffff"></label>
-    </div>
-    <div class="color-row">
-      <label>Background color <input id="backgroundColorPicker" type="color" value="#000000"></label>
-      <label>Background color CSS <input id="backgroundColor" type="text" value="#000000"></label>
-    </div>
+      <fieldset class="panel">
+        <legend>화면 / Canvas</legend>
+        <div class="grid">
+          <label>가로 여백 / Horizontal padding (px) <input id="padding" type="number" min="0" step="1" value="80"></label>
+          <label>너비 / Width <input id="width" type="number" min="2" step="1" value="1920"></label>
+          <label>높이 / Height <input id="height" type="number" min="2" step="1" value="1080"></label>
+          <label>프레임레이트 / Frame rate <input id="fps" type="number" min="1" max="120" step="1" value="30"></label>
+        </div>
+      </fieldset>
 
-    <div class="grid">
-      <label>Horizontal padding (px) <input id="padding" type="number" min="0" step="1" value="80"></label>
-      <label>Width <input id="width" type="number" min="2" step="1" value="1920"></label>
-      <label>Height <input id="height" type="number" min="2" step="1" value="1080"></label>
-      <label>Frame rate <input id="fps" type="number" min="1" max="120" step="1" value="30"></label>
-    </div>
+      <fieldset class="panel">
+        <legend>시간 / Timing</legend>
+        <div class="grid">
+          <label>크레딧 길이 / Credit duration (s) <input id="duration" type="number" min="0.001" step="0.1" value="30"></label>
+          <label>시작 공백 / Blank start (s) <input id="blankStart" type="number" min="0" step="0.1" value="0"></label>
+          <label>끝 공백 / Blank end (s) <input id="blankEnd" type="number" min="0" step="0.1" value="0"></label>
+        </div>
+      </fieldset>
 
-    <div class="grid">
-      <label>Credit duration (s) <input id="duration" type="number" min="0.001" step="0.1" value="30"></label>
-      <label>Blank start (s) <input id="blankStart" type="number" min="0" step="0.1" value="0"></label>
-      <label>Blank end (s) <input id="blankEnd" type="number" min="0" step="0.1" value="0"></label>
-    </div>
+      <fieldset class="panel panel-wide">
+        <legend>음성 / Audio</legend>
+        <div class="audio-grid">
+          <label class="file-field">음성 파일 / Audio file
+            <input id="audioFile" type="file" accept="audio/*">
+          </label>
+          <label>결과 길이 기준 / Output duration
+            <select id="durationMode">
+              <option value="credit" selected>크레딧 길이 / Credit duration</option>
+              <option value="audio">음성 파일 길이 / Audio duration</option>
+            </select>
+          </label>
+          <label>볼륨 / Volume <input id="volume" type="number" min="0" max="2" step="0.05" value="1"></label>
+          <label>음성 시작 / Audio start (s) <input id="audioStart" type="number" min="0" step="0.1" value="0"></label>
+        </div>
+        <p id="audioInfo" class="muted">음성 파일 없음 / No audio file</p>
+      </fieldset>
+    </section>
 
-    <p id="info"></p>
-    <p id="error" role="alert"></p>
+    <section class="output-panel">
+      <div class="section-heading">
+        <div>
+          <h2>미리보기 / Preview</h2>
+          <p id="info"></p>
+        </div>
+        <div class="preview-controls">
+          <button id="play" type="button">재생 / Play</button>
+          <button id="pause" type="button">일시정지 / Pause</button>
+          <button id="restart" type="button">처음부터 / Restart</button>
+        </div>
+      </div>
 
-    <div class="preview-controls">
-      <button id="play" type="button">Play</button>
-      <button id="pause" type="button">Pause</button>
-      <button id="restart" type="button">Restart</button>
-    </div>
-    <canvas id="preview"></canvas>
+      <p id="error" role="alert"></p>
+      <canvas id="preview"></canvas>
 
-    <div class="export-row">
-      <button id="export" type="button">Export MP4</button>
-      <progress id="progress" max="1" value="0"></progress>
-      <span id="status"></span>
-    </div>
+      <div class="export-row">
+        <button id="export" type="button" class="primary">MP4 내보내기 / Export MP4</button>
+        <progress id="progress" max="1" value="0"></progress>
+        <span id="status"></span>
+      </div>
+    </section>
   </main>
 
   <script type="module" src="./main.js"></script>
