@@ -15,7 +15,7 @@ function bitrateFor(width, height, fps) {
 
 async function loadFont(config) {
   if (!config.fontUrl) return;
-  if (typeof FontFace === 'undefined' || !self.fonts) throw new Error('Custom fonts are not supported inside this browser worker.');
+  if (typeof FontFace === 'undefined' || !self.fonts) throw new Error('이 브라우저의 작업 스레드에서는 사용자 지정 폰트를 사용할 수 없습니다.');
   const face = new FontFace('CreditGeneratorFont', `url(${JSON.stringify(config.fontUrl)})`);
   self.fonts.add(face);
   await face.load();
@@ -83,28 +83,28 @@ self.onmessage = async ({ data }) => {
   if (data.type !== 'export') return;
   try {
     const { config, layout, plan, audio } = data;
-    if (typeof OffscreenCanvas === 'undefined') throw new Error('OffscreenCanvas is not supported by this browser.');
-    if (typeof VideoEncoder === 'undefined') throw new Error('WebCodecs VideoEncoder is not supported by this browser.');
+    if (typeof OffscreenCanvas === 'undefined') throw new Error('이 브라우저에서는 OffscreenCanvas를 사용할 수 없습니다.');
+    if (typeof VideoEncoder === 'undefined') throw new Error('이 브라우저에서는 WebCodecs VideoEncoder를 사용할 수 없습니다.');
     const videoBitrate = bitrateFor(config.width, config.height, config.fps);
     const canEncodeAvc = await canEncodeVideo('avc', {
       width: config.width,
       height: config.height,
       bitrate: videoBitrate,
     });
-    if (!canEncodeAvc) throw new Error('H.264 (AVC) encoding is not supported for this size in this browser.');
+    if (!canEncodeAvc) throw new Error('이 브라우저에서는 현재 크기의 H.264 영상을 인코딩할 수 없습니다.');
     if (audio) {
       const canEncodeAac = await canEncodeAudio('aac', {
         numberOfChannels: audio.numberOfChannels,
         sampleRate: audio.sampleRate,
         bitrate: 192_000,
       });
-      if (!canEncodeAac) throw new Error('AAC audio encoding is not supported for this audio file in this browser.');
+      if (!canEncodeAac) throw new Error('이 브라우저에서는 해당 음성 파일을 AAC로 인코딩할 수 없습니다.');
     }
     await loadFont(config);
 
     const canvas = new OffscreenCanvas(config.width, config.height);
     const ctx = canvas.getContext('2d', { alpha: false });
-    if (!ctx) throw new Error('Could not create a 2D canvas context.');
+    if (!ctx) throw new Error('2D 캔버스 컨텍스트를 만들 수 없습니다.');
 
     const target = new BufferTarget();
     const output = new Output({
@@ -127,7 +127,7 @@ self.onmessage = async ({ data }) => {
     await output.start();
 
     if (audioSource) {
-      self.postMessage({ type: 'status', message: 'Encoding audio...' });
+      self.postMessage({ type: 'status', message: '음성 인코딩 중...' });
       await addAudio(audioSource, audio, config, plan);
       audioSource.close();
     }
@@ -144,7 +144,7 @@ self.onmessage = async ({ data }) => {
 
     source.close();
     await output.finalize();
-    if (!target.buffer) throw new Error('MP4 output buffer was not created.');
+    if (!target.buffer) throw new Error('MP4 출력 버퍼를 만들지 못했습니다.');
     self.postMessage({ type: 'done', buffer: target.buffer }, [target.buffer]);
   } catch (error) {
     self.postMessage({ type: 'error', message: error instanceof Error ? error.message : String(error) });
