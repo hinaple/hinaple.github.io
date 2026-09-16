@@ -39,21 +39,21 @@ let animationFrame = 0;
 
 function numberValue(input, name, { min = -Infinity, max = Infinity } = {}) {
   const value = Number(input.value);
-  if (!Number.isFinite(value) || value < min || value > max) throw new Error(`${name} is invalid.`);
+  if (!Number.isFinite(value) || value < min || value > max) throw new Error(`${name} 값이 올바르지 않습니다.`);
   return value;
 }
 
 function validateColor(value, name) {
-  if (!CSS.supports('color', value)) throw new Error(`${name} is not a valid CSS color.`);
+  if (!CSS.supports('color', value)) throw new Error(`${name} 값이 올바른 CSS 색상이 아닙니다.`);
   return value;
 }
 
 function resolveLineHeight(value, fontSize) {
   const raw = value.trim();
-  if (!raw) throw new Error('Line height is empty.');
+  if (!raw) throw new Error('줄 높이를 입력하세요.');
   if (/^(?:\d+(?:\.\d+)?|\.\d+)$/.test(raw)) {
     const ratio = Number(raw);
-    if (!(ratio > 0)) throw new Error('Line height must be greater than 0.');
+    if (!(ratio > 0)) throw new Error('줄 높이는 0보다 커야 합니다.');
     return ratio * fontSize;
   }
   const probe = document.createElement('span');
@@ -63,7 +63,7 @@ function resolveLineHeight(value, fontSize) {
   const computed = getComputedStyle(probe).lineHeight;
   probe.remove();
   const px = Number.parseFloat(computed);
-  if (!Number.isFinite(px) || px <= 0) throw new Error('Line height must be unitless or a valid CSS line-height value.');
+  if (!Number.isFinite(px) || px <= 0) throw new Error('줄 높이는 단위 없는 배율 또는 올바른 CSS 값이어야 합니다.');
   return px;
 }
 
@@ -103,29 +103,29 @@ async function ensureFont(url) {
 }
 
 function readConfig(fontFamily) {
-  const width = Math.round(numberValue(fields.width, 'Width', { min: 2 }));
-  const height = Math.round(numberValue(fields.height, 'Height', { min: 2 }));
-  const padding = numberValue(fields.padding, 'Horizontal padding', { min: 0 });
-  if (padding * 2 >= width) throw new Error('Horizontal padding must leave a positive text width.');
-  const fontSize = numberValue(fields.fontSize, 'Font size', { min: 1 });
-  const fontWeight = numberValue(fields.fontWeight, 'Font weight', { min: 1, max: 1000 });
+  const width = Math.round(numberValue(fields.width, '너비', { min: 2 }));
+  const height = Math.round(numberValue(fields.height, '높이', { min: 2 }));
+  const padding = numberValue(fields.padding, '가로 여백', { min: 0 });
+  if (padding * 2 >= width) throw new Error('가로 여백을 제외한 텍스트 영역의 너비가 0보다 커야 합니다.');
+  const fontSize = numberValue(fields.fontSize, '글자 크기', { min: 1 });
+  const fontWeight = numberValue(fields.fontWeight, '굵기', { min: 1, max: 1000 });
   const lineHeight = resolveLineHeight(fields.lineHeight.value, fontSize);
-  const fps = numberValue(fields.fps, 'Frame rate', { min: 1, max: 120 });
-  const duration = numberValue(fields.duration, 'Credit duration', { min: 0.001 });
-  const blankStart = numberValue(fields.blankStart, 'Blank start', { min: 0 });
-  const blankEnd = numberValue(fields.blankEnd, 'Blank end', { min: 0 });
-  const volume = numberValue(fields.volume, 'Volume', { min: 0, max: 2 });
-  const audioStart = numberValue(fields.audioStart, 'Audio start', { min: 0 });
+  const fps = numberValue(fields.fps, '프레임레이트', { min: 1, max: 120 });
+  const duration = numberValue(fields.duration, '크레딧 길이', { min: 0.001 });
+  const blankStart = numberValue(fields.blankStart, '시작 공백', { min: 0 });
+  const blankEnd = numberValue(fields.blankEnd, '끝 공백', { min: 0 });
+  const volume = numberValue(fields.volume, '볼륨', { min: 0, max: 2 });
+  const audioStart = numberValue(fields.audioStart, '음성 시작', { min: 0 });
   const durationMode = fields.durationMode.value;
   const audioDuration = audioBuffer?.duration ?? 0;
-  if (durationMode === 'audio' && !audioBuffer) throw new Error('Audio duration mode requires an audio file.');
+  if (durationMode === 'audio' && !audioBuffer) throw new Error('음성 파일 길이를 사용하려면 음성 파일을 추가하세요.');
   const text = fields.text.value.replace(/\r\n?/g, '\n');
-  if (!text.trim()) throw new Error('Text is empty.');
+  if (!text.trim()) throw new Error('크레딧 문구를 입력하세요.');
   return {
     text, wrap: fields.wrap.checked, fontUrl: fields.fontUrl.value.trim(), fontFamily,
     fontSize, fontWeight, lineHeight, textAlign: fields.textAlign.value,
-    textColor: validateColor(fields.textColor.value.trim(), 'Text color'),
-    backgroundColor: validateColor(fields.backgroundColor.value.trim(), 'Background color'),
+    textColor: validateColor(fields.textColor.value.trim(), '글자색'),
+    backgroundColor: validateColor(fields.backgroundColor.value.trim(), '배경색'),
     padding, width, height, fps, duration, blankStart, blankEnd,
     durationMode, volume, audioStart, audioDuration,
   };
@@ -139,7 +139,7 @@ function buildLayout(c) {
     ? contentWidth
     : Math.max(contentWidth, Math.ceil(measureNaturalWidth(prepared)) + 1);
   const result = layoutWithLines(prepared, layoutWidth, c.lineHeight);
-  if (!result.lines.length) throw new Error('Text layout produced no lines.');
+  if (!result.lines.length) throw new Error('텍스트 레이아웃을 만들 수 없습니다.');
 
   const measureCanvas = document.createElement('canvas');
   const measure = measureCanvas.getContext('2d');
@@ -158,7 +158,7 @@ function buildLayout(c) {
     inkTop = Math.min(inkTop, rawBaselines[i] - ascent);
     inkBottom = Math.max(inkBottom, rawBaselines[i] + descent);
   }
-  if (!Number.isFinite(inkTop) || !Number.isFinite(inkBottom)) throw new Error('Text has no visible characters.');
+  if (!Number.isFinite(inkTop) || !Number.isFinite(inkBottom)) throw new Error('표시할 수 있는 문자가 없습니다.');
 
   return {
     lines: result.lines.map((line, i) => ({ text: line.text, baseline: rawBaselines[i] - inkTop })),
@@ -208,17 +208,17 @@ function drawPreview() {
 
 function updateAudioInfo() {
   if (!audioBuffer) {
-    audioInfoEl.textContent = '음성 파일 없음 / No audio file';
+    audioInfoEl.textContent = '음성 파일 없음';
     return;
   }
-  audioInfoEl.textContent = `${audioFileName} / ${audioBuffer.duration.toFixed(3)} s / ${audioBuffer.sampleRate} Hz / ${audioBuffer.numberOfChannels} ch`;
+  audioInfoEl.textContent = `${audioFileName} / ${audioBuffer.duration.toFixed(3)}초 / ${audioBuffer.sampleRate}Hz / ${audioBuffer.numberOfChannels}채널`;
 }
 
 function updateInfo() {
   if (!config) return;
   const plan = framePlan(config);
-  const source = config.durationMode === 'audio' ? 'audio' : 'credit';
-  infoEl.textContent = `${config.width}×${config.height} / ${config.fps} fps / ${plan.totalFrames} frames / ${plan.total.toFixed(3)} s (${source})`;
+  const source = config.durationMode === 'audio' ? '음성' : '크레딧';
+  infoEl.textContent = `${config.width}×${config.height} / ${config.fps} fps / ${plan.totalFrames}프레임 / ${plan.total.toFixed(3)}초 (${source} 기준)`;
 }
 
 async function rebuild() {
@@ -305,10 +305,10 @@ fields.audioFile.addEventListener('change', async () => {
     return;
   }
 
-  audioInfoEl.textContent = '음성 파일 읽는 중... / Loading audio...';
+  audioInfoEl.textContent = '음성 파일 읽는 중...';
   try {
     const AudioContextClass = window.AudioContext || window.webkitAudioContext;
-    if (!AudioContextClass) throw new Error('Web Audio API is not supported by this browser.');
+    if (!AudioContextClass) throw new Error('이 브라우저에서는 Web Audio API를 사용할 수 없습니다.');
     const audioContext = new AudioContextClass();
     try {
       const decoded = await audioContext.decodeAudioData(await file.arrayBuffer());
@@ -323,7 +323,7 @@ fields.audioFile.addEventListener('change', async () => {
     if (token !== audioDecodeToken) return;
     audioBuffer = null;
     audioFileName = '';
-    audioInfoEl.textContent = '음성 파일을 읽을 수 없음 / Could not decode audio';
+    audioInfoEl.textContent = '음성 파일을 읽을 수 없습니다.';
     errorEl.textContent = error instanceof Error ? error.message : String(error);
   }
   scheduleRebuild();
@@ -356,7 +356,7 @@ exportButton.addEventListener('click', async () => {
   if (!config || !layout || errorEl.textContent) return;
   exportButton.disabled = true;
   progressEl.value = 0;
-  statusEl.textContent = 'Starting...';
+  statusEl.textContent = '시작 중...';
 
   const worker = new Worker('./export-worker.js', { type: 'module' });
   const plan = framePlan(config);
@@ -364,7 +364,7 @@ exportButton.addEventListener('click', async () => {
   worker.onmessage = ({ data }) => {
     if (data.type === 'progress') {
       progressEl.value = data.frame / data.total;
-      statusEl.textContent = `Rendering ${data.frame} / ${data.total}`;
+      statusEl.textContent = `렌더링 중 ${data.frame} / ${data.total}`;
     } else if (data.type === 'status') {
       statusEl.textContent = data.message;
     } else if (data.type === 'done') {
@@ -376,19 +376,19 @@ exportButton.addEventListener('click', async () => {
       a.click();
       setTimeout(() => URL.revokeObjectURL(url), 1000);
       progressEl.value = 1;
-      statusEl.textContent = 'Done';
+      statusEl.textContent = '완료';
       exportButton.disabled = false;
       worker.terminate();
     } else if (data.type === 'error') {
       errorEl.textContent = data.message;
-      statusEl.textContent = 'Failed';
+      statusEl.textContent = '실패';
       exportButton.disabled = false;
       worker.terminate();
     }
   };
   worker.onerror = (event) => {
-    errorEl.textContent = event.message || 'Export worker failed.';
-    statusEl.textContent = 'Failed';
+    errorEl.textContent = event.message || '내보내기 작업을 실행하지 못했습니다.';
+    statusEl.textContent = '실패';
     exportButton.disabled = false;
     worker.terminate();
   };
