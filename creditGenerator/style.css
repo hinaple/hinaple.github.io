@@ -1,0 +1,13 @@
+body { font-family: sans-serif; margin: 20px; }
+main { max-width: 900px; }
+label { display: block; margin: 8px 0; }
+input, textarea, select, button { font: inherit; }
+textarea, input[type="text"], input[type="url"] { width: 100%; box-sizing: border-box; }
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 8px 16px; }
+.color-row { display: grid; grid-template-columns: 170px 1fr; gap: 8px 16px; align-items: end; }
+.inline { display: flex; gap: 6px; align-items: center; }
+.preview-controls, .export-row { display: flex; gap: 8px; align-items: center; margin: 12px 0; flex-wrap: wrap; }
+#preview { display: block; width: min(100%, 800px); height: auto; border: 1px solid #888; background: #000; }
+#error { color: #b00020; min-height: 1.2em; white-space: pre-wrap; }
+#info, #status { font-family: monospace; }
+progress { width: 240px; }

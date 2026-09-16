@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Credit Generator</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <main>
+    <h1>Credit Generator</h1>
+
+    <label>Text
+      <textarea id="text" rows="14">DIRECTED BY
+SIWON PARK
+
+SPECIAL THANKS
+EVERYONE</textarea>
+    </label>
+    <label class="inline"><input id="wrap" type="checkbox" checked> Wrap text</label>
+
+    <label>Font URL <input id="fontUrl" type="url" placeholder="https://example.com/font.woff2"></label>
+    <div class="grid">
+      <label>Font size (px) <input id="fontSize" type="number" min="1" step="1" value="48"></label>
+      <label>Font weight <input id="fontWeight" type="number" min="1" max="1000" step="1" value="400"></label>
+      <label>Line height <input id="lineHeight" type="text" value="1.2" placeholder="1.2 / 60px / 1.2em / 120%"></label>
+      <label>Text align
+        <select id="textAlign">
+          <option value="left">left</option>
+          <option value="center" selected>center</option>
+          <option value="right">right</option>
+        </select>
+      </label>
+    </div>
+
+    <div class="color-row">
+      <label>Text color <input id="textColorPicker" type="color" value="#ffffff"></label>
+      <label>Text color CSS <input id="textColor" type="text" value="#ffffff"></label>
+    </div>
+    <div class="color-row">
+      <label>Background color <input id="backgroundColorPicker" type="color" value="#000000"></label>
+      <label>Background color CSS <input id="backgroundColor" type="text" value="#000000"></label>
+    </div>
+
+    <div class="grid">
+      <label>Horizontal padding (px) <input id="padding" type="number" min="0" step="1" value="80"></label>
+      <label>Width <input id="width" type="number" min="2" step="1" value="1920"></label>
+      <label>Height <input id="height" type="number" min="2" step="1" value="1080"></label>
+      <label>Frame rate <input id="fps" type="number" min="1" max="120" step="1" value="30"></label>
+    </div>
+
+    <div class="grid">
+      <label>Credit duration (s) <input id="duration" type="number" min="0.001" step="0.1" value="30"></label>
+      <label>Blank start (s) <input id="blankStart" type="number" min="0" step="0.1" value="0"></label>
+      <label>Blank end (s) <input id="blankEnd" type="number" min="0" step="0.1" value="0"></label>
+    </div>
+
+    <p id="info"></p>
+    <p id="error" role="alert"></p>
+
+    <div class="preview-controls">
+      <button id="play" type="button">Play</button>
+      <button id="pause" type="button">Pause</button>
+      <button id="restart" type="button">Restart</button>
+    </div>
+    <canvas id="preview"></canvas>
+
+    <div class="export-row">
+      <button id="export" type="button">Export MP4</button>
+      <progress id="progress" max="1" value="0"></progress>
+      <span id="status"></span>
+    </div>
+  </main>
+
+  <script type="module" src="./main.js"></script>
+</body>
+</html>

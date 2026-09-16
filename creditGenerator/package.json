@@ -1,0 +1,14 @@
+{
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "esbuild main.js export-worker.js --bundle --format=esm --outdir=dist --platform=browser --external:https://*"
+  },
+  "dependencies": {
+    "@chenglou/pretext": "0.0.8",
+    "mediabunny": "1.56.3"
+  },
+  "devDependencies": {
+    "esbuild": "^0.25.9"
+  }
+}
