@@ -4,6 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>크레딧 생성기</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/wipeautcrafter/jscolorpicker@main/dist/colorpicker.min.css">
   <link rel="stylesheet" href="./style.css">
 </head>
 <body>
@@ -27,13 +28,12 @@ sample credit
 sample credit
 sample credit
 sample credit</textarea>
-      <p class="muted">글꼴 그룹은 <code>&lt;id&gt;텍스트&lt;/id&gt;</code> 형식으로 적용합니다.</p>
+      <p class="muted">글꼴 그룹: <code>&lt;id&gt;텍스트&lt;/id&gt;</code> · 가로 공간: <code>{#width=300}</code> · 세로 공간: <code>{#height=20}</code></p>
     </section>
 
     <section class="settings-tabs">
       <div class="tab-list" role="tablist" aria-label="크레딧 설정">
         <button type="button" role="tab" id="tab-typography" aria-controls="panel-typography" aria-selected="true" data-tab="typography">글꼴</button>
-        <button type="button" role="tab" id="tab-colors" aria-controls="panel-colors" aria-selected="false" tabindex="-1" data-tab="colors">색상</button>
         <button type="button" role="tab" id="tab-canvas" aria-controls="panel-canvas" aria-selected="false" tabindex="-1" data-tab="canvas">화면</button>
         <button type="button" role="tab" id="tab-timing" aria-controls="panel-timing" aria-selected="false" tabindex="-1" data-tab="timing">시간</button>
         <button type="button" role="tab" id="tab-audio" aria-controls="panel-audio" aria-selected="false" tabindex="-1" data-tab="audio">음성</button>
@@ -51,28 +51,19 @@ sample credit</textarea>
               </select>
             </label>
           </div>
-
           <div id="fontGroups" class="font-groups"></div>
           <button id="addFontGroup" type="button">+ 글꼴 그룹 추가</button>
         </div>
 
-        <div class="tab-panel" id="panel-colors" role="tabpanel" aria-labelledby="tab-colors" data-panel="colors" hidden>
-          <div class="color-row">
-            <label>글자색 <input id="textColorPicker" type="color" value="#ffffff"></label>
-            <label>CSS 값 <input id="textColor" type="text" value="#ffffff"></label>
-          </div>
-          <div class="color-row">
-            <label>배경색 <input id="backgroundColorPicker" type="color" value="#000000"></label>
-            <label>CSS 값 <input id="backgroundColor" type="text" value="#000000"></label>
-          </div>
-        </div>
-
         <div class="tab-panel" id="panel-canvas" role="tabpanel" aria-labelledby="tab-canvas" data-panel="canvas" hidden>
-          <div class="grid">
-            <label>가로 여백 (px) <input id="padding" type="number" min="0" step="1" value="80"></label>
+          <div class="canvas-row canvas-row-primary">
             <label>너비 <input id="width" type="number" min="2" step="1" value="1920"></label>
             <label>높이 <input id="height" type="number" min="2" step="1" value="1080"></label>
+            <label>가로 여백 (px) <input id="padding" type="number" min="0" step="1" value="80"></label>
+          </div>
+          <div class="canvas-row canvas-row-secondary">
             <label>프레임레이트 <input id="fps" type="number" min="1" max="120" step="1" value="30"></label>
+            <label>배경색 <input id="backgroundColor" type="text" value="#000000"></label>
           </div>
         </div>
 
@@ -86,9 +77,7 @@ sample credit</textarea>
 
         <div class="tab-panel" id="panel-audio" role="tabpanel" aria-labelledby="tab-audio" data-panel="audio" hidden>
           <div class="audio-grid">
-            <label class="file-field">음성 파일
-              <input id="audioFile" type="file" accept="audio/*">
-            </label>
+            <label class="file-field">음성 파일 <input id="audioFile" type="file" accept="audio/*"></label>
             <label>결과 길이 기준
               <select id="durationMode">
                 <option value="credit" selected>크레딧 길이</option>
@@ -105,25 +94,18 @@ sample credit</textarea>
 
     <section class="output-panel">
       <div class="section-heading">
-        <div>
-          <h2>미리보기</h2>
-          <p id="info"></p>
-        </div>
+        <div><h2>미리보기</h2><p id="info"></p></div>
         <div class="preview-controls">
-          <button id="play" type="button">재생</button>
-          <button id="pause" type="button">일시정지</button>
+          <button id="playPause" type="button" aria-pressed="false">재생</button>
           <button id="restart" type="button">처음부터</button>
         </div>
       </div>
-
       <p id="error" role="alert"></p>
       <canvas id="preview"></canvas>
-
       <div class="timeline-row">
         <input id="timeline" type="range" min="0" max="30" step="0.001" value="0" aria-label="미리보기 타임라인">
         <span id="timelineTime">0.000 / 30.000초</span>
       </div>
-
       <div class="export-row">
         <button id="export" type="button" class="primary">MP4 내보내기</button>
         <progress id="progress" max="1" value="0"></progress>
@@ -131,7 +113,6 @@ sample credit</textarea>
       </div>
     </section>
   </main>
-
   <script type="module" src="./main.js"></script>
 </body>
 </html>

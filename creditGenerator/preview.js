@@ -1,47 +1,33 @@
 import { framePlan, paintCreditsAtTime } from './render.js';
 
-export function createPreviewController({
-  canvas,
-  timeline,
-  timelineTime,
-  playButton,
-  pauseButton,
-  restartButton,
-}) {
+export function createPreviewController({ canvas, timeline, timelineTime, toggleButton, restartButton }) {
   const ctx = canvas.getContext('2d');
   let config = null;
   let layout = null;
-  let previewTime = 0;
   let playing = false;
+  let previewTime = 0;
   let playStartedAt = 0;
   let animationFrame = 0;
 
-  function totalTime() {
-    return config ? framePlan(config).total : 0;
+  function updateToggleLabel() {
+    toggleButton.textContent = playing ? '일시정지' : '재생';
+    toggleButton.setAttribute('aria-pressed', String(playing));
   }
 
   function updateTimeline() {
     if (!config) return;
-    const total = totalTime();
+    const total = framePlan(config).total;
     previewTime = Math.min(Math.max(0, previewTime), total);
     timeline.max = String(total);
     timeline.value = String(previewTime);
     timelineTime.textContent = `${previewTime.toFixed(3)} / ${total.toFixed(3)}초`;
   }
 
-  function resizeCanvas() {
-    if (!config) return 1;
-    const scale = Math.min(1, 800 / config.width);
-    const width = Math.max(1, Math.round(config.width * scale));
-    const height = Math.max(1, Math.round(config.height * scale));
-    if (canvas.width !== width) canvas.width = width;
-    if (canvas.height !== height) canvas.height = height;
-    return scale;
-  }
-
   function draw() {
     if (!config || !layout) return;
-    const scale = resizeCanvas();
+    const scale = Math.min(1, 800 / config.width);
+    canvas.width = Math.max(1, Math.round(config.width * scale));
+    canvas.height = Math.max(1, Math.round(config.height * scale));
     ctx.save();
     ctx.scale(scale, scale);
     paintCreditsAtTime(ctx, config, layout, previewTime);
@@ -51,11 +37,12 @@ export function createPreviewController({
   function stop() {
     playing = false;
     cancelAnimationFrame(animationFrame);
+    updateToggleLabel();
   }
 
   function tick(now) {
     if (!playing || !config) return;
-    const total = totalTime();
+    const total = framePlan(config).total;
     previewTime = (now - playStartedAt) / 1000;
     if (previewTime >= total) {
       previewTime = total;
@@ -63,29 +50,23 @@ export function createPreviewController({
     }
     draw();
     updateTimeline();
+    updateToggleLabel();
     if (playing) animationFrame = requestAnimationFrame(tick);
   }
 
-  function setScene(nextConfig, nextLayout) {
-    config = nextConfig;
-    layout = nextLayout;
-    previewTime = Math.min(previewTime, totalTime());
-    if (playing) playStartedAt = performance.now() - previewTime * 1000;
-    updateTimeline();
-    draw();
-  }
-
-  playButton.addEventListener('click', () => {
-    if (!config || !layout || playing) return;
-    const total = totalTime();
+  toggleButton.addEventListener('click', () => {
+    if (!config || !layout) return;
+    if (playing) {
+      stop();
+      return;
+    }
+    const total = framePlan(config).total;
     if (previewTime >= total) previewTime = 0;
     playing = true;
     playStartedAt = performance.now() - previewTime * 1000;
-    updateTimeline();
+    updateToggleLabel();
     animationFrame = requestAnimationFrame(tick);
   });
-
-  pauseButton.addEventListener('click', stop);
 
   restartButton.addEventListener('click', () => {
     stop();
@@ -102,5 +83,15 @@ export function createPreviewController({
     updateTimeline();
   });
 
-  return { setScene, stop };
+  updateToggleLabel();
+
+  return {
+    setScene(nextConfig, nextLayout) {
+      config = nextConfig;
+      layout = nextLayout;
+      previewTime = Math.min(previewTime, framePlan(config).total);
+      draw();
+      updateTimeline();
+    },
+  };
 }

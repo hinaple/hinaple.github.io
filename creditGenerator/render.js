@@ -6,10 +6,7 @@ export function framePlan({ fps, duration, blankStart, blankEnd, durationMode, a
   const audioTotalFrames = Math.max(1, Math.round((audioStart + audioDuration) * fps));
   const totalFrames = durationMode === 'audio' ? audioTotalFrames : creditTotalFrames;
   return {
-    startFrames,
-    creditFrames,
-    endFrames,
-    totalFrames,
+    startFrames, creditFrames, endFrames, totalFrames,
     start: startFrames / fps,
     duration: creditFrames / fps,
     end: endFrames / fps,
@@ -21,9 +18,7 @@ export function framePlan({ fps, duration, blankStart, blankEnd, durationMode, a
 export function scrollYAt(time, config, plan, layout) {
   if (time < plan.start || time >= plan.start + plan.duration) return null;
   const progress = (time - plan.start) / plan.duration;
-  const startY = config.height - 1;
-  const endY = -layout.visualHeight;
-  return startY + (endY - startY) * progress;
+  return config.height - 1 + (-layout.visualHeight - (config.height - 1)) * progress;
 }
 
 function lowerBoundBaseline(lines, value) {
@@ -50,7 +45,6 @@ function upperBoundBaseline(lines, value) {
 
 export function visibleLineRange(layout, offsetY, viewportHeight) {
   if (!layout.lines.length) return { start: 0, end: 0 };
-
   const minBaseline = -offsetY - (layout.maxDescent ?? 0);
   const maxBaseline = viewportHeight - offsetY + (layout.maxAscent ?? 0);
   return {
@@ -76,7 +70,6 @@ export function paintCreditsAtTime(target, config, layout, time, plan = framePla
   target.beginPath();
   target.rect(0, 0, config.width, config.height);
   target.clip();
-  target.fillStyle = config.textColor;
   target.textBaseline = 'alphabetic';
   target.textAlign = 'left';
 
@@ -92,6 +85,7 @@ export function paintCreditsAtTime(target, config, layout, time, plan = framePla
     const originX = lineOriginX(config, line);
     for (const run of line.runs) {
       target.font = run.font;
+      target.fillStyle = run.color;
       target.fillText(run.text, originX + run.x, offsetY + line.baseline);
     }
   }
