@@ -15,82 +15,96 @@
       </div>
     </header>
 
-    <section class="settings-layout">
-      <fieldset class="panel panel-wide">
-        <legend>텍스트 / Text</legend>
-        <label>크레딧 문구 / Credit text
-          <textarea id="text" rows="10">SAMPLE TEXT</textarea>
-        </label>
-        <label class="inline"><input id="wrap" type="checkbox" checked> 자동 줄바꿈 / Wrap text</label>
-      </fieldset>
+    <section class="panel fixed-text-panel">
+      <h2>크레딧 문구 / Credit text</h2>
+      <textarea id="text" rows="10">SAMPLE TEXT</textarea>
+    </section>
 
-      <fieldset class="panel">
-        <legend>글꼴 / Typography</legend>
-        <label>폰트 URL / Font URL
-          <input id="fontUrl" type="url" value="https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-Thin.woff2" placeholder="https://example.com/font.woff2">
-        </label>
-        <div class="grid">
-          <label>글자 크기 / Font size (px) <input id="fontSize" type="number" min="1" step="1" value="48"></label>
-          <label>굵기 / Font weight <input id="fontWeight" type="number" min="1" max="1000" step="1" value="400"></label>
-          <label>줄 높이 / Line height <input id="lineHeight" type="text" value="1.2" placeholder="1.2 / 60px / 1.2em / 120%"></label>
-          <label>정렬 / Text align
-            <select id="textAlign">
-              <option value="left">왼쪽 / Left</option>
-              <option value="center" selected>가운데 / Center</option>
-              <option value="right">오른쪽 / Right</option>
-            </select>
+    <section class="settings-tabs">
+      <input class="tab-radio" type="radio" name="settings-tab" id="tab-text" checked>
+      <input class="tab-radio" type="radio" name="settings-tab" id="tab-typography">
+      <input class="tab-radio" type="radio" name="settings-tab" id="tab-colors">
+      <input class="tab-radio" type="radio" name="settings-tab" id="tab-canvas">
+      <input class="tab-radio" type="radio" name="settings-tab" id="tab-timing">
+      <input class="tab-radio" type="radio" name="settings-tab" id="tab-audio">
+
+      <div class="tab-list" role="tablist" aria-label="Credit settings">
+        <label for="tab-text">텍스트 / Text</label>
+        <label for="tab-typography">글꼴 / Typography</label>
+        <label for="tab-colors">색상 / Colors</label>
+        <label for="tab-canvas">화면 / Canvas</label>
+        <label for="tab-timing">시간 / Timing</label>
+        <label for="tab-audio">음성 / Audio</label>
+      </div>
+
+      <div class="tab-panels panel">
+        <div class="tab-panel" data-tab="text">
+          <label class="inline"><input id="wrap" type="checkbox" checked> 자동 줄바꿈 / Wrap text</label>
+        </div>
+
+        <div class="tab-panel" data-tab="typography">
+          <label>폰트 URL / Font URL
+            <input id="fontUrl" type="url" value="https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-Thin.woff2" placeholder="https://example.com/font.woff2">
           </label>
+          <div class="grid">
+            <label>글자 크기 / Font size (px) <input id="fontSize" type="number" min="1" step="1" value="48"></label>
+            <label>굵기 / Font weight <input id="fontWeight" type="number" min="1" max="1000" step="1" value="400"></label>
+            <label>줄 높이 / Line height <input id="lineHeight" type="text" value="1.2" placeholder="1.2 / 60px / 1.2em / 120%"></label>
+            <label>정렬 / Text align
+              <select id="textAlign">
+                <option value="left">왼쪽 / Left</option>
+                <option value="center" selected>가운데 / Center</option>
+                <option value="right">오른쪽 / Right</option>
+              </select>
+            </label>
+          </div>
         </div>
-      </fieldset>
 
-      <fieldset class="panel">
-        <legend>색상 / Colors</legend>
-        <div class="color-row">
-          <label>글자색 / Text color <input id="textColorPicker" type="color" value="#ffffff"></label>
-          <label>CSS 값 / CSS value <input id="textColor" type="text" value="#ffffff"></label>
+        <div class="tab-panel" data-tab="colors">
+          <div class="color-row">
+            <label>글자색 / Text color <input id="textColorPicker" type="color" value="#ffffff"></label>
+            <label>CSS 값 / CSS value <input id="textColor" type="text" value="#ffffff"></label>
+          </div>
+          <div class="color-row">
+            <label>배경색 / Background color <input id="backgroundColorPicker" type="color" value="#000000"></label>
+            <label>CSS 값 / CSS value <input id="backgroundColor" type="text" value="#000000"></label>
+          </div>
         </div>
-        <div class="color-row">
-          <label>배경색 / Background color <input id="backgroundColorPicker" type="color" value="#000000"></label>
-          <label>CSS 값 / CSS value <input id="backgroundColor" type="text" value="#000000"></label>
-        </div>
-      </fieldset>
 
-      <fieldset class="panel">
-        <legend>화면 / Canvas</legend>
-        <div class="grid">
-          <label>가로 여백 / Horizontal padding (px) <input id="padding" type="number" min="0" step="1" value="80"></label>
-          <label>너비 / Width <input id="width" type="number" min="2" step="1" value="1920"></label>
-          <label>높이 / Height <input id="height" type="number" min="2" step="1" value="1080"></label>
-          <label>프레임레이트 / Frame rate <input id="fps" type="number" min="1" max="120" step="1" value="30"></label>
+        <div class="tab-panel" data-tab="canvas">
+          <div class="grid">
+            <label>가로 여백 / Horizontal padding (px) <input id="padding" type="number" min="0" step="1" value="80"></label>
+            <label>너비 / Width <input id="width" type="number" min="2" step="1" value="1920"></label>
+            <label>높이 / Height <input id="height" type="number" min="2" step="1" value="1080"></label>
+            <label>프레임레이트 / Frame rate <input id="fps" type="number" min="1" max="120" step="1" value="30"></label>
+          </div>
         </div>
-      </fieldset>
 
-      <fieldset class="panel">
-        <legend>시간 / Timing</legend>
-        <div class="grid">
-          <label>크레딧 길이 / Credit duration (s) <input id="duration" type="number" min="0.001" step="0.1" value="30"></label>
-          <label>시작 공백 / Blank start (s) <input id="blankStart" type="number" min="0" step="0.1" value="0"></label>
-          <label>끝 공백 / Blank end (s) <input id="blankEnd" type="number" min="0" step="0.1" value="0"></label>
+        <div class="tab-panel" data-tab="timing">
+          <div class="grid">
+            <label>크레딧 길이 / Credit duration (s) <input id="duration" type="number" min="0.001" step="0.1" value="30"></label>
+            <label>시작 공백 / Blank start (s) <input id="blankStart" type="number" min="0" step="0.1" value="0"></label>
+            <label>끝 공백 / Blank end (s) <input id="blankEnd" type="number" min="0" step="0.1" value="0"></label>
+          </div>
         </div>
-      </fieldset>
 
-      <fieldset class="panel panel-wide">
-        <legend>음성 / Audio</legend>
-        <div class="audio-grid">
-          <label class="file-field">음성 파일 / Audio file
-            <input id="audioFile" type="file" accept="audio/*">
-          </label>
-          <label>결과 길이 기준 / Output duration
-            <select id="durationMode">
-              <option value="credit" selected>크레딧 길이 / Credit duration</option>
-              <option value="audio">음성 파일 길이 / Audio duration</option>
-            </select>
-          </label>
-          <label>볼륨 / Volume <input id="volume" type="number" min="0" max="2" step="0.05" value="1"></label>
-          <label>음성 시작 / Audio start (s) <input id="audioStart" type="number" min="0" step="0.1" value="0"></label>
+        <div class="tab-panel" data-tab="audio">
+          <div class="audio-grid">
+            <label class="file-field">음성 파일 / Audio file
+              <input id="audioFile" type="file" accept="audio/*">
+            </label>
+            <label>결과 길이 기준 / Output duration
+              <select id="durationMode">
+                <option value="credit" selected>크레딧 길이 / Credit duration</option>
+                <option value="audio">음성 파일 길이 / Audio duration</option>
+              </select>
+            </label>
+            <label>볼륨 / Volume <input id="volume" type="number" min="0" max="2" step="0.05" value="1"></label>
+            <label>음성 시작 / Audio start (s) <input id="audioStart" type="number" min="0" step="0.1" value="0"></label>
+          </div>
+          <p id="audioInfo" class="muted">음성 파일 없음 / No audio file</p>
         </div>
-        <p id="audioInfo" class="muted">음성 파일 없음 / No audio file</p>
-      </fieldset>
+      </div>
     </section>
 
     <section class="output-panel">
