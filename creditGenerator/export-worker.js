@@ -13,12 +13,14 @@ function bitrateFor(width, height, fps) {
   return Math.max(1_000_000, Math.min(50_000_000, Math.round(width * height * fps * 0.15)));
 }
 
-async function loadFont(config) {
-  if (!config.fontUrl) return;
-  if (typeof FontFace === 'undefined' || !self.fonts) throw new Error('이 브라우저의 작업 스레드에서는 사용자 지정 폰트를 사용할 수 없습니다.');
-  const face = new FontFace('CreditGeneratorFont', `url(${JSON.stringify(config.fontUrl)})`);
-  self.fonts.add(face);
-  await face.load();
+async function loadFonts(layout) {
+  if (!layout.fonts?.length) return;
+  if (typeof FontFace === 'undefined' || !self.fonts) throw new Error('이 브라우저의 worker에서는 사용자 글꼴을 사용할 수 없습니다.');
+  for (const font of layout.fonts) {
+    const face = new FontFace(font.family, `url(${JSON.stringify(font.url)})`);
+    self.fonts.add(face);
+    await face.load();
+  }
 }
 
 function paintFrame(ctx, canvas, config, layout, plan, frameIndex) {
@@ -37,11 +39,20 @@ function paintFrame(ctx, canvas, config, layout, plan, frameIndex) {
   ctx.rect(0, 0, config.width, config.height);
   ctx.clip();
   ctx.fillStyle = config.textColor;
-  ctx.font = layout.font;
   ctx.textBaseline = 'alphabetic';
-  ctx.textAlign = config.textAlign;
-  const x = config.textAlign === 'left' ? config.padding : config.textAlign === 'right' ? config.width - config.padding : config.width / 2;
-  for (const line of layout.lines) ctx.fillText(line.text, x, y + line.baseline);
+  ctx.textAlign = 'left';
+
+  for (const line of layout.lines) {
+    let originX;
+    if (config.textAlign === 'left') originX = config.padding;
+    else if (config.textAlign === 'right') originX = config.width - config.padding - line.width;
+    else originX = (config.width - line.width) / 2;
+
+    for (const run of line.runs) {
+      ctx.font = run.font;
+      ctx.fillText(run.text, originX + run.x, y + line.baseline);
+    }
+  }
   ctx.restore();
 }
 
@@ -85,6 +96,7 @@ self.onmessage = async ({ data }) => {
     const { config, layout, plan, audio } = data;
     if (typeof OffscreenCanvas === 'undefined') throw new Error('이 브라우저에서는 OffscreenCanvas를 사용할 수 없습니다.');
     if (typeof VideoEncoder === 'undefined') throw new Error('이 브라우저에서는 WebCodecs VideoEncoder를 사용할 수 없습니다.');
+
     const videoBitrate = bitrateFor(config.width, config.height, config.fps);
     const canEncodeAvc = await canEncodeVideo('avc', {
       width: config.width,
@@ -92,19 +104,21 @@ self.onmessage = async ({ data }) => {
       bitrate: videoBitrate,
     });
     if (!canEncodeAvc) throw new Error('이 브라우저에서는 현재 크기의 H.264 영상을 인코딩할 수 없습니다.');
+
     if (audio) {
       const canEncodeAac = await canEncodeAudio('aac', {
         numberOfChannels: audio.numberOfChannels,
         sampleRate: audio.sampleRate,
         bitrate: 192_000,
       });
-      if (!canEncodeAac) throw new Error('이 브라우저에서는 해당 음성 파일을 AAC로 인코딩할 수 없습니다.');
+      if (!canEncodeAac) throw new Error('이 브라우저에서는 이 음성 파일을 AAC로 인코딩할 수 없습니다.');
     }
-    await loadFont(config);
+
+    await loadFonts(layout);
 
     const canvas = new OffscreenCanvas(config.width, config.height);
     const ctx = canvas.getContext('2d', { alpha: false });
-    if (!ctx) throw new Error('2D 캔버스 컨텍스트를 만들 수 없습니다.');
+    if (!ctx) throw new Error('2D Canvas context를 만들 수 없습니다.');
 
     const target = new BufferTarget();
     const output = new Output({

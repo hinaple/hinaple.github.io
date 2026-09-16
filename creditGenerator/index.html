@@ -9,15 +9,14 @@
 <body>
   <main>
     <header class="page-header">
-      <div>
-        <h1>크레딧 생성기</h1>
-        <p>스크롤 크레딧 MP4 생성기</p>
-      </div>
+      <h1>크레딧 생성기</h1>
+      <p>스크롤 크레딧 MP4 생성기</p>
     </header>
 
     <section class="panel fixed-text-panel">
       <h2>크레딧 문구</h2>
       <textarea id="text" rows="10">SAMPLE TEXT</textarea>
+      <p class="muted">글꼴 그룹은 <code>&lt;id&gt;텍스트&lt;/id&gt;</code> 형식으로 적용합니다.</p>
     </section>
 
     <section class="settings-tabs">
@@ -31,14 +30,8 @@
 
       <div class="tab-panels panel">
         <div class="tab-panel" id="panel-typography" role="tabpanel" aria-labelledby="tab-typography" data-panel="typography">
-          <label class="inline"><input id="wrap" type="checkbox" checked> 자동 줄바꿈</label>
-          <label>폰트 URL
-            <input id="fontUrl" type="url" value="https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-Thin.woff2" placeholder="https://example.com/font.woff2">
-          </label>
-          <div class="grid">
-            <label>글자 크기 (px) <input id="fontSize" type="number" min="1" step="1" value="48"></label>
-            <label>굵기 <input id="fontWeight" type="number" min="1" max="1000" step="1" value="400"></label>
-            <label>줄 높이 <input id="lineHeight" type="text" value="1.2" placeholder="1.2 / 60px / 1.2em / 120%"></label>
+          <div class="typography-options">
+            <label class="inline"><input id="wrap" type="checkbox" checked> 자동 줄바꿈</label>
             <label>정렬
               <select id="textAlign">
                 <option value="left">왼쪽</option>
@@ -47,6 +40,9 @@
               </select>
             </label>
           </div>
+
+          <div id="fontGroups" class="font-groups"></div>
+          <button id="addFontGroup" type="button">+ 글꼴 그룹 추가</button>
         </div>
 
         <div class="tab-panel" id="panel-colors" role="tabpanel" aria-labelledby="tab-colors" data-panel="colors" hidden>
@@ -112,6 +108,11 @@
       <p id="error" role="alert"></p>
       <canvas id="preview"></canvas>
 
+      <div class="timeline-row">
+        <input id="timeline" type="range" min="0" max="30" step="0.001" value="0" aria-label="미리보기 타임라인">
+        <span id="timelineTime">0.000 / 30.000초</span>
+      </div>
+
       <div class="export-row">
         <button id="export" type="button" class="primary">MP4 내보내기</button>
         <progress id="progress" max="1" value="0"></progress>
@@ -120,40 +121,6 @@
     </section>
   </main>
 
-  <script>
-    (() => {
-      const tabs = [...document.querySelectorAll('[role="tab"]')];
-      const panels = [...document.querySelectorAll('[role="tabpanel"]')];
-
-      function activateTab(tab, focus = false) {
-        const name = tab.dataset.tab;
-        for (const item of tabs) {
-          const active = item === tab;
-          item.setAttribute('aria-selected', String(active));
-          item.tabIndex = active ? 0 : -1;
-        }
-        for (const panel of panels) panel.hidden = panel.dataset.panel !== name;
-        if (focus) tab.focus();
-      }
-
-      for (const tab of tabs) {
-        tab.addEventListener('click', () => activateTab(tab));
-        tab.addEventListener('keydown', (event) => {
-          const index = tabs.indexOf(tab);
-          let next = null;
-          if (event.key === 'ArrowRight') next = tabs[(index + 1) % tabs.length];
-          if (event.key === 'ArrowLeft') next = tabs[(index - 1 + tabs.length) % tabs.length];
-          if (event.key === 'Home') next = tabs[0];
-          if (event.key === 'End') next = tabs[tabs.length - 1];
-          if (!next) return;
-          event.preventDefault();
-          activateTab(next, true);
-        });
-      }
-
-      activateTab(tabs[0]);
-    })();
-  </script>
   <script type="module" src="./main.js"></script>
 </body>
 </html>
