@@ -28,12 +28,13 @@ sample credit
 sample credit
 sample credit
 sample credit</textarea>
-      <p class="muted">글꼴 그룹: <code>&lt;id&gt;텍스트&lt;/id&gt;</code> · 가로 공간: <code>{#width=300}</code> · 세로 공간: <code>{#height=20}</code></p>
+      <p class="muted">글꼴 그룹: <code>&lt;id&gt;텍스트&lt;/id&gt;</code> · 가로 공간: <code>{#width=300}</code> · 세로 공간: <code>{#height=20}</code> · 중앙 기준점: <code>[#a]텍스트[/a]</code></p>
     </section>
 
     <section class="settings-tabs">
       <div class="tab-list" role="tablist" aria-label="크레딧 설정">
         <button type="button" role="tab" id="tab-typography" aria-controls="panel-typography" aria-selected="true" data-tab="typography">글꼴</button>
+        <button type="button" role="tab" id="tab-snippets" aria-controls="panel-snippets" aria-selected="false" tabindex="-1" data-tab="snippets">스니펫</button>
         <button type="button" role="tab" id="tab-canvas" aria-controls="panel-canvas" aria-selected="false" tabindex="-1" data-tab="canvas">화면</button>
         <button type="button" role="tab" id="tab-timing" aria-controls="panel-timing" aria-selected="false" tabindex="-1" data-tab="timing">시간</button>
         <button type="button" role="tab" id="tab-audio" aria-controls="panel-audio" aria-selected="false" tabindex="-1" data-tab="audio">음성</button>
@@ -53,6 +54,12 @@ sample credit</textarea>
           </div>
           <div id="fontGroups" class="font-groups"></div>
           <button id="addFontGroup" type="button">+ 글꼴 그룹 추가</button>
+        </div>
+
+        <div class="tab-panel" id="panel-snippets" role="tabpanel" aria-labelledby="tab-snippets" data-panel="snippets" hidden>
+          <p class="muted snippet-description">위에서 아래 순서로 검색 문자열을 모두 치환한 뒤 크레딧 문법을 처리합니다.</p>
+          <div id="snippets" class="snippet-list"></div>
+          <button id="addSnippet" type="button">+ 스니펫 추가</button>
         </div>
 
         <div class="tab-panel" id="panel-canvas" role="tabpanel" aria-labelledby="tab-canvas" data-panel="canvas" hidden>

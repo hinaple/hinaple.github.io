@@ -3,6 +3,7 @@ import { createAudioExportController } from './audio-export.js';
 import { createFontGroupManager } from './font-groups.js';
 import { createPreviewController } from './preview.js';
 import { framePlan } from './render.js';
+import { createSnippetManager } from './snippets.js';
 
 const $ = (id) => document.getElementById(id);
 const fields = {
@@ -42,6 +43,9 @@ const fontGroupManager = createFontGroupManager({
   container: $('fontGroups'), addButton: $('addFontGroup'), textInput: fields.text,
   onChange: () => scheduleRebuild(), onError: setError,
 });
+const snippetManager = createSnippetManager({
+  container: $('snippets'), addButton: $('addSnippet'), onChange: () => scheduleRebuild(),
+});
 
 new ColorPicker(fields.backgroundColor, {
   toggleStyle: 'input', submitMode: 'instant', enableAlpha: true, defaultFormat: 'hex', dialogPlacement: 'bottom-start',
@@ -64,11 +68,15 @@ function readConfig() {
   const durationMode = fields.durationMode.value;
   const audioDuration = audioExportController.getDuration();
   if (durationMode === 'audio' && audioDuration === 0) throw new Error('음성 파일 길이를 사용하려면 음성 파일을 추가하세요.');
-  const text = fields.text.value.replace(/\r\n?/g, '\n');
+
+  const text = snippetManager.apply(fields.text.value).replace(/\r\n?/g, '\n');
   if (!text.trim()) throw new Error('크레딧 문구를 입력하세요.');
-  return { text, wrap: fields.wrap.checked, textAlign: fields.textAlign.value,
+  return {
+    text, wrap: fields.wrap.checked, textAlign: fields.textAlign.value,
     backgroundColor: validateColor(fields.backgroundColor.value.trim(), '배경색'),
-    padding, width, height, fps, duration, blankStart, blankEnd, durationMode, volume, audioStart, audioDuration };
+    padding, width, height, fps, duration, blankStart, blankEnd,
+    durationMode, volume, audioStart, audioDuration,
+  };
 }
 
 function updateInfo() {
@@ -83,7 +91,9 @@ async function rebuild() {
   try {
     setError('');
     const nextConfig = readConfig();
-    const nextLayout = await fontGroupManager.prepareLayout(nextConfig.text, { wrap: nextConfig.wrap, width: nextConfig.width, padding: nextConfig.padding });
+    const nextLayout = await fontGroupManager.prepareLayout(nextConfig.text, {
+      wrap: nextConfig.wrap, width: nextConfig.width, padding: nextConfig.padding,
+    });
     if (token !== rebuildToken || !nextLayout) return false;
     config = nextConfig;
     layout = nextLayout;

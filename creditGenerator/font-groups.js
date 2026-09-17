@@ -3,7 +3,7 @@ import {
   materializeRichInlineLineRange,
   prepareRichInline,
   walkRichInlineLineRanges,
-} from 'https://cdn.jsdelivr.net/npm/@chenglou/pretext@0.0.8/dist/rich-inline.js';
+} from 'https://cdn.jsdelivr.net/npm/@chenglou/pretext@0.0.9/dist/rich-inline.js';
 
 export const DEFAULT_FONT_URL = 'https://rawcdn.githack.com/orioncactus/pretendard/refs/heads/main/packages/pretendard/dist/web/variable/woff2/PretendardVariable.woff2';
 const FONT_GROUP_ID_RE = /^[A-Za-z0-9_-]+$/;
@@ -55,42 +55,87 @@ function validateCssColor(value, name) {
 }
 
 function renameFontTags(text, oldId, newId) {
-  return text.replace(new RegExp(`<(/?)${oldId.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}>`, 'g'), `<$1${newId}>`);
+  const escaped = oldId.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  return text.replace(new RegExp(`<(/?)${escaped}>`, 'g'), `<$1${newId}>`);
 }
 
 function parseSource(text, groupMap) {
   const tokens = [];
   let activeId = '0';
-  let openTag = null;
+  let openFontTag = null;
+  let openAnchor = null;
+  let anchorHasContent = false;
+  let lineHasAnchor = false;
   let buffer = '';
 
+  const isAnchored = () => openAnchor !== null;
   const flush = () => {
     if (!buffer) return;
+    const anchor = isAnchored();
     const last = tokens.at(-1);
-    if (last?.kind === 'text' && last.groupId === activeId) last.text += buffer;
-    else tokens.push({ kind: 'text', text: buffer, groupId: activeId });
+    if (last?.kind === 'text' && last.groupId === activeId && last.anchor === anchor) last.text += buffer;
+    else tokens.push({ kind: 'text', text: buffer, groupId: activeId, anchor });
+    if (anchor) anchorHasContent = true;
     buffer = '';
   };
 
   let i = 0;
   while (i < text.length) {
-    if (text[i] === '\\' && (text[i + 1] === '<' || text[i + 1] === '{')) {
+    if (text[i] === '\\' && ['<', '{', '['].includes(text[i + 1])) {
       buffer += text[i + 1];
+      if (isAnchored()) anchorHasContent = true;
       i += 2;
+      continue;
+    }
+
+    if (text[i] === '\n') {
+      if (isAnchored()) throw new Error('anchor 내부에서는 개행할 수 없습니다.');
+      buffer += '\n';
+      lineHasAnchor = false;
+      i++;
+      continue;
+    }
+
+    if (text.startsWith('[#a]', i) || text.startsWith('[#anchor]', i)) {
+      const name = text.startsWith('[#anchor]', i) ? 'anchor' : 'a';
+      if (openAnchor !== null) throw new Error('anchor는 중첩할 수 없습니다.');
+      if (lineHasAnchor) throw new Error('한 줄에는 anchor를 하나만 사용할 수 있습니다.');
+      flush();
+      openAnchor = name;
+      anchorHasContent = false;
+      lineHasAnchor = true;
+      i += name === 'anchor' ? 9 : 4;
+      continue;
+    }
+
+    if (text.startsWith('[/a]', i) || text.startsWith('[/anchor]', i)) {
+      const name = text.startsWith('[/anchor]', i) ? 'anchor' : 'a';
+      if (openAnchor === null) throw new Error(`열리지 않은 anchor 닫는 태그 [/${name}]가 있습니다.`);
+      if (openAnchor !== name) throw new Error(`[#${openAnchor}]는 [/${openAnchor}]로 닫아야 합니다.`);
+      flush();
+      if (!anchorHasContent) throw new Error('anchor 내부가 비어 있습니다.');
+      openAnchor = null;
+      anchorHasContent = false;
+      i += name === 'anchor' ? 9 : 4;
       continue;
     }
 
     if (text.startsWith('{#', i)) {
       const end = text.indexOf('}', i + 2);
       if (end !== -1) {
-        const body = text.slice(i + 2, end);
-        const match = body.match(/^(width|height)=(\d+(?:\.\d+)?)$/);
+        const match = text.slice(i + 2, end).match(/^(width|height)=(\d+(?:\.\d+)?)$/);
         if (match) {
+          const kind = match[1];
           const value = Number(match[2]);
+          if (kind === 'height' && isAnchored()) throw new Error('anchor 내부에서는 {#height}를 사용할 수 없습니다.');
           flush();
-          tokens.push({ kind: match[1], value });
+          tokens.push({ kind, value, anchor: kind === 'width' && isAnchored() });
+          if (kind === 'width' && isAnchored()) anchorHasContent = true;
           i = end + 1;
-          if (match[1] === 'height' && text[i] === '\n') i++;
+          if (kind === 'height') {
+            lineHasAnchor = false;
+            if (text[i] === '\n') i++;
+          }
           continue;
         }
       }
@@ -99,23 +144,22 @@ function parseSource(text, groupMap) {
     if (text[i] === '<') {
       const end = text.indexOf('>', i + 1);
       if (end !== -1) {
-        const token = text.slice(i + 1, end);
-        const match = token.match(/^(\/)?([A-Za-z0-9_-]+)$/);
+        const match = text.slice(i + 1, end).match(/^(\/)?([A-Za-z0-9_-]+)$/);
         if (match) {
           const closing = Boolean(match[1]);
           const id = match[2];
           if (!groupMap.has(id)) throw new Error(`존재하지 않는 글꼴 그룹 "${id}"가 사용되었습니다.`);
           flush();
           if (closing) {
-            if (openTag !== id) {
-              if (openTag === null) throw new Error(`열리지 않은 글꼴 태그 </${id}>가 있습니다.`);
-              throw new Error(`글꼴 태그 <${openTag}> 안에서 </${id}>로 닫을 수 없습니다.`);
+            if (openFontTag !== id) {
+              if (openFontTag === null) throw new Error(`열리지 않은 글꼴 태그 </${id}>가 있습니다.`);
+              throw new Error(`글꼴 태그 <${openFontTag}> 안에서 </${id}>로 닫을 수 없습니다.`);
             }
-            openTag = null;
+            openFontTag = null;
             activeId = '0';
           } else {
-            if (openTag !== null) throw new Error('글꼴 태그는 중첩할 수 없습니다.');
-            openTag = id;
+            if (openFontTag !== null) throw new Error('글꼴 태그는 중첩할 수 없습니다.');
+            openFontTag = id;
             activeId = id;
           }
           i = end + 1;
@@ -125,11 +169,13 @@ function parseSource(text, groupMap) {
     }
 
     buffer += text[i];
+    if (isAnchored()) anchorHasContent = true;
     i++;
   }
 
   flush();
-  if (openTag !== null) throw new Error(`글꼴 태그 <${openTag}>가 닫히지 않았습니다.`);
+  if (openFontTag !== null) throw new Error(`글꼴 태그 <${openFontTag}>가 닫히지 않았습니다.`);
+  if (openAnchor !== null) throw new Error(`anchor [#${openAnchor}]가 닫히지 않았습니다.`);
   return tokens;
 }
 
@@ -140,14 +186,13 @@ function splitIntoLogicalLines(tokens) {
   for (const token of tokens) {
     if (token.kind === 'height') {
       if (current().items.length) lines.push({ items: [], emptyGroupId: '0' });
-      const line = current();
-      line.spacerHeight = token.value;
+      current().spacerHeight = token.value;
       lines.push({ items: [], emptyGroupId: '0' });
       continue;
     }
 
     if (token.kind === 'width') {
-      current().items.push({ kind: 'width', width: token.value });
+      current().items.push({ kind: 'width', width: token.value, anchor: token.anchor });
       continue;
     }
 
@@ -156,8 +201,8 @@ function splitIntoLogicalLines(tokens) {
       const line = current();
       if (parts[i]) {
         const last = line.items.at(-1);
-        if (last?.kind === 'text' && last.groupId === token.groupId) last.text += parts[i];
-        else line.items.push({ kind: 'text', text: parts[i], groupId: token.groupId });
+        if (last?.kind === 'text' && last.groupId === token.groupId && last.anchor === token.anchor) last.text += parts[i];
+        else line.items.push({ kind: 'text', text: parts[i], groupId: token.groupId, anchor: token.anchor });
       } else if (!line.items.length) {
         line.emptyGroupId = token.groupId;
       }
@@ -182,17 +227,25 @@ function metricsForRun(measure, text, style) {
 
 function finalizeLine(runs, width, measure, baseStyle, forcedHeight = null) {
   if (forcedHeight != null) {
-    return { runs: [], width: 0, lineHeight: forcedHeight, ascent: 0, descent: 0, visible: false, baseline: 0 };
+    return { runs: [], width: 0, lineHeight: forcedHeight, ascent: 0, descent: 0, visible: false, baseline: 0, anchorStart: null, anchorEnd: null };
   }
   if (!runs.length) {
-    return { runs: [], width: 0, lineHeight: baseStyle.lineHeight, ascent: 0, descent: 0, visible: false, baseline: 0 };
+    return { runs: [], width: 0, lineHeight: baseStyle.lineHeight, ascent: 0, descent: 0, visible: false, baseline: 0, anchorStart: null, anchorEnd: null };
   }
+
   let lineHeight = 0;
   let ascent = 0;
   let descent = 0;
   let visible = false;
+  let anchorStart = Infinity;
+  let anchorEnd = -Infinity;
+
   for (const run of runs) {
     lineHeight = Math.max(lineHeight, run.lineHeight ?? baseStyle.lineHeight);
+    if (run.anchor) {
+      anchorStart = Math.min(anchorStart, run.x);
+      anchorEnd = Math.max(anchorEnd, run.x + run.width);
+    }
     if (run.kind === 'width') continue;
     const metrics = metricsForRun(measure, run.text, run);
     if (metrics.visible) {
@@ -201,7 +254,18 @@ function finalizeLine(runs, width, measure, baseStyle, forcedHeight = null) {
       descent = Math.max(descent, metrics.descent);
     }
   }
-  return { runs, width, lineHeight: lineHeight || baseStyle.lineHeight, ascent, descent, visible, baseline: 0 };
+
+  return {
+    runs,
+    width,
+    lineHeight: lineHeight || baseStyle.lineHeight,
+    ascent,
+    descent,
+    visible,
+    baseline: 0,
+    anchorStart: Number.isFinite(anchorStart) ? anchorStart : null,
+    anchorEnd: Number.isFinite(anchorEnd) ? anchorEnd : null,
+  };
 }
 
 function layoutUnwrappedLine(items, stylesById, measure, baseStyle) {
@@ -209,7 +273,7 @@ function layoutUnwrappedLine(items, stylesById, measure, baseStyle) {
   const runs = [];
   for (const item of items) {
     if (item.kind === 'width') {
-      runs.push({ kind: 'width', x, width: item.width, lineHeight: baseStyle.lineHeight });
+      runs.push({ kind: 'width', x, width: item.width, lineHeight: baseStyle.lineHeight, anchor: item.anchor });
       x += item.width;
       continue;
     }
@@ -217,7 +281,11 @@ function layoutUnwrappedLine(items, stylesById, measure, baseStyle) {
     const style = stylesById.get(item.groupId);
     measure.font = style.font;
     const width = measure.measureText(item.text).width;
-    runs.push({ kind: 'text', text: item.text, x, width, font: style.font, fontSize: style.fontSize, lineHeight: style.lineHeight, color: style.color });
+    runs.push({
+      kind: 'text', text: item.text, x, width,
+      font: style.font, fontSize: style.fontSize, lineHeight: style.lineHeight, color: style.color,
+      anchor: item.anchor,
+    });
     x += width;
   }
   return [finalizeLine(runs, x, measure, baseStyle)];
@@ -228,10 +296,10 @@ function layoutWrappedLine(items, stylesById, measure, baseStyle, contentWidth) 
 
   const richItems = items.map((item) => {
     if (item.kind === 'width') {
-      return { kind: 'width', text: SPACER_CHAR, font: `1px Arial`, extraWidth: item.width, groupId: null };
+      return { kind: 'width', text: SPACER_CHAR, font: '1px Arial', extraWidth: item.width, groupId: null, anchor: item.anchor };
     }
     const style = stylesById.get(item.groupId);
-    return { kind: 'text', text: item.text, font: style.font, extraWidth: 0, groupId: item.groupId };
+    return { kind: 'text', text: item.text, font: style.font, extraWidth: 0, groupId: item.groupId, anchor: item.anchor };
   });
 
   const prepared = prepareRichInline(richItems.map((item) => ({
@@ -250,15 +318,25 @@ function layoutWrappedLine(items, stylesById, measure, baseStyle, contentWidth) 
       const source = richItems[fragment.itemIndex];
       x += fragment.gapBefore;
       if (source.kind === 'width') {
-        runs.push({ kind: 'width', x, width: fragment.occupiedWidth, lineHeight: baseStyle.lineHeight });
+        runs.push({ kind: 'width', x, width: fragment.occupiedWidth, lineHeight: baseStyle.lineHeight, anchor: source.anchor });
       } else {
         const style = stylesById.get(source.groupId);
-        runs.push({ kind: 'text', text: fragment.text, x, width: fragment.occupiedWidth, font: style.font, fontSize: style.fontSize, lineHeight: style.lineHeight, color: style.color });
+        runs.push({
+          kind: 'text', text: fragment.text, x, width: fragment.occupiedWidth,
+          font: style.font, fontSize: style.fontSize, lineHeight: style.lineHeight, color: style.color,
+          anchor: source.anchor,
+        });
       }
       x += fragment.occupiedWidth;
     }
     lines.push(finalizeLine(runs, materialized.width, measure, baseStyle));
   });
+
+  const sourceHasAnchor = items.some((item) => item.anchor);
+  const anchorLines = lines.filter((line) => line.anchorStart !== null);
+  if (sourceHasAnchor && anchorLines.length !== 1) {
+    throw new Error('anchor 영역은 자동 줄바꿈 후 한 줄 안에 들어가야 합니다.');
+  }
   return lines.length ? lines : [finalizeLine([], 0, measure, baseStyle)];
 }
 
@@ -334,8 +412,7 @@ export function createFontGroupManager({ container, addButton, textInput, onChan
   function updateInheritanceHints() {
     const base = fontGroups[0];
     for (const input of container.querySelectorAll('[data-font-group-index]:not([data-font-group-index="0"])[data-font-prop]')) {
-      const prop = input.dataset.fontProp;
-      input.placeholder = base[prop] || '';
+      input.placeholder = base[input.dataset.fontProp] || '';
     }
   }
 
@@ -449,8 +526,7 @@ export function createFontGroupManager({ container, addButton, textInput, onChan
       const unresolved = resolveFontGroups();
       const groups = await ensureFontFamilies(unresolved);
       const groupMap = new Map(groups.map((group) => [group.id, group]));
-      const tokens = parseSource(text, groupMap);
-      const logicalLines = splitIntoLogicalLines(tokens);
+      const logicalLines = splitIntoLogicalLines(parseSource(text, groupMap));
       const measure = document.createElement('canvas').getContext('2d');
       measure.textBaseline = 'alphabetic';
       const baseStyle = groups[0];
@@ -490,7 +566,9 @@ export function createFontGroupManager({ container, addButton, textInput, onChan
       for (const line of lines) line.baseline -= inkTop;
       const totalAdvance = lines.length ? lines.at(-1).baseline + lines.at(-1).lineHeight : 0;
       const visualHeight = Math.max(inkBottom - inkTop, totalAdvance);
-      const fonts = [...new Map(groups.filter((group) => group.fontUrl).map((group) => [group.fontFamily, { family: group.fontFamily, url: group.fontUrl, weight: group.fontWeight }])).values()];
+      const fonts = [...new Map(groups.filter((group) => group.fontUrl).map((group) => [group.fontFamily, {
+        family: group.fontFamily, url: group.fontUrl, weight: group.fontWeight,
+      }])).values()];
       return { lines, visualHeight: Math.max(1, visualHeight), maxAscent, maxDescent, fonts };
     },
   };

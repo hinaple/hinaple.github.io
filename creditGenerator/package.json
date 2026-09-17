@@ -5,7 +5,7 @@
     "build": "esbuild main.js export-worker.js --bundle --format=esm --outdir=dist --platform=browser --external:https://*"
   },
   "dependencies": {
-    "@chenglou/pretext": "0.0.8",
+    "@chenglou/pretext": "0.0.9",
     "mediabunny": "1.56.3"
   },
   "devDependencies": {

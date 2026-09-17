@@ -56,6 +56,9 @@ export function visibleLineRange(layout, offsetY, viewportHeight) {
 function lineOriginX(config, line) {
   if (config.textAlign === 'left') return config.padding;
   if (config.textAlign === 'right') return config.width - config.padding - line.width;
+  if (line.anchorStart !== null && line.anchorEnd !== null) {
+    return config.width / 2 - (line.anchorStart + line.anchorEnd) / 2;
+  }
   return (config.width - line.width) / 2;
 }
 
@@ -84,6 +87,7 @@ export function paintCreditsAtTime(target, config, layout, time, plan = framePla
 
     const originX = lineOriginX(config, line);
     for (const run of line.runs) {
+      if (run.kind !== 'text') continue;
       target.font = run.font;
       target.fillStyle = run.color;
       target.fillText(run.text, originX + run.x, offsetY + line.baseline);
